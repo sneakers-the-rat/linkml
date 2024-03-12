@@ -97,6 +97,8 @@ def cli(
 
     For more information, see https://linkml.io/linkml/data/index.html
     """
+    inargs = {}
+    outargs = {}
     if prefix is None:
         prefix = []
     if module is None:
@@ -113,6 +115,8 @@ def cli(
             prefix_map[base] = uri
     if schema is not None:
         sv = SchemaView(schema)
+        inargs["schemaview"] = sv
+        outargs["schemaview"] = sv
         if prefix_map:
             for k, v in prefix_map.items():
                 sv.schema.prefixes[k] = Prefix(k, v)
@@ -128,12 +132,9 @@ def cli(
     input_format = _get_format(input, input_format)
     loader = get_loader(input_format)
 
-    inargs = {}
-    outargs = {}
     if datautils._is_rdf_format(input_format):
         if sv is None:
             raise Exception("Must pass schema arg")
-        inargs["schemaview"] = sv
         inargs["fmt"] = input_format
     if _is_xsv(input_format):
         if index_slot is None:
@@ -163,14 +164,13 @@ def cli(
     if output_format == "rdf" or output_format == "ttl":
         if sv is None:
             raise Exception("Must pass schema arg")
-        outargs["schemaview"] = sv
     if _is_xsv(output_format):
         if index_slot is None:
             index_slot = infer_index_slot(sv, target_class)
-            if index_slot is None:
+            if index_slot is None and not isinstance(obj, list):
                 raise Exception("--index-slot is required for CSV output")
-        outargs["index_slot"] = index_slot
-        outargs["schema"] = schema
+            elif index_slot:
+                outargs["index_slot"] = index_slot
     dumper = get_dumper(output_format)
     if output is not None:
         dumper.dump(obj, output, **outargs)
