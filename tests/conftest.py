@@ -4,11 +4,8 @@ from abc import ABC, abstractmethod
 from importlib.abc import MetaPathFinder
 from pathlib import Path
 from typing import Callable, Optional
-import socket
-import io
 
 import pytest
-import requests
 import requests_cache
 from _pytest.assertion.util import _diff_text
 from linkml_runtime.linkml_model.meta import SchemaDefinition
