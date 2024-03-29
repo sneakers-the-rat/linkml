@@ -26,7 +26,7 @@ def test_metamodel(arguments, snapshot_file, snapshot):
     assert result.exit_code == 0
     assert result.output == snapshot(f"genyuml/{snapshot_file}")
 
-
+@pytest.mark.vcr
 @pytest.mark.network
 @pytest.mark.parametrize(
     "arguments,snapshot_dir",
@@ -48,7 +48,7 @@ def test_invalid_classname():
     assert result.exit_code != 0
     assert "noclass" in str(result.exception)
 
-
+@pytest.mark.vcr
 @pytest.mark.parametrize("format", YumlGenerator.valid_formats)
 def test_formats(format, tmp_path, snapshot):
     runner = CliRunner()
@@ -56,7 +56,7 @@ def test_formats(format, tmp_path, snapshot):
     assert result.exit_code == 0
     assert tmp_path == snapshot(f"genyuml/meta_{format}")
 
-
+@pytest.mark.vcr
 def test_specified_diagram_name(tmp_path, snapshot):
     runner = CliRunner()
     result = runner.invoke(cli, ["--diagram-name", "specified_name", "-d", str(tmp_path), KITCHEN_SINK_PATH])

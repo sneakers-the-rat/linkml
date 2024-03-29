@@ -1,3 +1,4 @@
+import pytest
 from rdflib import Graph, URIRef
 
 from linkml import METAMODEL_CONTEXT_URI
@@ -6,7 +7,7 @@ from linkml.generators.owlgen import OwlSchemaGenerator
 from linkml.generators.rdfgen import RDFGenerator
 from linkml.generators.yamlgen import YAMLGenerator
 
-
+@pytest.mark.vcr
 def test_attribute_behavior(input_path, snapshot, snapshot_path):
     """
     Tests: https://github.com/linkml/linkml/issues/388

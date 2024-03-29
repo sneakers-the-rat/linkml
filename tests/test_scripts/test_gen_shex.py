@@ -18,7 +18,7 @@ def test_help():
     result = runner.invoke(cli, "--help")
     assert "Generate a ShEx Schema for a  LinkML model" in result.output
 
-
+@pytest.mark.vcr
 @pytest.mark.parametrize(
     "arguments,snapshot_file",
     [

@@ -24,12 +24,14 @@ class MetaModelTestCase(GeneratorTestCase):
     model_name = "meta"
 
     @pytest.mark.slow
+    @pytest.mark.vcr
     @unittest.skipIf(SKIP_MARKDOWN_VALIDATION, SKIP_MARKDOWN_VALIDATION_REASON)
     def test_meta_markdown(self):
         """Test the markdown generator for the biolink model"""
         self.directory_generator(
             "docs",
             MarkdownGenerator,
+            generator_args=dict(noyuml=True),
             serialize_args=dict(image_dir="images"),
             input_file=LOCAL_METAMODEL_YAML_FILE,
         )
@@ -69,6 +71,7 @@ class MetaModelTestCase(GeneratorTestCase):
         self.single_file_generator("shexj", ShExGenerator, format="json", yaml_file=LOCAL_METAMODEL_YAML_FILE)
 
     @pytest.mark.slow
+    @pytest.mark.vcr
     def test_meta_rdf(self):
         """Test the rdf generator for the biolink model"""
 

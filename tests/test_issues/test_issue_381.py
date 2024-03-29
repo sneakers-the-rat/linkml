@@ -1,3 +1,4 @@
+import pytest
 from linkml_runtime.linkml_model.meta import LINKML
 from rdflib import Graph, Namespace
 
@@ -12,7 +13,7 @@ enums:
       a b:
 """
 
-
+@pytest.mark.vcr
 def test_non_url_pv():
     """Test URL generation w/ non-mangled values"""
     g = Graph()

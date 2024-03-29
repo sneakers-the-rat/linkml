@@ -3,7 +3,7 @@ import requests
 
 from linkml.generators.yumlgen import YumlGenerator
 
-
+@pytest.mark.vcr
 @pytest.mark.network
 def test_prefix(input_path, snapshot):
     output = YumlGenerator(input_path("issue_112.yaml")).serialize()

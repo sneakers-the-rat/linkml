@@ -21,7 +21,7 @@ def gen_context_file(tmp_path_factory):
         output.write(ContextGenerator(KITCHEN_SINK_PATH, useuris=True).serialize())
     return str(path)
 
-
+@pytest.mark.vcr
 @pytest.mark.xfail
 @pytest.mark.parametrize(
     "arguments,snapshot_file", [([], "meta.ttl"), (["--metauris"], "metan.ttl"), (["-f", "n3"], "meta.n3")]
@@ -33,7 +33,7 @@ def test_metamodel(arguments, snapshot_file, snapshot, gen_context_file):
     assert result.exit_code == 0
     assert result.output == snapshot(f"genrdf/{snapshot_file}")
 
-
+@pytest.mark.vcr
 @pytest.mark.xfail
 def test_make_script(snapshot):
     """Test a relative file path in JSON"""

@@ -3,7 +3,7 @@ import requests
 
 from linkml.generators.yumlgen import YumlGenerator
 
-
+@pytest.mark.vcr
 @pytest.mark.network
 def test_domain_slots(input_path):
     """has_phenotype shouldn't appear in the UML graph"""

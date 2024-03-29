@@ -113,7 +113,7 @@ def test_undefined_subset(input_path):
     with pytest.raises(ValueError, match='loadererror11.yaml", line 22, col 16'):
         SchemaLoader(fn).resolve()
 
-
+@pytest.mark.vcr
 def test_importmap(input_path, snapshot):
     """Test the importmap parameter"""
     fn = input_path("import_test_1.yaml")

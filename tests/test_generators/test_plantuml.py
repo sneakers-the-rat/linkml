@@ -80,7 +80,7 @@ def test_serialize(kitchen_sink_path):
     # in complete UML class diagram
     assert 'class "MarriageEvent"' in plantuml
 
-
+@pytest.mark.vcr
 def test_generate_svg(tmp_path, kitchen_sink_path):
     """Test the correctness of SVG rendering of plantUML diagram."""
     generator = PlantumlGenerator(kitchen_sink_path)

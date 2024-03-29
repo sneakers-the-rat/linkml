@@ -207,84 +207,23 @@ def patch_requests_cache(pytestconfig):
     if pytestconfig.getoption('--disable-cache'):
         return
 
-    cache_file = Path(__file__).parent / "__snapshots__" / "requests-cache"
+    cache_file = Path(__file__).parent / "output" / "requests-cache.sqlite"
     if not cache_file.exists():
         cache_file.mkdir()
 
     requests_cache.install_cache(
         str(cache_file),
-        backend="filesystem",
-        serializer='yaml',
+        backend="sqlite",
         urls_expire_after={"localhost": requests_cache.DO_NOT_CACHE},
         allowable_methods=('GET', 'POST', 'HEAD'),
         allowable_codes=(200,301),
-        ignored_parameters=['Accept-Encoding'] # sometimes comes out of orders so we get spurious cache misses
+        ignored_parameters=['Accept-Encoding'] # sometimes comes out of order so we get spurious cache misses
     )
-
-    if pytestconfig.getoption('--generate-snapshots') or pytestconfig.getoption(
-            '--generate-network-cache'):
-        # regenerating, so clear what we have!
-        # requests_cache.clear()
-        pass
-    else:
-        # block network activity! we should make no unintended, uncached requests.
-        #block_sockets()
-        pass
-
-    # patch_urllib_networking()
-
-def patch_urllib_networking():
-    """
-    patch RDFlib's use of urllib3 to use the requests_cache.
-
-    We need to simulate a urllib3 response, which they also use as a file-like
-    object, so we replace the old urllib3.response type with a bytestring of
-    the response and manually set some attributes to match the ones used by rdflib.
-
-    This is only intended to patch rdflib's network requests during testing, and is
-    not in any way an actual monkeypatch for urllib.
-    """
-    import urllib.request
-    from urllib.response import addinfourl
-    import rdflib._networking
-
-    def _patched_request(req, *args, **kwargs):
-        #import requests
-        res = requests.get(req.get_full_url())
-
-        class UrllibString(io.BytesIO):
-            def readable(self):
-                return True
-            def writable(self):
-                return True
-            def geturl(self):
-                return res.url
-            def info(self):
-                return res.headers
-            def close(self):
-                pass
-
-            class fp:
-                mode = 'r'
-
-        infourl = addinfourl(io.BytesIO(res.text.encode('utf-8')), res.headers, res.url)
-        infourl.fp.mode = 'rb'
-        # str_res = UrllibString(res.text.encode('utf-8'))
-        # str_res.headers = res.headers
-        # str_res.url = res.url
-        return infourl
-
-    urllib.request.urlopen = _patched_request
-    rdflib._networking.urlopen = _patched_request
-
-def block_sockets():
-    """block network requests, raise if we try!"""
-    _socket = socket.socket
-
-    def intercept(*args, **kwargs):
-        raise ConnectionRefusedError('Network activity is blocked during testing - all network activity should be cached to test for unintended network requests. To regenerate the network cache use --generate-snapshots or --generate-network-cache')
-
-    socket.socket = intercept
+    if not pytestconfig.getoption("--with-output"):
+        requests_cache.clear()
+    yield
+    if not pytestconfig.getoption('--with-output'):
+        cache_file.unlink(missing_ok=True)
 
 
 class MockImportErrorFinder(MetaPathFinder):
@@ -338,7 +277,6 @@ def vcr_config(snapshot_path, request:pytest.FixtureRequest):
 
     config = {
         'record_mode': 'none',
-        # 'path': (cassette_dir / request.function.__name__).with_suffix('.yaml')
     }
     if request.config.getoption('--generate-snapshots') or request.config.getoption('--generate-network-cache'):
         config['record_mode'] = 'rewrite'

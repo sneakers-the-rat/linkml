@@ -1,3 +1,4 @@
+import pytest
 from click.testing import CliRunner
 
 from linkml.generators.markdowngen import cli
@@ -16,7 +17,7 @@ def test_metamodel(tmp_path):
     result = runner.invoke(cli, ["-d", tmp_path, KITCHEN_SINK_PATH])
     assert result.exit_code == 0
 
-
+@pytest.mark.vcr
 def test_issue_2(tmp_path):
     runner = CliRunner()
     result = runner.invoke(cli, ["-d", tmp_path, "-c", "Person", "-i", KITCHEN_SINK_PATH])
