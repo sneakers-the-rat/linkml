@@ -4,8 +4,11 @@ from abc import ABC, abstractmethod
 from importlib.abc import MetaPathFinder
 from pathlib import Path
 from typing import Callable, Optional
+import socket
+import io
 
 import pytest
+import requests
 import requests_cache
 from _pytest.assertion.util import _diff_text
 from linkml_runtime.linkml_model.meta import SchemaDefinition
@@ -170,6 +173,12 @@ def pytest_addoption(parser):
     parser.addoption(
         "--with-output", action="store_true", help="dump output in compliance test for richer debugging information"
     )
+    parser.addoption(
+        "--generate-network-cache", action="store_true", help="regenerate stored network responses (in __snapshots__/requests-cache.sqlite). cassettes are also re-generated if --generate-snapshots is passed."
+    )
+    parser.addoption(
+        "--disable-cache", action="store_true", help="Disable all network caching and unblock network access - make live requests."
+    )
 
 
 def pytest_collection_modifyitems(config, items):
@@ -195,17 +204,87 @@ def patch_requests_cache(pytestconfig):
     Cache network requests - for each unique network request, store it in
     an sqlite cache. only do unique requests once per session.
     """
-    cache_file = Path(__file__).parent / "output" / "requests-cache.sqlite"
+    if pytestconfig.getoption('--disable-cache'):
+        return
+
+    cache_file = Path(__file__).parent / "__snapshots__" / "requests-cache"
+    if not cache_file.exists():
+        cache_file.mkdir()
+
     requests_cache.install_cache(
         str(cache_file),
-        backend="sqlite",
+        backend="filesystem",
+        serializer='yaml',
         urls_expire_after={"localhost": requests_cache.DO_NOT_CACHE},
+        allowable_methods=('GET', 'POST', 'HEAD'),
+        allowable_codes=(200,301),
+        ignored_parameters=['Accept-Encoding'] # sometimes comes out of orders so we get spurious cache misses
     )
-    requests_cache.clear()
-    yield
-    # delete cache file unless we have requested it to persist for inspection
-    if not pytestconfig.getoption("--with-output"):
-        cache_file.unlink(missing_ok=True)
+
+    if pytestconfig.getoption('--generate-snapshots') or pytestconfig.getoption(
+            '--generate-network-cache'):
+        # regenerating, so clear what we have!
+        # requests_cache.clear()
+        pass
+    else:
+        # block network activity! we should make no unintended, uncached requests.
+        #block_sockets()
+        pass
+
+    # patch_urllib_networking()
+
+def patch_urllib_networking():
+    """
+    patch RDFlib's use of urllib3 to use the requests_cache.
+
+    We need to simulate a urllib3 response, which they also use as a file-like
+    object, so we replace the old urllib3.response type with a bytestring of
+    the response and manually set some attributes to match the ones used by rdflib.
+
+    This is only intended to patch rdflib's network requests during testing, and is
+    not in any way an actual monkeypatch for urllib.
+    """
+    import urllib.request
+    from urllib.response import addinfourl
+    import rdflib._networking
+
+    def _patched_request(req, *args, **kwargs):
+        #import requests
+        res = requests.get(req.get_full_url())
+
+        class UrllibString(io.BytesIO):
+            def readable(self):
+                return True
+            def writable(self):
+                return True
+            def geturl(self):
+                return res.url
+            def info(self):
+                return res.headers
+            def close(self):
+                pass
+
+            class fp:
+                mode = 'r'
+
+        infourl = addinfourl(io.BytesIO(res.text.encode('utf-8')), res.headers, res.url)
+        infourl.fp.mode = 'rb'
+        # str_res = UrllibString(res.text.encode('utf-8'))
+        # str_res.headers = res.headers
+        # str_res.url = res.url
+        return infourl
+
+    urllib.request.urlopen = _patched_request
+    rdflib._networking.urlopen = _patched_request
+
+def block_sockets():
+    """block network requests, raise if we try!"""
+    _socket = socket.socket
+
+    def intercept(*args, **kwargs):
+        raise ConnectionRefusedError('Network activity is blocked during testing - all network activity should be cached to test for unintended network requests. To regenerate the network cache use --generate-snapshots or --generate-network-cache')
+
+    socket.socket = intercept
 
 
 class MockImportErrorFinder(MetaPathFinder):
@@ -250,3 +329,22 @@ def mock_black_import():
 
     sys.modules.update(removed)
     sys.meta_path.remove(meta_finder)
+
+@pytest.fixture(scope='function')
+def vcr_config(snapshot_path, request:pytest.FixtureRequest):
+    cassette_dir = snapshot_path('cassettes')
+    if not cassette_dir.exists():
+        cassette_dir.mkdir(parents=True)
+
+    config = {
+        'record_mode': 'none',
+        # 'path': (cassette_dir / request.function.__name__).with_suffix('.yaml')
+    }
+    if request.config.getoption('--generate-snapshots') or request.config.getoption('--generate-network-cache'):
+        config['record_mode'] = 'rewrite'
+    return config
+
+@pytest.fixture(scope='module', autouse=True)
+def vcr_cassette_dir(request: pytest.FixtureRequest):
+    # can't use the `snapshot_path` fixture since it's function scoped
+    return str(request.path.parent / "__snapshots__" / "cassettes")
