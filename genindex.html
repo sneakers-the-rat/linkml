@@ -433,6 +433,13 @@
 </li>
         </ul></li>
         <li>
+    --default-permissible-value-type
+
+        <ul>
+          <li><a href="generators/owl.html#cmdoption-gen-owl-default-permissible-value-type">gen-owl command line option</a>
+</li>
+        </ul></li>
+        <li>
     --dialect
 
         <ul>
@@ -646,7 +653,16 @@
     --include
 
         <ul>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-d">gen-json-schema command line option</a>
+</li>
           <li><a href="generators/project-generator.html#cmdoption-gen-project-I">gen-project command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --include-context
+
+        <ul>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">linkml-validate command line option</a>
 </li>
         </ul></li>
         <li>
@@ -1087,6 +1103,13 @@
 
         <ul>
           <li><a href="generators/python.html#cmdoption-gen-python-head">gen-python command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --no-include-context
+
+        <ul>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">linkml-validate command line option</a>
 </li>
         </ul></li>
         <li>
@@ -1846,9 +1869,18 @@
 </li>
         </ul></li>
         <li>
+    -D
+
+        <ul>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">linkml-validate command line option</a>
+</li>
+        </ul></li>
+        <li>
     -d
 
         <ul>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-d">gen-json-schema command line option</a>
+</li>
           <li><a href="generators/markdown.html#cmdoption-gen-markdown-d">gen-markdown command line option</a>
 </li>
           <li><a href="generators/project-generator.html#cmdoption-gen-project-d">gen-project command line option</a>
@@ -2877,9 +2909,11 @@
 </li>
         <li><a href="code/utils.html#linkml.utils.generator.Generator.end_class">end_class() (linkml.utils.generator.Generator method)</a>
 </li>
-        <li><a href="generators/jsonld.html#linkml.generators.jsonldgen.JSONLDGenerator.end_schema">end_schema() (linkml.generators.jsonldgen.JSONLDGenerator method)</a>
+        <li><a href="generators/csv.html#linkml.generators.csvgen.CsvGenerator.end_schema">end_schema() (linkml.generators.csvgen.CsvGenerator method)</a>
 
         <ul>
+          <li><a href="generators/jsonld.html#linkml.generators.jsonldgen.JSONLDGenerator.end_schema">(linkml.generators.jsonldgen.JSONLDGenerator method)</a>
+</li>
           <li><a href="generators/rdf.html#linkml.generators.rdfgen.RDFGenerator.end_schema">(linkml.generators.rdfgen.RDFGenerator method)</a>
 </li>
           <li><a href="code/utils.html#linkml.utils.generator.Generator.end_schema">(linkml.utils.generator.Generator method)</a>
@@ -3261,6 +3295,8 @@
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-im">--importmap</a>
 </li>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-d">--include</a>
+</li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-include-range-class-descendants">--include-range-class-descendants</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-indent">--indent</a>
@@ -3296,6 +3332,8 @@
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-v">--verbose</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-V">--version</a>
+</li>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-d">-d</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-f">-f</a>
 </li>
@@ -3498,6 +3536,8 @@
           <li><a href="generators/owl.html#cmdoption-gen-owl-add-root-classes">--add-root-classes</a>
 </li>
           <li><a href="generators/owl.html#cmdoption-gen-owl-assert-equivalent-classes">--assert-equivalent-classes</a>
+</li>
+          <li><a href="generators/owl.html#cmdoption-gen-owl-default-permissible-value-type">--default-permissible-value-type</a>
 </li>
           <li><a href="generators/owl.html#cmdoption-gen-owl-f">--format</a>
 </li>
@@ -4395,8 +4435,12 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.DimensionExpression.in_subset">(linkml_runtime.linkml_model.meta.DimensionExpression attribute)</a>
 </li>
         </ul></li>
-        <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.EnumDefinition.include">include (linkml_runtime.linkml_model.meta.EnumDefinition attribute)</a>
+        <li><a href="code/utils.html#linkml.utils.generator.Generator.include">include (linkml.utils.generator.Generator attribute)</a>
+
+        <ul>
+          <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.EnumDefinition.include">(linkml_runtime.linkml_model.meta.EnumDefinition attribute)</a>
 </li>
+        </ul></li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.include_top_level_diagram">include_top_level_diagram (linkml.generators.docgen.DocGenerator attribute)</a>
 </li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.index_name">index_name (linkml.generators.docgen.DocGenerator attribute)</a>
@@ -4691,6 +4735,8 @@
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-exit-on-first-failure">--exit-on-first-failure</a>
 </li>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">--include-context</a>
+</li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-include-range-class-descendants">--include-range-class-descendants</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-S">--index-slot</a>
@@ -4701,6 +4747,8 @@
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-m">--module</a>
 </li>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">--no-include-context</a>
+</li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-include-range-class-descendants">--no-range-class-descendants</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-s">--schema</a>
@@ -4710,6 +4758,8 @@
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-V">--version</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-C">-C</a>
+</li>
+          <li><a href="data/validating-data.html#cmdoption-linkml-validate-D">-D</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-f">-f</a>
 </li>
@@ -5343,6 +5393,8 @@
         <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.ObjectImport">ObjectImport (class in linkml.generators.pydanticgen.template)</a>
 </li>
         <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Import.objects">objects (linkml.generators.pydanticgen.template.Import attribute)</a>
+</li>
+        <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.ordered">ordered() (linkml_runtime.utils.schemaview.SchemaView method)</a>
 </li>
         <li><a href="generators/jsonld.html#linkml.generators.jsonldgen.JSONLDGenerator.original_schema">original_schema (linkml.generators.jsonldgen.JSONLDGenerator attribute)</a>
 
