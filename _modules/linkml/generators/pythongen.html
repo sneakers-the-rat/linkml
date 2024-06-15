@@ -251,6 +251,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/port-linkml.html">Porting LinkML tools to other programming languages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/multidimensional-arrays.html">Multidimensional Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples of use</a></li>
@@ -353,14 +354,7 @@
     <span class="n">TypeDefinition</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">linkml_runtime.utils.compile_python</span> <span class="kn">import</span> <span class="n">compile_python</span>
-<span class="kn">from</span> <span class="nn">linkml_runtime.utils.formatutils</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">be</span><span class="p">,</span>
-    <span class="n">camelcase</span><span class="p">,</span>
-    <span class="n">sfx</span><span class="p">,</span>
-    <span class="n">split_col</span><span class="p">,</span>
-    <span class="n">underscore</span><span class="p">,</span>
-    <span class="n">wrapped_annotation</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">linkml_runtime.utils.formatutils</span> <span class="kn">import</span> <span class="n">be</span><span class="p">,</span> <span class="n">camelcase</span><span class="p">,</span> <span class="n">sfx</span><span class="p">,</span> <span class="n">split_col</span><span class="p">,</span> <span class="n">underscore</span><span class="p">,</span> <span class="n">wrapped_annotation</span>
 <span class="kn">from</span> <span class="nn">linkml_runtime.utils.metamodelcore</span> <span class="kn">import</span> <span class="n">builtinnames</span>
 <span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">URIRef</span>
 

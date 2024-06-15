@@ -250,6 +250,7 @@
 <li class="toctree-l2"><a class="reference internal" href="howtos/port-linkml.html">Porting LinkML tools to other programming languages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/multidimensional-arrays.html">Multidimensional Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples of use</a></li>
@@ -373,6 +374,13 @@
 </li>
         </ul></li>
         <li>
+    --black
+
+        <ul>
+          <li><a href="generators/pydantic.html#cmdoption-gen-pydantic-black">gen-pydantic command line option</a>
+</li>
+        </ul></li>
+        <li>
     --classes
 
         <ul>
@@ -469,6 +477,13 @@
 
         <ul>
           <li><a href="generators/project-generator.html#cmdoption-gen-project-X">gen-project command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --exclude-annotations
+
+        <ul>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">gen-shacl command line option</a>
 </li>
         </ul></li>
         <li>
@@ -659,6 +674,13 @@
 </li>
         </ul></li>
         <li>
+    --include-annotations
+
+        <ul>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">gen-shacl command line option</a>
+</li>
+        </ul></li>
+        <li>
     --include-context
 
         <ul>
@@ -686,6 +708,13 @@
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-include-range-class-descendants">gen-json-schema command line option</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-validate-include-range-class-descendants">linkml-validate command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --include-upstream
+
+        <ul>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-include-upstream">gen-erdiagram command line option</a>
 </li>
         </ul></li>
         <li>
@@ -3023,6 +3052,8 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.DimensionExpression.examples">(linkml_runtime.linkml_model.meta.DimensionExpression attribute)</a>
 </li>
         </ul></li>
+        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.TemplateModel.exclude_from_meta">exclude_from_meta() (linkml.generators.pydanticgen.template.TemplateModel class method)</a>
+</li>
         <li><a href="code/utils.html#linkml.utils.execute_tutorial.execute_blocks">execute_blocks() (in module linkml.utils.execute_tutorial)</a>
 </li>
         <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.expand_curie">expand_curie() (linkml_runtime.utils.schemaview.SchemaView method)</a>
@@ -3098,6 +3129,8 @@
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">--format</a>
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-im">--importmap</a>
+</li>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-include-upstream">--include-upstream</a>
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-log_level">--log_level</a>
 </li>
@@ -3739,6 +3772,8 @@
         <ul>
           <li><a href="generators/pydantic.html#cmdoption-gen-pydantic-array-representations">--array-representations</a>
 </li>
+          <li><a href="generators/pydantic.html#cmdoption-gen-pydantic-black">--black</a>
+</li>
           <li><a href="generators/pydantic.html#cmdoption-gen-pydantic-extra-fields">--extra-fields</a>
 </li>
           <li><a href="generators/pydantic.html#cmdoption-gen-pydantic-f">--format</a>
@@ -3849,9 +3884,13 @@
         <ul>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-closed">--closed</a>
 </li>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">--exclude-annotations</a>
+</li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-f">--format</a>
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-im">--importmap</a>
+</li>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">--include-annotations</a>
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-log_level">--log_level</a>
 </li>
@@ -4441,6 +4480,8 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.EnumDefinition.include">(linkml_runtime.linkml_model.meta.EnumDefinition attribute)</a>
 </li>
         </ul></li>
+        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.PydanticGenerator.include_metadata">include_metadata() (linkml.generators.pydanticgen.PydanticGenerator method)</a>
+</li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.include_top_level_diagram">include_top_level_diagram (linkml.generators.docgen.DocGenerator attribute)</a>
 </li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.index_name">index_name (linkml.generators.docgen.DocGenerator attribute)</a>
@@ -4457,10 +4498,10 @@
 </li>
         <li><a href="code/utils.html#linkml.utils.datautils.infer_index_slot">infer_index_slot() (in module linkml.utils.datautils)</a>
 </li>
-        <li><a href="code/utils.html#linkml.utils.datautils.infer_root_class">infer_root_class() (in module linkml.utils.datautils)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="code/utils.html#linkml.utils.datautils.infer_root_class">infer_root_class() (in module linkml.utils.datautils)</a>
+</li>
         <li><a href="developers/inference.html#linkml_runtime.utils.inference_utils.infer_slot_value">infer_slot_value() (in module linkml_runtime.utils.inference_utils)</a>
 </li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.inheritance_tree">inheritance_tree() (linkml.generators.docgen.DocGenerator method)</a>
@@ -5113,7 +5154,27 @@
 </li>
         <li><a href="developers/deprecation.html#linkml.utils.deprecation.Deprecation.message">message (linkml.utils.deprecation.Deprecation attribute)</a>
 </li>
+        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticAttribute.meta">meta (linkml.generators.pydanticgen.template.PydanticAttribute attribute)</a>
+
+        <ul>
+          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticClass.meta">(linkml.generators.pydanticgen.template.PydanticClass attribute)</a>
+</li>
+          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticModule.meta">(linkml.generators.pydanticgen.template.PydanticModule attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticAttribute.meta_exclude">meta_exclude (linkml.generators.pydanticgen.template.PydanticAttribute attribute)</a>
+
+        <ul>
+          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticClass.meta_exclude">(linkml.generators.pydanticgen.template.PydanticClass attribute)</a>
+</li>
+          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticModule.meta_exclude">(linkml.generators.pydanticgen.template.PydanticModule attribute)</a>
+</li>
+          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.TemplateModel.meta_exclude">(linkml.generators.pydanticgen.template.TemplateModel attribute)</a>
+</li>
+        </ul></li>
         <li><a href="code/utils.html#linkml.utils.generator.Generator.metadata">metadata (linkml.utils.generator.Generator attribute)</a>
+</li>
+        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.PydanticGenerator.metadata_mode">metadata_mode (linkml.generators.pydanticgen.PydanticGenerator attribute)</a>
 </li>
         <li><a href="code/utils.html#linkml.utils.generator.Generator.metamodel">metamodel (linkml.utils.generator.Generator attribute)</a>
 </li>

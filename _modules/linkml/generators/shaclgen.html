@@ -251,6 +251,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/port-linkml.html">Porting LinkML tools to other programming languages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/multidimensional-arrays.html">Multidimensional Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples of use</a></li>
@@ -331,15 +332,17 @@
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">from</span> <span class="nn">jsonasobj2</span> <span class="kn">import</span> <span class="n">JsonObj</span><span class="p">,</span> <span class="n">as_dict</span>
 <span class="kn">from</span> <span class="nn">linkml_runtime.linkml_model.meta</span> <span class="kn">import</span> <span class="n">ElementName</span>
 <span class="kn">from</span> <span class="nn">linkml_runtime.utils.formatutils</span> <span class="kn">import</span> <span class="n">underscore</span>
 <span class="kn">from</span> <span class="nn">linkml_runtime.utils.schemaview</span> <span class="kn">import</span> <span class="n">SchemaView</span>
+<span class="kn">from</span> <span class="nn">linkml_runtime.utils.yamlutils</span> <span class="kn">import</span> <span class="n">TypedNode</span><span class="p">,</span> <span class="n">extended_float</span><span class="p">,</span> <span class="n">extended_int</span><span class="p">,</span> <span class="n">extended_str</span>
 <span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">BNode</span><span class="p">,</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">URIRef</span>
 <span class="kn">from</span> <span class="nn">rdflib.collection</span> <span class="kn">import</span> <span class="n">Collection</span>
-<span class="kn">from</span> <span class="nn">rdflib.namespace</span> <span class="kn">import</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">SH</span>
+<span class="kn">from</span> <span class="nn">rdflib.namespace</span> <span class="kn">import</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">SH</span><span class="p">,</span> <span class="n">XSD</span>
 
 <span class="kn">from</span> <span class="nn">linkml._version</span> <span class="kn">import</span> <span class="n">__version__</span>
 <span class="kn">from</span> <span class="nn">linkml.generators.shacl.ifabsent_processor</span> <span class="kn">import</span> <span class="n">IfAbsentProcessor</span>
@@ -354,6 +357,8 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;True means add &#39;sh:closed=true&#39; to all shapes, except of mixin shapes and shapes, that have parents&quot;&quot;&quot;</span>
     <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;parameterized suffix to be appended. No suffix per default.&quot;&quot;&quot;</span>
+    <span class="n">include_annotations</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;True means include all class / slot / type annotations in generated Node or Property shapes&quot;&quot;&quot;</span>
     <span class="n">generatorname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
     <span class="n">generatorversion</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span>
     <span class="n">valid_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ttl&quot;</span><span class="p">]</span>
@@ -413,6 +418,8 @@
             <span class="n">list_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
             <span class="n">Collection</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">list_node</span><span class="p">,</span> <span class="p">[</span><span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">])</span>
             <span class="n">shape_pv</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">ignoredProperties</span><span class="p">,</span> <span class="n">list_node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">annotations</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_annotations</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_annotations</span><span class="p">(</span><span class="n">shape_pv</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
             <span class="n">order</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">class_induced_slots</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
                 <span class="c1"># fixed in linkml-runtime 1.1.3</span>
@@ -446,6 +453,12 @@
 
                 <span class="n">all_classes</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_classes</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">any_of</span><span class="p">:</span>
+                    <span class="c1"># It is not allowed to use any of and equals_string or equals_string_in in one</span>
+                    <span class="c1"># slot definition, as both are mapped to sh:in in SHACL</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string</span> <span class="ow">or</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string_in</span><span class="p">:</span>
+                        <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;&#39;equals_string&#39;/&#39;equals_string_in&#39; and &#39;any_of&#39; are mutually exclusive&quot;</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">TypedNode</span><span class="o">.</span><span class="n">yaml_loc</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
                     <span class="n">or_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
                     <span class="n">prop_pv</span><span class="p">(</span><span class="n">SH</span><span class="p">[</span><span class="s2">&quot;or&quot;</span><span class="p">],</span> <span class="n">or_node</span><span class="p">)</span>
                     <span class="n">range_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -460,7 +473,7 @@
 
                             <span class="bp">self</span><span class="o">.</span><span class="n">_add_class</span><span class="p">(</span><span class="n">cl_node_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
                             <span class="n">range_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_node</span><span class="p">)</span>
-                        <span class="k">elif</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_types</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                        <span class="k">elif</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_types</span><span class="p">():</span>
                             <span class="n">t_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
 
                             <span class="k">def</span> <span class="nf">t_node_pv</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
@@ -488,17 +501,24 @@
                             <span class="n">add_simple_data_type</span><span class="p">(</span><span class="n">st_node_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
                             <span class="n">range_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">st_node</span><span class="p">)</span>
                     <span class="n">Collection</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">or_node</span><span class="p">,</span> <span class="n">range_list</span><span class="p">)</span>
-
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">prop_pv_literal</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">hasValue</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_number</span><span class="p">)</span>
                     <span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">range</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string</span> <span class="ow">or</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string_in</span><span class="p">:</span>
+                        <span class="c1"># Check if range is &quot;string&quot; as this is mandatory for &quot;equals_string&quot; and &quot;equals_string_in&quot;</span>
+                        <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="s2">&quot;string&quot;</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s2">&quot;slot: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">slot_uri</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> - &#39;equals_string&#39; and &#39;equals_string_in&#39;&quot;</span>
+                                <span class="sa">f</span><span class="s2">&quot; require range &#39;string&#39; and not &#39;</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+                            <span class="p">)</span>
+
                     <span class="k">if</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">all_classes</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_add_class</span><span class="p">(</span><span class="n">prop_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">sv</span><span class="o">.</span><span class="n">get_identifier_slot</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">prop_pv</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">nodeKind</span><span class="p">,</span> <span class="n">SH</span><span class="o">.</span><span class="n">IRI</span><span class="p">)</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="n">prop_pv</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">nodeKind</span><span class="p">,</span> <span class="n">SH</span><span class="o">.</span><span class="n">BlankNodeOrIRI</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_types</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="k">elif</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_types</span><span class="p">():</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_add_type</span><span class="p">(</span><span class="n">prop_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
                     <span class="k">elif</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">all_enums</span><span class="p">():</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_add_enum</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">prop_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
@@ -506,6 +526,14 @@
                         <span class="n">add_simple_data_type</span><span class="p">(</span><span class="n">prop_pv</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">pattern</span><span class="p">:</span>
                         <span class="n">prop_pv</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">pattern</span><span class="p">))</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">annotations</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_annotations</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_add_annotations</span><span class="p">(</span><span class="n">prop_pv</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string</span><span class="p">:</span>
+                        <span class="c1"># Map equal_string and equal_string_in to sh:in</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_and_equals_string</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">prop_pv</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">equals_string</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string_in</span><span class="p">:</span>
+                        <span class="c1"># Map equal_string and equal_string_in to sh:in</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_and_equals_string</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">prop_pv</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">equals_string_in</span><span class="p">)</span>
 
                 <span class="n">ifabsent_processor</span><span class="o">.</span><span class="n">process_slot</span><span class="p">(</span><span class="n">prop_pv</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">class_uri</span><span class="p">)</span>
 
@@ -531,12 +559,72 @@
         <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="p">[</span><span class="s2">&quot;in&quot;</span><span class="p">],</span> <span class="n">pv_node</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">ElementName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">nodeKind</span><span class="p">,</span> <span class="n">SH</span><span class="o">.</span><span class="n">Literal</span><span class="p">)</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span>
         <span class="n">rt</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">get_type</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">uri</span><span class="p">:</span>
-            <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">datatype</span><span class="p">,</span> <span class="n">rt</span><span class="o">.</span><span class="n">uri</span><span class="p">)</span>
+            <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">datatype</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+            <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">pattern</span><span class="p">:</span>
+                <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">pattern</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">annotations</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">include_annotations</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_add_annotations</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No URI for type </span><span class="si">{</span><span class="n">rt</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No URI for type </span><span class="si">{</span><span class="n">rt</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_and_equals_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pv_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
+        <span class="n">Collection</span><span class="p">(</span>
+            <span class="n">g</span><span class="p">,</span>
+            <span class="n">pv_node</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">Literal</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="p">[</span><span class="s2">&quot;in&quot;</span><span class="p">],</span> <span class="n">pv_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># TODO: migrate some of this logic to SchemaView</span>
+        <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">annotations</span>
+        <span class="c1"># item could be a class, slot or type</span>
+        <span class="c1"># annotation type could be dict (on types) or JsonObj (on slots)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span> <span class="o">==</span> <span class="n">JsonObj</span><span class="p">:</span>
+            <span class="n">annotations</span> <span class="o">=</span> <span class="n">as_dict</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="c1"># If &#39;:&#39; is in the tag, treat it as a CURIE, otherwise string Literal</span>
+            <span class="k">if</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">]:</span>
+                <span class="n">N_predicate</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">expand_curie</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">N_predicate</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+            <span class="c1"># If the value is a string and &#39;:&#39; is in the value, treat it as a CURIE,</span>
+            <span class="c1"># otherwise treat as Literal with derived XSD datatype</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">extended_str</span> <span class="ow">and</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]:</span>
+                <span class="n">N_object</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">sv</span><span class="o">.</span><span class="n">expand_curie</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">N_object</span> <span class="o">=</span> <span class="n">Literal</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_getXSDtype</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]))</span>
+
+            <span class="n">func</span><span class="p">(</span><span class="n">N_predicate</span><span class="p">,</span> <span class="n">N_object</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_getXSDtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value_type</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">XSD</span><span class="o">.</span><span class="n">boolean</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="n">extended_str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">XSD</span><span class="o">.</span><span class="n">string</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="n">extended_int</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">XSD</span><span class="o">.</span><span class="n">integer</span>
+        <span class="k">elif</span> <span class="n">value_type</span> <span class="o">==</span> <span class="n">extended_float</span><span class="p">:</span>
+            <span class="c1"># TODO: distinguish between xsd:decimal and xsd:double?</span>
+            <span class="k">return</span> <span class="n">XSD</span><span class="o">.</span><span class="n">decimal</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_and_equals_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pv_node</span> <span class="o">=</span> <span class="n">BNode</span><span class="p">()</span>
+        <span class="n">Collection</span><span class="p">(</span>
+            <span class="n">g</span><span class="p">,</span>
+            <span class="n">pv_node</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">Literal</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">SH</span><span class="p">[</span><span class="s2">&quot;in&quot;</span><span class="p">],</span> <span class="n">pv_node</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">add_simple_data_type</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">ElementName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -559,6 +647,12 @@
     <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Use --suffix to append given string to SHACL class name (e. g. --suffix Shape: Person becomes PersonShape).&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
+    <span class="s2">&quot;--include-annotations/--exclude-annotations&quot;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Use --include-annotations to include annotations of slots, types, and classes in the generated SHACL shapes.&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span><span class="n">__version__</span><span class="p">,</span> <span class="s2">&quot;-V&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">yamlfile</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">):</span>
