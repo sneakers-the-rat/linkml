@@ -1996,7 +1996,7 @@ files = [
 name = "nptyping"
 version = "2.5.0"
 description = "Type hints for NumPy."
-optional = false
+optional = true
 python-versions = ">=3.7"
 files = [
     {file = "nptyping-2.5.0-py3-none-any.whl", hash = "sha256:764e51836faae33a7ae2e928af574cfb701355647accadcc89f2ad793630b7c8"},
@@ -2100,7 +2100,7 @@ files = [
 name = "numpydantic"
 version = "1.2.1"
 description = "Type and shape validation and serialization for numpy arrays in pydantic models"
-optional = false
+optional = true
 python-versions = "<4.0,>=3.9"
 files = [
     {file = "numpydantic-1.2.1-py3-none-any.whl", hash = "sha256:e21d7e272410b3a2013d2a6aeec2ed6efd13ea171b0200e2029d7c2f1453def0"},
@@ -4165,10 +4165,11 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 
 [extras]
 black = ["black"]
+numpydantic = ["numpydantic"]
 shacl = ["pyshacl"]
-tests = ["black", "pyshacl"]
+tests = ["black", "numpydantic", "pyshacl"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.1"
-content-hash = "4c27320976b229543a1d2f70d9b1ee094dac5c6d3866dcaec9ae59c393630353"
+content-hash = "405265835dd7e6166e3e092fd183f068597f69681c6485de2a888880c23b210d"
