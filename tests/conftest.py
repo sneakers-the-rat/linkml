@@ -196,6 +196,14 @@ def pytest_collection_modifyitems(config, items):
         items.remove(test_deps[0])
         items.append(test_deps[0])
 
+    # numpydantic only supported python>=3.9
+    if sys.version_info.minor < 9:
+        skip_npd = pytest.mark.skip(reason="Numpydantic is only supported in python>=3.9")
+        for item in items:
+            if item.get_closest_marker("pydantic_npd"):
+                item.add_marker(skip_npd)
+
+
 
 def pytest_sessionstart(session: pytest.Session):
     tests.WITH_OUTPUT = session.config.getoption("--with-output")
