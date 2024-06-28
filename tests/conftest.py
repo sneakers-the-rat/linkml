@@ -204,7 +204,6 @@ def pytest_collection_modifyitems(config, items):
                 item.add_marker(skip_npd)
 
 
-
 def pytest_sessionstart(session: pytest.Session):
     tests.WITH_OUTPUT = session.config.getoption("--with-output")
     if session.config.getoption("--generate-snapshots"):
