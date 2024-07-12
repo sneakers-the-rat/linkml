@@ -1,24 +1,30 @@
 import sys
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Any, ClassVar, Generic, Iterable, List, Optional, Type, TypeVar, Union, get_args
+from typing import TYPE_CHECKING, Any, ClassVar, Generic, Iterable, Optional, Type, TypeVar, Union, get_args
 
 from linkml_runtime.linkml_model import Element
 from linkml_runtime.linkml_model.meta import ArrayExpression, DimensionExpression
 from pydantic import VERSION as PYDANTIC_VERSION
 
-if int(PYDANTIC_VERSION[0]) < 2:
-    pass
+from linkml.utils.deprecation import deprecation_warning
+
+if int(PYDANTIC_VERSION[0]) >= 2:
+    from pydantic_core import core_schema
 else:
+    # Support for having pydantic 1 installed in the same environment will be dropped in 1.9.0
+    deprecation_warning("pydantic-v1")
+
+if TYPE_CHECKING:
     from pydantic import GetCoreSchemaHandler
-    from pydantic_core import CoreSchema, core_schema
+    from pydantic_core import CoreSchema
 
 if sys.version_info.minor <= 8:
     from typing_extensions import Annotated
 else:
     from typing import Annotated
 
-from linkml.generators.pydanticgen.build import SlotResult
+from linkml.generators.pydanticgen.build import RangeResult
 from linkml.generators.pydanticgen.template import ConditionalImport, Import, Imports, ObjectImport
 from linkml.utils.exceptions import ValidationError
 
@@ -32,146 +38,74 @@ _BOUNDED_ARRAY_FIELDS = ("exact_number_dimensions", "minimum_number_dimensions",
 
 _T = TypeVar("_T")
 _RecursiveListType = Iterable[Union[_T, Iterable["_RecursiveListType"]]]
-if int(PYDANTIC_VERSION[0]) >= 2:
 
-    class AnyShapeArrayType(Generic[_T]):
-        @classmethod
-        def __get_pydantic_core_schema__(cls, source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
-            # double-nested parameterized types here
-            # source_type: List[Union[T,List[...]]]
-            item_type = Any if get_args(get_args(source_type)[0])[0] is _T else get_args(get_args(source_type)[0])[0]
 
-            item_schema = handler.generate_schema(item_type)
-            if item_schema.get("type", "any") != "any":
-                item_schema["strict"] = True
+class AnyShapeArrayType(Generic[_T]):
+    @classmethod
+    def __get_pydantic_core_schema__(cls, source_type: Any, handler: "GetCoreSchemaHandler") -> "CoreSchema":
+        # double-nested parameterized types here
+        # source_type: List[Union[T,List[...]]]
+        item_type = Any if get_args(get_args(source_type)[0])[0] is _T else get_args(get_args(source_type)[0])[0]
 
-            if item_type is Any:
-                # Before python 3.11, `Any` type was a special object without a __name__
-                item_name = "Any"
-            else:
-                item_name = item_type.__name__
+        item_schema = handler.generate_schema(item_type)
+        if item_schema.get("type", "any") != "any":
+            item_schema["strict"] = True
 
-            array_ref = f"any-shape-array-{item_name}"
+        if item_type is Any:
+            # Before python 3.11, `Any` type was a special object without a __name__
+            item_name = "Any"
+        else:
+            item_name = item_type.__name__
 
-            schema = core_schema.definitions_schema(
-                core_schema.list_schema(core_schema.definition_reference_schema(array_ref)),
-                [
-                    core_schema.union_schema(
-                        [
-                            core_schema.list_schema(core_schema.definition_reference_schema(array_ref)),
-                            item_schema,
-                        ],
-                        ref=array_ref,
-                    )
-                ],
-            )
+        array_ref = f"any-shape-array-{item_name}"
 
-            return schema
-
-    AnyShapeArray = Annotated[_RecursiveListType, AnyShapeArrayType]
-
-    _AnyShapeArrayImports = (
-        Imports()
-        + Import(
-            module="typing",
-            objects=[
-                ObjectImport(name="Generic"),
-                ObjectImport(name="Iterable"),
-                ObjectImport(name="TypeVar"),
-                ObjectImport(name="Union"),
-                ObjectImport(name="get_args"),
+        schema = core_schema.definitions_schema(
+            core_schema.list_schema(core_schema.definition_reference_schema(array_ref)),
+            [
+                core_schema.union_schema(
+                    [
+                        core_schema.list_schema(core_schema.definition_reference_schema(array_ref)),
+                        item_schema,
+                    ],
+                    ref=array_ref,
+                )
             ],
         )
-        + ConditionalImport(
-            condition="sys.version_info.minor > 8",
-            module="typing",
-            objects=[ObjectImport(name="Annotated")],
-            alternative=Import(module="typing_extensions", objects=[ObjectImport(name="Annotated")]),
-        )
-        + Import(module="pydantic", objects=[ObjectImport(name="GetCoreSchemaHandler")])
-        + Import(module="pydantic_core", objects=[ObjectImport(name="CoreSchema"), ObjectImport(name="core_schema")])
-    )
 
-    # annotated types are special and inspect.getsource() can't stringify them
-    _AnyShapeArrayInjects = [
-        '_T = TypeVar("_T")',
-        '_RecursiveListType = Iterable[Union[_T, Iterable["_RecursiveListType"]]]',
-        AnyShapeArrayType,
-        "AnyShapeArray = Annotated[_RecursiveListType, AnyShapeArrayType]",
-    ]
+        return schema
 
-else:
 
-    class AnyShapeArray(Generic[_T]):
-        type_: Type[Any] = Any
+AnyShapeArray = Annotated[_RecursiveListType, AnyShapeArrayType]
 
-        def __class_getitem__(cls, item):
-            alias = type(f"AnyShape_{str(item.__name__)}", (AnyShapeArray,), {"type_": item})
-            alias.type_ = item
-            return alias
-
-        @classmethod
-        def __get_validators__(cls):
-            yield cls.validate
-
-        @classmethod
-        def __modify_schema__(cls, field_schema):
-            try:
-                item_type = field_schema["allOf"][0]["type"]
-                type_schema = {"type": item_type}
-                del field_schema["allOf"]
-            except KeyError as e:
-                if "allOf" in str(e):
-                    item_type = "Any"
-                    type_schema = {}
-                else:
-                    raise e
-
-            array_id = f"#any-shape-array-{item_type}"
-            field_schema["anyOf"] = [
-                type_schema,
-                {"type": "array", "items": {"$ref": array_id}},
-            ]
-            field_schema["$id"] = array_id
-
-        @classmethod
-        def validate(cls, v: Union[List[_T], list]):
-            if str(type(v)) == "<class 'numpy.ndarray'>":
-                v = v.tolist()
-
-            if not isinstance(v, list):
-                raise TypeError(f"Must be a list of lists! got {v}")
-
-            def _validate(_v: Union[List[_T], list]):
-                for item in _v:
-                    if isinstance(item, list):
-                        _validate(item)
-                    else:
-                        try:
-                            anytype = cls.type_.__name__ in ("AnyType", "Any")
-                        except AttributeError:
-                            # in python 3.8 and 3.9, `typing.Any` has no __name__
-                            anytype = str(cls.type_).split(".")[-1] in ("AnyType", "Any")
-
-                        if not anytype and not isinstance(item, cls.type_):
-                            raise TypeError(
-                                (
-                                    f"List items must be list of lists, or the type used in "
-                                    f"the subscript ({cls.type_}. Got item {item} and outer value {v}"
-                                )
-                            )
-                return _v
-
-            return _validate(v)
-
-    _AnyShapeArrayImports = Imports() + Import(
+_AnyShapeArrayImports = (
+    Imports()
+    + Import(
         module="typing",
-        objects=[ObjectImport(name="Generic"), ObjectImport(name="TypeVar"), ObjectImport(name="_GenericAlias")],
+        objects=[
+            ObjectImport(name="Generic"),
+            ObjectImport(name="Iterable"),
+            ObjectImport(name="TypeVar"),
+            ObjectImport(name="Union"),
+            ObjectImport(name="get_args"),
+        ],
     )
-    _AnyShapeArrayInjects = [
-        '_T = TypeVar("_T")',
-        AnyShapeArray,
-    ]
+    + ConditionalImport(
+        condition="sys.version_info.minor > 8",
+        module="typing",
+        objects=[ObjectImport(name="Annotated")],
+        alternative=Import(module="typing_extensions", objects=[ObjectImport(name="Annotated")]),
+    )
+    + Import(module="pydantic", objects=[ObjectImport(name="GetCoreSchemaHandler")])
+    + Import(module="pydantic_core", objects=[ObjectImport(name="CoreSchema"), ObjectImport(name="core_schema")])
+)
+
+# annotated types are special and inspect.getsource() can't stringify them
+_AnyShapeArrayInjects = [
+    '_T = TypeVar("_T")',
+    '_RecursiveListType = Iterable[Union[_T, Iterable["_RecursiveListType"]]]',
+    AnyShapeArrayType,
+    "AnyShapeArray = Annotated[_RecursiveListType, AnyShapeArrayType]",
+]
 
 _ConListImports = Imports() + Import(module="pydantic", objects=[ObjectImport(name="conlist")])
 
@@ -296,7 +230,7 @@ class ArrayValidator:
 
 class ArrayRangeGenerator(ABC):
     """
-    Metaclass for generating a given format of array annotation.
+    Metaclass for generating a given format of array range.
 
     See :ref:`array-forms` for more details on array range forms.
 
@@ -315,23 +249,18 @@ class ArrayRangeGenerator(ABC):
         (unless that's what you intend to do ofc ;)
 
     Attributes:
-        array (:class:`.ArrayExpression` ): Array to create an annotation for
+        array (:class:`.ArrayExpression` ): Array to create a range for
         dtype (Union[str, :class:`.Element` ): dtype of the entire array as a string
-        pydantic_ver (str): Pydantic version to generate array form for -
-            currently only pydantic 1 and 2 are differentiated, and pydantic 1 will be deprecated soon.
 
     """
 
     REPR: ClassVar[ArrayRepresentation]
 
-    def __init__(
-        self, array: Optional[ArrayExpression], dtype: Union[str, Element], pydantic_ver: str = PYDANTIC_VERSION
-    ):
+    def __init__(self, array: Optional[ArrayExpression], dtype: Union[str, Element]):
         self.array = array
         self.dtype = dtype
-        self.pydantic_ver = pydantic_ver
 
-    def make(self) -> SlotResult:
+    def make(self) -> RangeResult:
         """
         Create the string form of the array representation, validating first
         """
@@ -374,22 +303,22 @@ class ArrayRangeGenerator(ABC):
         raise ValueError(f"Generator for array representation {repr} not found!")
 
     @abstractmethod
-    def any_shape(self, array: Optional[ArrayRepresentation] = None) -> SlotResult:
+    def any_shape(self, array: Optional[ArrayRepresentation] = None) -> RangeResult:
         """Any shaped array!"""
         pass
 
     @abstractmethod
-    def bounded_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def bounded_dimensions(self, array: ArrayExpression) -> RangeResult:
         """Array shape specified numerically, without axis parameterization"""
         pass
 
     @abstractmethod
-    def parameterized_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def parameterized_dimensions(self, array: ArrayExpression) -> RangeResult:
         """Array shape specified with ``dimensions`` without additional parameterized dimensions"""
         pass
 
     @abstractmethod
-    def complex_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def complex_dimensions(self, array: ArrayExpression) -> RangeResult:
         """Array shape with both ``parameterized`` and ``bounded`` dimensions"""
         pass
 
@@ -406,7 +335,7 @@ class ListOfListsArray(ArrayRangeGenerator):
         return ("List[" * dimensions) + dtype + ("]" * dimensions)
 
     @staticmethod
-    def _parameterized_dimension(dimension: DimensionExpression, dtype: str) -> SlotResult:
+    def _parameterized_dimension(dimension: DimensionExpression, dtype: str) -> RangeResult:
         # TODO: Preserve label representation in some readable way! doing the MVP now of using conlist
         if dimension.exact_cardinality:
             dmin = dimension.exact_cardinality
@@ -416,26 +345,21 @@ class ListOfListsArray(ArrayRangeGenerator):
             dmax = dimension.maximum_cardinality
         else:
             # TODO: handle labels for labeled but unshaped arrays
-            return SlotResult(annotation="List[" + dtype + "]")
+            return RangeResult(range="List[" + dtype + "]")
 
         items = []
-        if int(PYDANTIC_VERSION[0]) >= 2:
-            if dmin is not None:
-                items.append(f"min_length={dmin}")
-            if dmax is not None:
-                items.append(f"max_length={dmax}")
-        else:
-            if dmin is not None:
-                items.append(f"min_items={dmin}")
-            if dmax is not None:
-                items.append(f"max_items={dmax}")
+        if dmin is not None:
+            items.append(f"min_length={dmin}")
+        if dmax is not None:
+            items.append(f"max_length={dmax}")
+
         items.append(f"item_type={dtype}")
         items = ", ".join(items)
-        annotation = f"conlist({items})"
+        range = f"conlist({items})"
 
-        return SlotResult(annotation=annotation, imports=_ConListImports)
+        return RangeResult(range=range, imports=_ConListImports)
 
-    def any_shape(self, array: Optional[ArrayExpression] = None, with_inner_union: bool = False) -> SlotResult:
+    def any_shape(self, array: Optional[ArrayExpression] = None, with_inner_union: bool = False) -> RangeResult:
         """
         An AnyShaped array (using :class:`.AnyShapeArray` )
 
@@ -446,17 +370,17 @@ class ListOfListsArray(ArrayRangeGenerator):
 
         """
         if self.dtype in ("Any", "AnyType"):
-            annotation = "AnyShapeArray"
+            range = "AnyShapeArray"
         else:
-            annotation = f"AnyShapeArray[{self.dtype}]"
+            range = f"AnyShapeArray[{self.dtype}]"
 
         if with_inner_union:
-            annotation = f"Union[{annotation}, {self.dtype}]"
-        return SlotResult(annotation=annotation, injected_classes=_AnyShapeArrayInjects, imports=_AnyShapeArrayImports)
+            range = f"Union[{range}, {self.dtype}]"
+        return RangeResult(range=range, injected_classes=_AnyShapeArrayInjects, imports=_AnyShapeArrayImports)
 
-    def bounded_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def bounded_dimensions(self, array: ArrayExpression) -> RangeResult:
         """
-        A nested series of ``List[]`` annotations with :attr:`.dtype` at the center.
+        A nested series of ``List[]`` ranges with :attr:`.dtype` at the center.
 
         When an array expression allows for a range of dimensions, each set of ``List`` s is joined by a ``Union`` .
         """
@@ -466,28 +390,27 @@ class ListOfListsArray(ArrayRangeGenerator):
             and array.minimum_number_dimensions == array.maximum_number_dimensions
         ):
             exact_dims = array.exact_number_dimensions or array.minimum_number_dimensions
-            return SlotResult(annotation=self._list_of_lists(exact_dims, self.dtype))
+            return RangeResult(range=self._list_of_lists(exact_dims, self.dtype))
         elif not array.maximum_number_dimensions and (
             array.minimum_number_dimensions is None or array.minimum_number_dimensions == 1
         ):
             return self.any_shape()
         elif array.maximum_number_dimensions:
-            # e.g., if min = 2, max = 3, annotation = Union[List[List[dtype]], List[List[List[dtype]]]]
+            # e.g., if min = 2, max = 3, range = Union[List[List[dtype]], List[List[List[dtype]]]]
             min_dims = array.minimum_number_dimensions if array.minimum_number_dimensions is not None else 1
-            annotations = [
-                self._list_of_lists(i, self.dtype) for i in range(min_dims, array.maximum_number_dimensions + 1)
-            ]
-            return SlotResult(annotation="Union[" + ", ".join(annotations) + "]")
+            ranges = [self._list_of_lists(i, self.dtype) for i in range(min_dims, array.maximum_number_dimensions + 1)]
+            # TODO: Format this nicely!
+            return RangeResult(range="Union[" + ", ".join(ranges) + "]")
         else:
             # min specified with no max
-            # e.g., if min = 3, annotation = List[List[AnyShapeArray[dtype]]]
-            return SlotResult(
-                annotation=self._list_of_lists(array.minimum_number_dimensions - 1, self.any_shape().annotation),
+            # e.g., if min = 3, range = List[List[AnyShapeArray[dtype]]]
+            return RangeResult(
+                range=self._list_of_lists(array.minimum_number_dimensions - 1, self.any_shape().range),
                 injected_classes=_AnyShapeArrayInjects,
                 imports=_AnyShapeArrayImports,
             )
 
-    def parameterized_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def parameterized_dimensions(self, array: ArrayExpression) -> RangeResult:
         """
         Constrained shapes using :func:`pydantic.conlist`
 
@@ -497,21 +420,21 @@ class ListOfListsArray(ArrayRangeGenerator):
         """
         # generate dimensions from inside out and then format
         # e.g., if dimensions = [{min_card: 3}, {min_card: 2}],
-        # annotation = conlist(min_length=3, item_type=conlist(min_length=2, item_type=dtype))
+        # range = conlist(min_length=3, item_type=conlist(min_length=2, item_type=dtype))
         range = self.dtype
         for dimension in reversed(array.dimensions):
-            range = self._parameterized_dimension(dimension, range).annotation
+            range = self._parameterized_dimension(dimension, range).range
 
-        return SlotResult(annotation=range, imports=_ConListImports)
+        return RangeResult(range=range, imports=_ConListImports)
 
-    def complex_dimensions(self, array: ArrayExpression) -> SlotResult:
+    def complex_dimensions(self, array: ArrayExpression) -> RangeResult:
         """
         Mixture of parameterized dimensions with a max or min (or both) shape for anonymous dimensions.
 
         A mixture of ``List`` , :class:`.conlist` , and :class:`.AnyShapeArray` .
         """
         res = None
-        # first process any unlabeled dimensions which must be the innermost level of the annotation,
+        # first process any unlabeled dimensions which must be the innermost level of the range,
         # then wrap that with labeled dimensions
         if array.exact_number_dimensions or (
             array.minimum_number_dimensions
@@ -520,7 +443,7 @@ class ListOfListsArray(ArrayRangeGenerator):
         ):
             exact_dims = array.exact_number_dimensions or array.minimum_number_dimensions
             if exact_dims > len(array.dimensions):
-                res = SlotResult(annotation=self._list_of_lists(exact_dims - len(array.dimensions), self.dtype))
+                res = RangeResult(range=self._list_of_lists(exact_dims - len(array.dimensions), self.dtype))
             elif exact_dims == len(array.dimensions):
                 # equivalent to labeled shape
                 return self.parameterized_dimensions(array)
@@ -534,11 +457,9 @@ class ListOfListsArray(ArrayRangeGenerator):
 
             if array.minimum_number_dimensions:
                 # some minimum anonymous dimensions but unlimited max dimensions
-                # e.g., if min = 3, len(dim) = 2, then res.annotation = List[Union[AnyShapeArray[dtype], dtype]]
-                # res.annotation will be wrapped with the 2 labeled dimensions later
-                res.annotation = self._list_of_lists(
-                    array.minimum_number_dimensions - len(array.dimensions), res.annotation
-                )
+                # e.g., if min = 3, len(dim) = 2, then res.range = List[Union[AnyShapeArray[dtype], dtype]]
+                # res.range will be wrapped with the 2 labeled dimensions later
+                res.range = self._list_of_lists(array.minimum_number_dimensions - len(array.dimensions), res.range)
 
         elif array.maximum_number_dimensions:
             initial_min = array.minimum_number_dimensions if array.minimum_number_dimensions is not None else 0
@@ -554,9 +475,9 @@ class ListOfListsArray(ArrayRangeGenerator):
 
         # Wrap inner dimension with labeled dimension
         # e.g., if dimensions = [{min_card: 3}, {min_card: 2}]
-        # and res.annotation = List[Union[AnyShapeArray[dtype], dtype]]
+        # and res.range = List[Union[AnyShapeArray[dtype], dtype]]
         # (min 3 dims, no max dims)
-        # then the final annotation = conlist(
+        # then the final range = conlist(
         #     min_length=3,
         #     item_type=conlist(
         #         min_length=2,
@@ -564,7 +485,7 @@ class ListOfListsArray(ArrayRangeGenerator):
         #     )
         # )
         for dim in reversed(array.dimensions):
-            res = res.merge(self._parameterized_dimension(dim, dtype=res.annotation))
+            res = res.merge(self._parameterized_dimension(dim, dtype=res.range))
 
         return res
 

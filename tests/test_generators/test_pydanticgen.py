@@ -7,7 +7,7 @@ from importlib.metadata import version
 from importlib.util import find_spec
 from pathlib import Path
 from types import GeneratorType, ModuleType
-from typing import ClassVar, Dict, List, Literal, Optional, Type, Union, get_args, get_origin
+from typing import ClassVar, Dict, List, Literal, Optional, Type, Union
 
 import numpy as np
 import pytest
@@ -20,7 +20,6 @@ from linkml_runtime.utils.compile_python import compile_python
 from linkml_runtime.utils.formatutils import camelcase, remove_empty_items, underscore
 from linkml_runtime.utils.schemaview import load_schema_wrap
 from pydantic import BaseModel, ValidationError
-from pydantic.version import VERSION as PYDANTIC_VERSION
 
 from linkml.generators import pydanticgen as pydanticgen_root
 from linkml.generators.pydanticgen import MetadataMode, PydanticGenerator, array, build, pydanticgen, template
@@ -40,8 +39,6 @@ from linkml.utils.exceptions import ValidationError as ArrayValidationError
 from linkml.utils.schema_builder import SchemaBuilder
 
 from .conftest import MyInjectedClass
-
-PYDANTIC_VERSION = int(PYDANTIC_VERSION[0])
 
 PACKAGE = "kitchen_sink"
 
@@ -253,7 +250,7 @@ slots:
             True,
             False,
             True,
-            "Optional[Dict[str, str]]",
+            "Optional[Dict[str, Union[str, B]]]",
             "references to class with identifier inlined ONLY ON REQUEST, with dict as default",
         ),
         # TODO: fix the next two
@@ -276,6 +273,7 @@ def test_pydantic_inlining(range, multivalued, inlined, inlined_as_list, B_has_i
         "Optional[List[B]]": "Field(default_factory=list",
         "Optional[Dict[str, B]]": "Field(default_factory=dict",
         "Optional[Dict[str, str]]": "Field(default_factory=dict",
+        "Optional[Dict[str, Union[str, B]]]": "Field(default_factory=dict",
     }
 
     sb = SchemaBuilder("test")
@@ -694,22 +692,11 @@ def test_inject_field(kitchen_sink_path, tmp_path, input_path, inject, name, typ
 
     base = getattr(module, "ConfiguredBaseModel")
 
-    if PYDANTIC_VERSION >= 2:
-        assert name in base.model_fields
-        field = base.model_fields[name]
-        assert field.annotation == type
-        assert field.default == default
-        assert field.description == description
-    else:
-        assert name in base.__fields__
-        field = base.__fields__[name]
-        # pydantic <2 mangles annotations so can't do direct annotation comparison
-        assert not field.required
-        if get_origin(type):
-            assert field.type_ is get_args(type)[0]
-        else:
-            assert field.type_ is type
-        assert field.field_info.description == description
+    assert name in base.model_fields
+    field = base.model_fields[name]
+    assert field.annotation == type
+    assert field.default == default
+    assert field.description == description
 
 
 # --------------------------------------------------
@@ -720,20 +707,10 @@ def test_inject_field(kitchen_sink_path, tmp_path, input_path, inject, name, typ
 @pytest.fixture
 def sample_class() -> PydanticClass:
     # no pattern makes no validators
-    attr_1 = PydanticAttribute(name="attr_1", annotations={"python_range": {"value": "Union[str,int]"}}, required=True)
-    attr_2 = PydanticAttribute(name="attr_2", annotations={"python_range": {"value": "List[float]"}})
+    attr_1 = PydanticAttribute(name="attr_1", range="Union[str,int]", required=True)
+    attr_2 = PydanticAttribute(name="attr_2", range="List[float]")
     cls = PydanticClass(name="Sample", attributes={"attr_1": attr_1, "attr_2": attr_2})
     return cls
-
-
-@pytest.mark.parametrize(
-    "mode,expected",
-    [["python", {"pydantic_ver": PYDANTIC_VERSION}], ["json", f'{{"pydantic_ver": {PYDANTIC_VERSION}}}']],
-)
-def test_template_model_dump(mode: str, expected):
-    if mode == "json" and PYDANTIC_VERSION >= 2:
-        return
-    assert TemplateModel().model_dump(mode=mode) == expected
 
 
 def test_attribute_field():
@@ -952,7 +929,7 @@ def test_template_pass_environment(sample_class):
 {{ attr }} 
 {%- endfor -%}""",
         "attribute.py.jinja": """attr: {{ name }}
-range: {{ annotations.python_range.value }}""",
+range: {{ range }}""",
     }
     env = Environment(loader=DictLoader(templates))
     rendered = sample_class.render(env)
@@ -1031,24 +1008,12 @@ def test_arrays_anyshape():
     class MyModel(BaseModel):
         array: AnyShapeArray[int]
 
-    # pdb.set_trace()
     arr = np.ones((2, 4, 5, 3, 2), dtype=int)
     _ = MyModel(array=arr.tolist())
 
     with pytest.raises(ValidationError):
         arr = np.random.random((2, 5, 3))
         _ = MyModel(array=arr.tolist())
-
-    # FIXME: Rescue JSON schema generation with generics that can be declared more than once in a module
-    # if PYDANTIC_VERSION < 2:
-    #     assert model.schema_json() == (
-    #         '{"title": "MyModel", "type": "object", "properties": {"array": {"title": '
-    #         '"Array", "anyOf": [{"type": "integer"}, {"type": "array", "items": '
-    #         '{"$ref": "#any-shape-array-integer"}}], "$id": "#any-shape-array-integer"}}, '
-    #         '"required": ["array"]}'
-    #     )
-    # else:
-    #     raise NotImplementedError("Get json schema representation for pydantic 2")
 
 
 # --------------------------------------------------
@@ -1710,10 +1675,9 @@ def test_template_black(array_complex):
         array_complex, array_representations=[ArrayRepresentation.LIST], metadata_mode=None
     ).render()
     array_repr = generated.classes["ComplexRangeShapeArray"].attributes["array"].render(black=True)
-    if PYDANTIC_VERSION >= 2:
-        assert (
-            array_repr
-            == """array: Optional[
+    assert (
+        array_repr
+        == """array: Optional[
     conlist(
         max_length=5,
         item_type=conlist(
@@ -1729,27 +1693,7 @@ def test_template_black(array_complex):
     )
 ] = Field(None)
 """
-        )
-    else:
-        assert (
-            array_repr
-            == """array: Optional[
-    conlist(
-        max_items=5,
-        item_type=conlist(
-            min_items=2,
-            item_type=conlist(
-                min_items=2,
-                max_items=5,
-                item_type=conlist(
-                    min_items=6, max_items=6, item_type=Union[List[int], List[List[int]], List[List[List[int]]]]
-                ),
-            ),
-        ),
     )
-] = Field(None)
-"""
-        )
 
 
 def test_template_noblack(array_complex, mock_black_import):
@@ -1778,16 +1722,11 @@ def test_template_noblack(array_complex, mock_black_import):
         array_complex, array_representations=[ArrayRepresentation.LIST], metadata_mode=None
     ).render()
     array_repr = generated.classes["ComplexRangeShapeArray"].attributes["array"].render(black=False)
-    if PYDANTIC_VERSION >= 2:
-        assert (
-            array_repr
-            == "array: Optional[conlist(max_length=5, item_type=conlist(min_length=2, item_type=conlist(min_length=2, max_length=5, item_type=conlist(min_length=6, max_length=6, item_type=Union[List[int], List[List[int]], List[List[List[int]]]]))))] = Field(None)"  # noqa: E501
-        )
-    else:
-        assert (
-            array_repr
-            == "array: Optional[conlist(max_items=5, item_type=conlist(min_items=2, item_type=conlist(min_items=2, max_items=5, item_type=conlist(min_items=6, max_items=6, item_type=Union[List[int], List[List[int]], List[List[List[int]]]]))))] = Field(None)"  # noqa: E501
-        )
+
+    assert (
+        array_repr
+        == "array: Optional[conlist(max_length=5, item_type=conlist(min_length=2, item_type=conlist(min_length=2, max_length=5, item_type=conlist(min_length=6, max_length=6, item_type=Union[List[int], List[List[int]], List[List[List[int]]]]))))] = Field(None)"  # noqa: E501
+    )
 
     # trying to render with black when we don't have it should raise a ValueError
     with pytest.raises(ValueError):

@@ -83,12 +83,12 @@ COMPARISON = """
 """
 
 def render_module(path, representation='list'):
-    generator = PydanticGenerator(str(path), pydantic_version=2, array_representations=[representation])
+    generator = PydanticGenerator(str(path), array_representations=[representation])
     module = generator.render()
     return module
     
 def compile_module(path, representation='list'):
-    generator = PydanticGenerator(str(path), pydantic_version=2, array_representations=[representation])
+    generator = PydanticGenerator(str(path), array_representations=[representation])
     module = generator.compile_module()
     return module
 
@@ -172,16 +172,6 @@ try:
     MyClass(data=np.random.rand(5,4,3))
 except Exception as e:
     console.print(e)
-```
-
-
-```{note}
-The UX of the pydantic models is somewhat limited by linkml's dual support for pydantic 1 and 2.
-After the deprecation of pydantic 1, the models will be able to more naturally handle arrays from numpy
-and other common formats. Eg. currently in Pydantic 1, an array must first be cast `.to_list()`,
-and the validation errors are difficult to read!
-
-See issue [#1925](https://github.com/linkml/linkml/issues/1925)
 ```
 
 ### Array Library Integration
