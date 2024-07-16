@@ -14,8 +14,8 @@ from linkml.generators.pydanticgen.template import (
     PydanticClass,
     PydanticEnum,
     PydanticModule,
+    PydanticTemplateModel,
     PydanticValidator,
-    TemplateModel,
 )
 
 __all__ = [
@@ -33,5 +33,5 @@ __all__ = [
     "PydanticGenerator",
     "PydanticModule",
     "PydanticValidator",
-    "TemplateModel",
+    "PydanticTemplateModel",
 ]
