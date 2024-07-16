@@ -1930,7 +1930,7 @@ def test_lifecycle_classes(kitchen_sink_path):
             return cls
 
         def after_generate_class(self, cls: TClass, sv: SchemaView) -> TClass:
-            cls.imports = Imports(imports=[Import(module="csv")])
+            cls.imports = [Import(module="csv")]
             return cls
 
     generator = TestPydanticGenerator(kitchen_sink_path)
