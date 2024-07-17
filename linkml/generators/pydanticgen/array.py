@@ -1,12 +1,11 @@
 import sys
-from abc import ABC, abstractmethod
 from enum import Enum
-from typing import TYPE_CHECKING, Any, ClassVar, Generic, Iterable, Optional, Type, TypeVar, Union, get_args
+from typing import TYPE_CHECKING, Any, Generic, Iterable, Optional, TypeVar, Union, get_args
 
-from linkml_runtime.linkml_model import Element
 from linkml_runtime.linkml_model.meta import ArrayExpression, DimensionExpression
 from pydantic import VERSION as PYDANTIC_VERSION
 
+from linkml.generators.common.range import ArrayRangeGenerator
 from linkml.utils.deprecation import deprecation_warning
 
 if int(PYDANTIC_VERSION[0]) >= 2:
@@ -32,8 +31,6 @@ class ArrayRepresentation(Enum):
     LIST = "list"
     NPARRAY = "nparray"  # numpy and nptyping must be installed to use this
 
-
-_BOUNDED_ARRAY_FIELDS = ("exact_number_dimensions", "minimum_number_dimensions", "maximum_number_dimensions")
 
 _T = TypeVar("_T")
 _RecursiveListType = Iterable[Union[_T, Iterable["_RecursiveListType"]]]
@@ -107,84 +104,6 @@ _AnyShapeArrayInjects = [
 ]
 
 _ConListImports = Imports() + Import(module="pydantic", objects=[ObjectImport(name="conlist")])
-
-
-class ArrayRangeGenerator(ABC):
-    """
-    Metaclass for generating a given format of array range.
-
-    See :ref:`array-forms` for more details on array range forms.
-
-    These classes do only enough validation of the array specification to decide
-    which kind of representation to generate. Proper value validation should
-    happen elsewhere (ie. in the metamodel and generated :class:`.ArrayExpression` class.)
-
-    Each of the array representation generation methods should be able to handle
-    the supported pydantic versions (currently still 1 and 2).
-
-    Notes:
-
-        When checking for array specification, recall that there is a semantic difference between
-        ``None`` and ``False`` , particularly for :attr:`.ArrayExpression.max_number_dimensions` -
-        check for absence of specification with ``is None`` rather than checking for truthiness/falsiness
-        (unless that's what you intend to do ofc ;)
-
-    Attributes:
-        array (:class:`.ArrayExpression` ): Array to create a range for
-        dtype (Union[str, :class:`.Element` ): dtype of the entire array as a string
-
-    """
-
-    REPR: ClassVar[ArrayRepresentation]
-
-    def __init__(self, array: Optional[ArrayExpression], dtype: Union[str, Element]):
-        self.array = array
-        self.dtype = dtype
-
-    def make(self) -> RangeResult:
-        """Create the string form of the array representation"""
-        if not self.array.dimensions and not self.has_bounded_dimensions:
-            # any-shaped array
-            return self.any_shape(self.array)
-        elif not self.array.dimensions and self.has_bounded_dimensions:
-            return self.bounded_dimensions(self.array)
-        elif self.array.dimensions and not self.has_bounded_dimensions:
-            return self.parameterized_dimensions(self.array)
-        else:
-            return self.complex_dimensions(self.array)
-
-    @property
-    def has_bounded_dimensions(self) -> bool:
-        """Whether the :class:`.ArrayExpression` has some shape specification aside from ``dimensions``"""
-        return any([getattr(self.array, arr_field, None) is not None for arr_field in _BOUNDED_ARRAY_FIELDS])
-
-    @classmethod
-    def get_generator(cls, repr: ArrayRepresentation) -> Type["ArrayRangeGenerator"]:
-        """Get the generator class for a given array representation"""
-        for subclass in cls.__subclasses__():
-            if repr in (subclass.REPR, subclass.REPR.value):
-                return subclass
-        raise ValueError(f"Generator for array representation {repr} not found!")
-
-    @abstractmethod
-    def any_shape(self, array: Optional[ArrayRepresentation] = None) -> RangeResult:
-        """Any shaped array!"""
-        pass
-
-    @abstractmethod
-    def bounded_dimensions(self, array: ArrayExpression) -> RangeResult:
-        """Array shape specified numerically, without axis parameterization"""
-        pass
-
-    @abstractmethod
-    def parameterized_dimensions(self, array: ArrayExpression) -> RangeResult:
-        """Array shape specified with ``dimensions`` without additional parameterized dimensions"""
-        pass
-
-    @abstractmethod
-    def complex_dimensions(self, array: ArrayExpression) -> RangeResult:
-        """Array shape with both ``parameterized`` and ``bounded`` dimensions"""
-        pass
 
 
 class ListOfListsArray(ArrayRangeGenerator):

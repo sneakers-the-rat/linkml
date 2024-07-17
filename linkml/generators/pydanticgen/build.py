@@ -69,8 +69,6 @@ class RangeResult(PydanticBuildResult, RangeResult_):
     The result of building just the range part of a slot
     """
 
-    range: str
-    """The type annotation used in the generated model"""
     field_extras: Optional[dict] = None
     """Additional metadata for this slot to be held in the Field object"""
 

@@ -27,7 +27,8 @@ from linkml.generators.common.lifecycle import LifecycleMixin
 from linkml.generators.common.type_designators import get_accepted_type_designator_values, get_type_designator_value
 from linkml.generators.oocodegen import OOCodeGenerator
 from linkml.generators.pydanticgen import includes
-from linkml.generators.pydanticgen.array import ArrayRangeGenerator, ArrayRepresentation
+from linkml.generators.pydanticgen.array import ArrayRepresentation
+from linkml.generators.common.range import ArrayRangeGenerator
 from linkml.generators.pydanticgen.build import ClassResult, SlotResult
 from linkml.generators.pydanticgen.template import (
     Import,

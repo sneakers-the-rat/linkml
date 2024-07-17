@@ -51,3 +51,5 @@ class EnumResult(BuildResult):
 
 class RangeResult(BuildResult):
     """Abstract results container for just the range part of a slot"""
+    range: str
+    """The type annotation used in the generated model"""
