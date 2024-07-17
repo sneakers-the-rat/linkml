@@ -47,13 +47,13 @@ class RangeGenerator(ABC):
         elif slot.range is None:
             result = cls.default_range(slot, sv)
         else:
-            raise ValueError(f'Slot range not recognized by any handler. Got slot:\n{slot}')
+            raise ValueError(f"Slot range not recognized by any handler. Got slot:\n{slot}")
 
         # Modifiers to generated ranges
         if slot.multivalued:
             result = cls.multivalued(result, sv)
         elif slot.inlined:
-            result = cls.inlined(slot, sv)
+            result = cls.inlined(result, sv)
 
         return result
 
@@ -69,8 +69,18 @@ class RangeGenerator(ABC):
         return slot
 
     @classmethod
+    def default_range(cls, slot: SlotDefinition, sv: SchemaView) -> RangeResult:
+        return cls.type_slot(sv.schema.default_range, sv)
+
+    @classmethod
     @abstractmethod
-    def default_range(cls, slot: SlotDefinition, sv: SchemaView) -> RangeResult: ...
+    def type_slot(cls, slot: Union[SlotDefinition, str], sv: SchemaView) -> RangeResult:
+        """
+        Most basic kind of slot range -- generators must be able to handle linkml types
+
+        This handler method must also support the name of the type passed in as
+        a string, in addition to retrieving it from the range.
+        """
 
     @classmethod
     def array(
@@ -99,10 +109,6 @@ class RangeGenerator(ABC):
         raise NotImplementedError("enum slot not implemented by this generator")
 
     @classmethod
-    def type_slot(cls, slot: SlotDefinition, sv: SchemaView) -> RangeResult:
-        raise NotImplementedError("type slot not implemented by this generator")
-
-    @classmethod
     def multivalued(cls, slot: RangeResult, sv: SchemaView) -> RangeResult:
         raise NotImplementedError("multivalued generation not supported by this generator")
 
@@ -114,12 +120,12 @@ class RangeGenerator(ABC):
             return cls.inlined_as_dict(slot, sv)
 
     @classmethod
-    def inlined_as_list(cls, slot: RangeResult, sv:SchemaView) -> RangeResult:
-        raise NotImplementedError('inlined_as_list not supported by this generator')
+    def inlined_as_list(cls, slot: RangeResult, sv: SchemaView) -> RangeResult:
+        raise NotImplementedError("inlined_as_list not supported by this generator")
 
     @classmethod
-    def inlined_as_dict(cls, slot: RangeResult, sv:SchemaView) -> RangeResult:
-        raise NotImplementedError('inlined_as_dict not supported by this generator')
+    def inlined_as_dict(cls, slot: RangeResult, sv: SchemaView) -> RangeResult:
+        raise NotImplementedError("inlined_as_dict not supported by this generator")
 
     @classmethod
     def class_range_has_identifier(cls, slot: SlotDefinition, sv: SchemaView) -> bool:
@@ -137,6 +143,7 @@ class RangeGenerator(ABC):
         if slot.range in sv.all_classes() and sv.get_identifier_slot(slot.range, use_key=True) is not None:
             has_identifier_slot = True
         return has_identifier_slot
+
 
 class ArrayRangeGenerator(ABC):
     """
