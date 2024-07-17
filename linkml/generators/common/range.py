@@ -36,8 +36,6 @@ class RangeGenerator(ABC):
             result = cls.designates_type(slot, sv)
         elif slot.ifabsent is not None:
             result = cls.ifabsent(slot, sv)
-        elif slot.designates_type:
-            result = cls.designates_type(slot, sv)
         elif slot.range in sv.all_classes():
             result = cls.class_slot(slot, sv)
         elif slot.range in sv.all_enums():
