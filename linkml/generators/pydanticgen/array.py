@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, Generic, Iterable, Optional, TypeVar, Uni
 from linkml_runtime.linkml_model.meta import ArrayExpression, DimensionExpression
 from pydantic import VERSION as PYDANTIC_VERSION
 
-from linkml.generators.common.range import ArrayRangeGenerator
+from linkml.generators.common.range import ArrayRangeGenerator as ArrayRangeGenerator_
 from linkml.utils.deprecation import deprecation_warning
 
 if int(PYDANTIC_VERSION[0]) >= 2:
@@ -26,10 +26,12 @@ else:
 from linkml.generators.pydanticgen.build import RangeResult
 from linkml.generators.pydanticgen.template import ConditionalImport, Import, Imports, ObjectImport
 
-
 class ArrayRepresentation(Enum):
     LIST = "list"
     NPARRAY = "nparray"  # numpy and nptyping must be installed to use this
+
+class ArrayRangeGenerator(ArrayRangeGenerator_):
+    representations = ArrayRepresentation
 
 
 _T = TypeVar("_T")

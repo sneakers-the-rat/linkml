@@ -3,6 +3,7 @@ Abstract generator classes for slot ranges
 """
 
 from abc import ABC, abstractmethod
+from enum import Enum
 from typing import Union, ClassVar, Optional, Type
 from dataclasses import dataclass
 
@@ -10,8 +11,7 @@ from linkml_runtime import SchemaView
 from linkml_runtime.linkml_model import Element
 from linkml_runtime.linkml_model.meta import SlotDefinition, ArrayExpression, AnonymousSlotExpression
 
-from linkml.generators.pydanticgen.array import ArrayRepresentation
-from linkml.generators.pydanticgen.build import RangeResult
+from linkml.generators.common.build import RangeResult
 
 _BOUNDED_ARRAY_FIELDS = ("exact_number_dimensions", "minimum_number_dimensions", "maximum_number_dimensions")
 
@@ -170,8 +170,14 @@ class ArrayRangeGenerator(ABC):
         dtype (Union[str, :class:`.Element` ): dtype of the entire array as a string
 
     """
+    representations: ClassVar[Enum]
+    """
+    The enum of arrays that the ArrayRangeGenerator supports for this particular Generator.
+    
+    Each Subclass will define ``repr`` as one of the values from this enum
+    """
 
-    REPR: ClassVar[ArrayRepresentation]
+    REPR: ClassVar[Enum]
 
     def __init__(self, array: Optional[ArrayExpression], dtype: Union[str, Element]):
         self.array = array
@@ -195,7 +201,7 @@ class ArrayRangeGenerator(ABC):
         return any([getattr(self.array, arr_field, None) is not None for arr_field in _BOUNDED_ARRAY_FIELDS])
 
     @classmethod
-    def get_generator(cls, repr: ArrayRepresentation) -> Type["ArrayRangeGenerator"]:
+    def get_generator(cls, repr: Union[Enum, str]) -> Type["ArrayRangeGenerator"]:
         """Get the generator class for a given array representation"""
         for subclass in cls.__subclasses__():
             if repr in (subclass.REPR, subclass.REPR.value):
@@ -203,7 +209,7 @@ class ArrayRangeGenerator(ABC):
         raise ValueError(f"Generator for array representation {repr} not found!")
 
     @abstractmethod
-    def any_shape(self, array: Optional[ArrayRepresentation] = None) -> RangeResult:
+    def any_shape(self, array: Optional[ArrayExpression] = None) -> RangeResult:
         """Any shaped array!"""
         pass
 
