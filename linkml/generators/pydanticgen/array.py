@@ -26,9 +26,11 @@ else:
 from linkml.generators.pydanticgen.build import RangeResult
 from linkml.generators.pydanticgen.template import ConditionalImport, Import, Imports, ObjectImport
 
+
 class ArrayRepresentation(Enum):
     LIST = "list"
     NPARRAY = "nparray"  # numpy and nptyping must be installed to use this
+
 
 class ArrayRangeGenerator(ArrayRangeGenerator_):
     representations = ArrayRepresentation
