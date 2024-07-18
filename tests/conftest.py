@@ -195,18 +195,26 @@ def pytest_collection_modifyitems(config, items):
             if item.get_closest_marker("slow"):
                 item.add_marker(skip_slow)
 
-    # make sure deprecation test happens at the end
-    test_deps = [i for i in items if i.name == "test_removed_are_removed"]
-    if len(test_deps) == 1:
-        items.remove(test_deps[0])
-        items.append(test_deps[0])
-
     # numpydantic only supported python>=3.9
     if sys.version_info.minor < 9 or version("pydantic").startswith("1"):
         skip_npd = pytest.mark.skip(reason="Numpydantic is only supported in python>=3.9 and with pydantic>=2")
         for item in items:
             if item.get_closest_marker("pydantic_npd"):
                 item.add_marker(skip_npd)
+
+    # make sure deprecation test happens at the end
+    test_deps = [i for i in items if i.name == "test_removed_are_removed"]
+    if len(test_deps) == 1:
+        items.remove(test_deps[0])
+        items.append(test_deps[0])
+
+    # the fixture that mocks black import failures should always come all the way last
+    # see: https://github.com/linkml/linkml/pull/2209#issuecomment-2231548078
+    # this causes really hard to diagnose errors, so we should fail testing if
+    # eg. this test changes names and we no longer put it at the end.
+    test_black = [i for i in items if i.name == "test_template_noblack"]
+    items.remove(test_black[0])
+    items.append(test_black[0])
 
 
 def pytest_sessionstart(session: pytest.Session):
