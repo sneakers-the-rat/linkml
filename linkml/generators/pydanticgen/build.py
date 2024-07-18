@@ -1,17 +1,15 @@
+from pathlib import Path
 from typing import List, Optional, Type, TypeVar, Union
 
 from linkml.generators.common.build import (
     BuildResult,
-)
-from linkml.generators.common.build import (
     ClassResult as ClassResult_,
-)
-from linkml.generators.common.build import (
     RangeResult as RangeResult_,
-)
-from linkml.generators.common.build import (
     SlotResult as SlotResult_,
 )
+from linkml_runtime.linkml_model import SchemaDefinition
+from pydantic import BaseModel, ConfigDict
+
 from linkml.generators.pydanticgen.template import Import, Imports, PydanticAttribute, PydanticClass
 
 T = TypeVar("T", bound="PydanticBuildResult", covariant=True)
@@ -105,3 +103,15 @@ class SlotResult(PydanticBuildResult, SlotResult_):
 class ClassResult(PydanticBuildResult, ClassResult_):
     cls: PydanticClass
     """Constructed Template Model for class, including attributes/slots"""
+
+
+class SplitResult(BaseModel):
+    """Build result when generating with :func:`.generate_split`"""
+
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    main: bool = False
+    source_schema: SchemaDefinition
+    path: Path
+    serialized_module: str
+    module_import: Optional[str] = None
