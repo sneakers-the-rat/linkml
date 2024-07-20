@@ -1,15 +1,21 @@
 from pathlib import Path
 from typing import List, Optional, Type, TypeVar, Union
 
-from linkml.generators.common.build import (
-    BuildResult,
-    ClassResult as ClassResult_,
-    RangeResult as RangeResult_,
-    SlotResult as SlotResult_,
-)
 from linkml_runtime.linkml_model import SchemaDefinition
 from pydantic import BaseModel, ConfigDict
 
+from linkml.generators.common.build import (
+    BuildResult,
+)
+from linkml.generators.common.build import (
+    ClassResult as ClassResult_,
+)
+from linkml.generators.common.build import (
+    RangeResult as RangeResult_,
+)
+from linkml.generators.common.build import (
+    SlotResult as SlotResult_,
+)
 from linkml.generators.pydanticgen.template import Import, Imports, PydanticAttribute, PydanticClass
 
 T = TypeVar("T", bound="PydanticBuildResult", covariant=True)
