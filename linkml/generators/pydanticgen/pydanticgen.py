@@ -936,7 +936,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         schema_name = self.schemaview.element_by_schema_map()[class_name]
         schema = [s for s in self.schemaview.schema_map.values() if s.name == schema_name][0]
         module = self.generate_module_import(schema, self.split_context)
-        return Import(module=module, objects=[ObjectImport(name=camelcase(class_name))], generated=True)
+        return Import(module=module, objects=[ObjectImport(name=camelcase(class_name))], schema=True)
 
     def render(self) -> PydanticModule:
         sv: SchemaView
@@ -1095,11 +1095,10 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         # --------------------------------------------------
         # Imported schemas
         # --------------------------------------------------
-        # make the rendered module strings to match to the generated imports
         imported_schema = {
             generator.generate_module_import(sch): sch for sch in generator.schemaview.schema_map.values()
         }
-        for generated_import in [i for i in rendered.python_imports if i.generated]:
+        for generated_import in [i for i in rendered.python_imports if i.schema]:
             import_generator = cls(imported_schema[generated_import.module], **gen_kwargs)
             serialized = import_generator.serialize()
             rel_path = _import_to_path(generated_import.module)

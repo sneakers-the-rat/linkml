@@ -97,7 +97,7 @@ See:
 * :attr:`.PydanticGenerator.split`
 * :attr:`.PydanticGenerator.split_pattern`
 * :attr:`.PydanticGenerator.split_context`
-* :attr:`.PydanticGenerator.generate_split`
+* :meth:`.PydanticGenerator.generate_split`
 
 The implementation of ``split`` mode in the Generator itself still generates
 a single module, except for importing classes from other modules rather than
