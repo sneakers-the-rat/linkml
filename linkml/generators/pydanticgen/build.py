@@ -61,10 +61,8 @@ class PydanticBuildResult(BuildResult):
                 self_copy.imports = other.imports
         if other.injected_classes:
             if self_copy.injected_classes is not None:
-                if self_copy.injected_classes == other.injected_classes:
-                    # do nothing! matching injects
-                    pass
-                else:
+                # only combine and dedupe when injected_classes don't match
+                if self_copy.injected_classes != other.injected_classes:
                     self_copy.injected_classes.extend(other.injected_classes)
                     self_copy.injected_classes = list(dict.fromkeys(self_copy.injected_classes))
             else:
