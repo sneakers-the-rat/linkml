@@ -156,7 +156,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
     Accordingly, the ``before_`` and ``after_generate_slots`` are called before and after each class's
     slot generation, rather than all slot generation.
 
-    * :meth:`~.LifecycleMixin.before_generated_classes`
+    * :meth:`~.LifecycleMixin.before_generate_classes`
     * :meth:`~.LifecycleMixin.before_generate_class`
     * :meth:`~.LifecycleMixin.after_generate_class`
     * :meth:`~.LifecycleMixin.after_generate_classes`
@@ -422,7 +422,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
 
         imports = self._get_imports(cls) if self.split else None
 
-        result = ClassResult(cls=pyclass, imports=imports)
+        result = ClassResult(cls=pyclass, source=cls, imports=imports)
 
         # Gather slots
         slots = [self.schemaview.induced_slot(sn, cls.name) for sn in self.schemaview.class_slots(cls.name)]
@@ -485,7 +485,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
 
         imports = self._get_imports(slot) if self.split else None
 
-        result = SlotResult(attribute=pyslot, imports=imports)
+        result = SlotResult(attribute=pyslot, source=slot, imports=imports)
 
         if slot.array is not None:
             results = self.get_array_representations_range(slot, result.attribute.range)
@@ -1065,9 +1065,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
             ofile.write(serialized)
 
         results.append(
-            SplitResult(
-                main=True, source_schema=generator.schemaview.schema, path=output_path, serialized_module=serialized
-            )
+            SplitResult(main=True, source=generator.schemaview.schema, path=output_path, serialized_module=serialized)
         )
 
         # --------------------------------------------------
@@ -1088,7 +1086,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
             results.append(
                 SplitResult(
                     main=False,
-                    source_schema=imported_schema[generated_import.module],
+                    source=imported_schema[generated_import.module],
                     path=abs_path,
                     serialized_module=serialized,
                     module_import=generated_import.module,

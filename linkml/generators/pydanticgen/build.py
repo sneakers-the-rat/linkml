@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict
 
 from linkml.generators.common.build import (
     BuildResult,
+    SchemaResult,
 )
 from linkml.generators.common.build import (
     ClassResult as ClassResult_,
@@ -113,13 +114,10 @@ class ClassResult(PydanticBuildResult, ClassResult_):
     """Constructed Template Model for class, including attributes/slots"""
 
 
-class SplitResult(BaseModel):
+class SplitResult(SchemaResult):
     """Build result when generating with :func:`.generate_split`"""
 
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
     main: bool = False
-    source_schema: SchemaDefinition
     path: Path
     serialized_module: str
     module_import: Optional[str] = None
