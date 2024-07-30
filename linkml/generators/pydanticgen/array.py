@@ -510,7 +510,7 @@ class NumpydanticArray(ArrayRangeGenerator):
 
     def make(self) -> RangeResult:
         result = super().make()
-        result.imports = self.IMPORTS.copy()
+        result.imports = self.IMPORTS.model_copy()
         result.injected_classes = self.INJECTS.copy()
         return result
 
