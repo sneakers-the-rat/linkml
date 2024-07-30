@@ -510,8 +510,8 @@ class NumpydanticArray(ArrayRangeGenerator):
 
     def make(self) -> RangeResult:
         result = super().make()
-        result.imports = self.IMPORTS
-        result.injected_classes = self.INJECTS
+        result.imports = self.IMPORTS.copy()
+        result.injected_classes = self.INJECTS.copy()
         return result
 
     @staticmethod
