@@ -7,7 +7,14 @@ Models for intermediate build results
 from abc import abstractmethod
 from typing import TypeVar
 
-from pydantic import BaseModel
+from linkml_runtime.linkml_model import (
+    ClassDefinition,
+    EnumDefinition,
+    SchemaDefinition,
+    SlotDefinition,
+    TypeDefinition,
+)
+from pydantic import BaseModel, ConfigDict
 
 T = TypeVar("T", bound="BuildResult", covariant=True)
 
@@ -22,6 +29,8 @@ class BuildResult(BaseModel):
     elsewhere in the generation process (like adding imports, injecting classes, etc.)
     """
 
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     @abstractmethod
     def merge(self, other: T) -> T:
         """
@@ -32,24 +41,42 @@ class BuildResult(BaseModel):
 class SchemaResult(BuildResult):
     """Abstract results container for built schemas"""
 
+    source: SchemaDefinition
+
+    def merge(self, other: T) -> T:
+        """
+        SchemaResults are special and don't need a merge method, since generating
+        multiple schemas at once is not common or expected behavior for a generator.
+        """
+        raise NotImplementedError("SchemaResult doesn't need a merge method, and none has been defined")
+
 
 class ClassResult(BuildResult):
     """Abstract results container for built classes"""
+
+    source: ClassDefinition
 
 
 class SlotResult(BuildResult):
     """Abstract results container for built slots"""
 
+    source: SlotDefinition
+
 
 class TypeResult(BuildResult):
     """Abstract results container for built types"""
+
+    source: TypeDefinition
 
 
 class EnumResult(BuildResult):
     """Abstract results container for built enums"""
 
+    source: EnumDefinition
+
 
 class RangeResult(BuildResult):
     """Abstract results container for just the range part of a slot"""
+
     range: str
     """The type annotation used in the generated model"""
