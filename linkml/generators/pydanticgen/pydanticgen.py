@@ -41,9 +41,9 @@ from linkml.generators.pydanticgen.template import (
     PydanticModule,
     PydanticTemplateModel,
 )
+from linkml.generators.python.python_ifabsent_processor import PythonIfAbsentProcessor
 from linkml.utils import deprecation_warning
 from linkml.utils.generator import shared_arguments
-from linkml.utils.ifabsent_functions import ifabsent_value_declaration
 
 if int(PYDANTIC_VERSION[0]) == 1:
     deprecation_warning("pydantic-v1")
@@ -67,7 +67,9 @@ def _get_pyrange(t: TypeDefinition, sv: SchemaView) -> str:
 DEFAULT_IMPORTS = (
     Imports()
     + Import(module="__future__", objects=[ObjectImport(name="annotations")])
-    + Import(module="datetime", objects=[ObjectImport(name="datetime"), ObjectImport(name="date")])
+    + Import(
+        module="datetime", objects=[ObjectImport(name="datetime"), ObjectImport(name="date"), ObjectImport(name="time")]
+    )
     + Import(module="decimal", objects=[ObjectImport(name="Decimal")])
     + Import(module="enum", objects=[ObjectImport(name="Enum")])
     + Import(module="re")
@@ -102,7 +104,7 @@ DEFAULT_INJECTS = [includes.LinkMLMeta]
 class MetadataMode(str, Enum):
     FULL = "full"
     """
-    all metadata from the source schema will be included, even if it is represented by the template classes, 
+    all metadata from the source schema will be included, even if it is represented by the template classes,
     and even if it is represented by some child class (eg. "classes" will be included with schema metadata
     """
     EXCEPT_CHILDREN = "except_children"
@@ -112,7 +114,7 @@ class MetadataMode(str, Enum):
     """
     AUTO = "auto"
     """
-    Only the metadata that isn't represented by the template classes or excluded with ``meta_exclude`` will be included 
+    Only the metadata that isn't represented by the template classes or excluded with ``meta_exclude`` will be included
     """
     NONE = None
     """
@@ -129,7 +131,7 @@ class SplitMode(str, Enum):
     AUTO = "auto"
     """
     Only import those classes that are actually used in the generated schema as
-    
+
     * parents (``is_a``)
     * mixins
     * slot ranges
@@ -197,62 +199,62 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
     injected_classes: Optional[List[Union[Type, str]]] = None
     """
     A list/tuple of classes to inject into the generated module.
-    
+
     Accepts either live classes or strings. Live classes will have their source code
     extracted with inspect.get - so they need to be standard python classes declared in a
-    source file (ie. the module they are contained in needs a ``__file__`` attr, 
+    source file (ie. the module they are contained in needs a ``__file__`` attr,
     see: :func:`inspect.getsource` )
     """
     injected_fields: Optional[List[str]] = None
     """
     A list/tuple of field strings to inject into the base class.
-    
+
     Examples:
-    
+
     .. code-block:: python
 
         injected_fields = (
             'object_id: Optional[str] = Field(None, description="Unique UUID for each object")',
         )
-    
+
     """
     imports: Optional[List[Import]] = None
     """
-    Additional imports to inject into generated module. 
-    
+    Additional imports to inject into generated module.
+
     Examples:
-        
+
     .. code-block:: python
-    
+
         from linkml.generators.pydanticgen.template import (
             ConditionalImport,
             ObjectImport,
             Import,
             Imports
         )
-        
-        imports = (Imports() + 
-            Import(module='sys') + 
-            Import(module='numpy', alias='np') + 
+
+        imports = (Imports() +
+            Import(module='sys') +
+            Import(module='numpy', alias='np') +
             Import(module='pathlib', objects=[
                 ObjectImport(name="Path"),
                 ObjectImport(name="PurePath", alias="RenamedPurePath")
-            ]) + 
+            ]) +
             ConditionalImport(
                 module="typing",
                 objects=[ObjectImport(name="Literal")],
                 condition="sys.version_info >= (3, 8)",
                 alternative=Import(
-                    module="typing_extensions", 
+                    module="typing_extensions",
                     objects=[ObjectImport(name="Literal")]
                 ),
             ).imports
         )
-        
+
     becomes:
-    
+
     .. code-block:: python
-    
+
         import sys
         import numpy as np
         from pathlib import (
@@ -263,12 +265,12 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
             from typing import Literal
         else:
             from typing_extensions import Literal
-        
+
     """
     metadata_mode: Union[MetadataMode, str, None] = MetadataMode.AUTO
     """
     How to include schema metadata in generated pydantic models.
-    
+
     See :class:`.MetadataMode` for mode documentation
     """
     split: bool = False
@@ -280,53 +282,53 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
     split_pattern: str = ".{{ schema.name }}"
     """
     When splitting generation, imported modules need to be generated separately
-    and placed in a python package and import from each other. Since the 
+    and placed in a python package and import from each other. Since the
     location of those imported modules is variable -- e.g. one might want to
     generate schema in multiple packages depending on their version -- this
     pattern is used to generate the module portion of the import statement.
-    
-    These patterns should generally yield a relative module import, 
+
+    These patterns should generally yield a relative module import,
     since functions like :func:`.generate_split` will generate and write files
     relative to some base file, though this is not a requirement since custom
     split generation logic is also allowed.
-    
+
     The pattern is a jinja template string that is given the ``SchemaDefinition``
     of the imported schema in the environment. Additional variables can be passed
     into the jinja environment with the :attr:`.split_context` argument.
-     
+
     Further modification is possible by using jinja filters.
-    
+
     After templating, the string is passed through a :attr:`SNAKE_CASE` pattern
     to replace whitespace and other characters that can't be used in module names.
-    
+
     See also :meth:`.generate_module_import`, which is used to generate the
     module portion of the import statement (and can be overridden in subclasses).
-     
+
     Examples:
-    
-        for a schema named ``ExampleSchema`` and version ``1.2.3`` ...   
-    
+
+        for a schema named ``ExampleSchema`` and version ``1.2.3`` ...
+
         ``".{{ schema.name }}"`` (the default) becomes
-        
+
         ``from .example_schema import ClassA, ...``
-        
+
         ``"...{{ schema.name }}.v{{ schema.version | replace('.', '_') }}"`` becomes
-        
+
         ``from ...example_schema.v1_2_3 import ClassA, ...``
-    
+
     """
     split_context: Optional[dict] = None
     """
     Additional variables to pass into ``split_pattern`` when
-    generating imported module names. 
-    
+    generating imported module names.
+
     Passed in as ``**kwargs`` , so e.g. if ``split_context = {'myval': 1}``
     then one would use it in a template string like ``{{ myval }}``
     """
     split_mode: SplitMode = SplitMode.AUTO
     """
     How to filter imports from imported schema.
-    
+
     See :class:`.SplitMode` for description of options
     """
 
@@ -526,6 +528,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         """
         if self._predefined_slot_values is None:
             sv = self.schemaview
+            ifabsent_processor = PythonIfAbsentProcessor(sv)
             slot_values = defaultdict(dict)
             for class_def in sv.all_classes().values():
                 for slot_name in sv.class_slots(class_def.name):
@@ -541,10 +544,10 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
                             slot.name
                         ]
                     elif slot.ifabsent is not None:
-                        value = ifabsent_value_declaration(slot.ifabsent, sv, class_def, slot)
+                        value = ifabsent_processor.process_slot(slot, class_def)
                         slot_values[camelcase(class_def.name)][slot.name] = value
 
-            self._predefined_slot_values = slot_values
+                self._predefined_slot_values = slot_values
 
         return self._predefined_slot_values
 
@@ -915,7 +918,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         schema_name = self.schemaview.element_by_schema_map()[class_name]
         schema = [s for s in self.schemaview.schema_map.values() if s.name == schema_name][0]
         module = self.generate_module_import(schema, self.split_context)
-        return Import(module=module, objects=[ObjectImport(name=camelcase(class_name))], schema=True)
+        return Import(module=module, objects=[ObjectImport(name=camelcase(class_name))], is_schema=True)
 
     def render(self) -> PydanticModule:
         sv: SchemaView
@@ -1061,7 +1064,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         # interpret all imported schema paths as relative to that
         output_path.parent.mkdir(parents=True, exist_ok=True)
         serialized = generator.serialize(rendered_module=rendered)
-        with open(output_path, "w") as ofile:
+        with open(output_path, "w", encoding="utf-8") as ofile:
             ofile.write(serialized)
 
         results.append(
@@ -1074,13 +1077,13 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         imported_schema = {
             generator.generate_module_import(sch): sch for sch in generator.schemaview.schema_map.values()
         }
-        for generated_import in [i for i in rendered.python_imports if i.schema]:
+        for generated_import in [i for i in rendered.python_imports if i.is_schema]:
             import_generator = cls(imported_schema[generated_import.module], **gen_kwargs)
             serialized = import_generator.serialize()
             rel_path = _import_to_path(generated_import.module)
             abs_path = (output_path.parent / rel_path).resolve()
             abs_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(abs_path, "w") as ofile:
+            with open(abs_path, "w", encoding="utf-8") as ofile:
                 ofile.write(serialized)
 
             results.append(
@@ -1123,7 +1126,7 @@ def _ensure_inits(paths: List[Path]):
     common_path = Path(os.path.commonpath(paths))
 
     if not (ipath := (common_path / "__init__.py")).exists():
-        with open(ipath, "w") as ifile:
+        with open(ipath, "w", encoding="utf-8") as ifile:
             ifile.write(" \n")
 
     for path in paths:
@@ -1131,7 +1134,7 @@ def _ensure_inits(paths: List[Path]):
         path = path.parent
         while path != common_path:
             if not (ipath := (path / "__init__.py")).exists():
-                with open(ipath, "w") as ifile:
+                with open(ipath, "w", encoding="utf-8") as ifile:
                     ifile.write(" \n")
             path = path.parent
 
@@ -1148,7 +1151,7 @@ Pass a directory containing templates with the same name as any of the default
 :class:`.PydanticTemplateModel` templates to override them. The given directory will be 
 searched for matching templates, and use the default templates as a fallback 
 if an override is not found
-  
+
 Available templates to override:
 
 \b
@@ -1183,7 +1186,7 @@ Available templates to override:
     "Default (auto) is to include all metadata that can't be otherwise represented",
 )
 @click.version_option(__version__, "-V", "--version")
-@click.command()
+@click.command(name="pydantic")
 def cli(
     yamlfile,
     template_file=None,

@@ -49,6 +49,7 @@ vcs = "git"
 style = "pep440"
 
 [tool.poetry.scripts]
+linkml = "linkml.cli.main:linkml"
 gen-jsonld-context = "linkml.generators.jsonldcontextgen:cli"
 gen-prefix-map = "linkml.generators.prefixmapgen:cli"
 gen-csv = "linkml.generators.csvgen:cli"
@@ -61,7 +62,6 @@ gen-jsonld = "linkml.generators.jsonldgen:cli"
 gen-json-schema = "linkml.generators.jsonschemagen:cli"
 gen-markdown = "linkml.generators.markdowngen:cli"
 gen-doc = "linkml.generators.docgen:cli"
-gen-prolog = "linkml.generators.lpgen:cli"
 gen-namespaces = "linkml.generators.namespacegen:cli"
 gen-owl = "linkml.generators.owlgen:cli"
 gen-plantuml = "linkml.generators.plantumlgen:cli"
@@ -107,7 +107,7 @@ jinja2 = ">= 3.1.0"
 jsonasobj2 = "==1.*,>=1.0.0,>=1.0.3"
 jsonschema = {extras = ["format"], version = ">=4.0.0"}
 linkml-dataops = "*"
-linkml-runtime = "1.8.0"
+linkml-runtime = "^1.8.1"
 openpyxl = "*"
 parse = "*"
 prefixcommons = ">=0.1.7"
@@ -148,6 +148,7 @@ numpy = [
   { "version" = ">=1.25.2", "python" = ">=3.12" }
 ]
 requests-cache = "^1.2.0"
+mock = "^5.1.0"
 
 [tool.poetry.extras]
 black = ["black"]
@@ -210,6 +211,17 @@ markers = [
   "pydantic_npd: tests for the numpydantic array generator",
   "strcmp: tests that compare stringified values rather than the values themselves",
   "pydanticgen_split: Split module generation in pydanticgen",
+  "pythongen: Tests for python generator",
+  "pydanticgen: Tests for pydantic generator",
+  "javagen: Tests for java generator",
+  "jsonschemagen: Tests for Json Schema generator",
+  "shaclgen: Tests for shacl generator",
+  "shexgen: Tests for shex generator",
+  "jsonldcontextgen: Test for JSON-LD context generator",
+  "rdfgen: Tests for the RDFGenerator",
+  "sqlddlgen: Tests for SQL DDL generator",
+  "sqlddlpostgresgen: Tests for SQL DDL postgres generator",
+  "owlgen: Tests for OWL generator"
 ]
 
 [tool.ruff]

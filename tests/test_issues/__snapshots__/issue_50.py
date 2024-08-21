@@ -11,7 +11,7 @@ import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, time
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
 
 from linkml_runtime.utils.slot import Slot
@@ -56,7 +56,7 @@ class TestClass3Id(extended_str):
     pass
 
 
-@dataclass
+@dataclass(repr=False)
 class TestClass1(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -86,7 +86,7 @@ class TestClass1(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class TestClass2(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -116,7 +116,7 @@ class TestClass2(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
+@dataclass(repr=False)
 class TestClass3(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 

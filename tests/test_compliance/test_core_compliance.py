@@ -95,15 +95,15 @@ def test_attributes(framework, description, object, is_valid):
             },
             "_mappings": {
                 PYDANTIC: f"class C({PYDANTIC_ROOT_CLASS}):",
-                PYTHON_DATACLASSES: f"@dataclass\nclass C({PYTHON_DATACLASSES_ROOT_CLASS}):",
+                PYTHON_DATACLASSES: f"@dataclass(repr=False)\nclass C({PYTHON_DATACLASSES_ROOT_CLASS}):",
                 JSON_SCHEMA: {
                     "$defs": {
                         "C": {
                             "additionalProperties": False,
                             "description": "",
                             "properties": {
-                                "s1": {"type": "string"},
-                                "s2": {"type": "string"},
+                                "s1": {"type": ["string", "null"]},
+                                "s2": {"type": ["string", "null"]},
                             },
                             "title": "C",
                             "type": "object",

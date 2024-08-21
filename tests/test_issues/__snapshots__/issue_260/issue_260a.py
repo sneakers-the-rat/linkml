@@ -11,7 +11,7 @@ import re
 from jsonasobj2 import JsonObj, as_dict
 from typing import Optional, List, Union, Dict, ClassVar, Any
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, time
 from linkml_runtime.linkml_model.meta import EnumDefinition, PermissibleValue, PvFormulaOptions
 
 from linkml_runtime.utils.slot import Slot
@@ -48,7 +48,7 @@ class String(str):
 
 
 
-@dataclass
+@dataclass(repr=False)
 class C260a(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 

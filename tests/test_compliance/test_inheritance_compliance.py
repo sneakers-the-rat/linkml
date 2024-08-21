@@ -105,8 +105,8 @@ def test_basic_class_inheritance(framework, description, cls: str, object, is_va
             "additionalProperties": False,
             "description": "",
             "properties": {
-                "s1": {"type": "string"},
-                "s2": {"type": "string"},
+                "s1": {"type": ["string", "null"]},
+                "s2": {"type": ["string", "null"]},
             },
             "title": "C",
             "type": "object",
@@ -116,7 +116,7 @@ def test_basic_class_inheritance(framework, description, cls: str, object, is_va
         json_schema_defs["D"] = {
             "additionalProperties": False,
             "description": "",
-            "properties": {"s1": {"type": "string"}},
+            "properties": {"s1": {"type": ["string", "null"]}},
             "title": "D",
             "type": "object",
         }
@@ -139,7 +139,7 @@ def test_basic_class_inheritance(framework, description, cls: str, object, is_va
             },
             "_mappings": {
                 PYDANTIC: "class C(D):",
-                PYTHON_DATACLASSES: "@dataclass\nclass C(D):",
+                PYTHON_DATACLASSES: "@dataclass(repr=False)\nclass C(D):",
                 JSON_SCHEMA: {"$defs": json_schema_defs},
             },
         },
@@ -246,9 +246,9 @@ def test_mixins(framework, description, cls, object, is_valid):
             "additionalProperties": False,
             "description": "",
             "properties": {
-                "s1": {"type": "string"},
-                "s2": {"type": "string"},
-                "s3": {"type": "string"},
+                "s1": {"type": ["string", "null"]},
+                "s2": {"type": ["string", "null"]},
+                "s3": {"type": ["string", "null"]},
             },
             "title": "C",
             "type": "object",
@@ -279,7 +279,7 @@ def test_mixins(framework, description, cls, object, is_valid):
             },
             "_mappings": {
                 PYDANTIC: "class C(MC2, MC1):",
-                PYTHON_DATACLASSES: "@dataclass\nclass C(YAMLRoot):",  # DC rolls up
+                PYTHON_DATACLASSES: "@dataclass(repr=False)\nclass C(YAMLRoot):",  # DC rolls up
                 JSON_SCHEMA: json_schema_defs,
             },
         },
