@@ -468,6 +468,33 @@ def test_pydantic_pattern(kitchen_sink_path, tmp_path, input_path):
         module.Person(id="01", name="x")
 
 
+def test_pydantic_slot_alias():
+    """
+    Pydantic renders slot aliases :)
+    """
+    alias = ".weird-invalid!name"
+    schema = f"""
+    id: slot_alias
+    name: slot_alias
+    imports:
+    - linkml:types
+    classes:
+      MyClass:
+        attributes:
+          my_attr:
+            name: my_attr
+            range: integer
+            alias: {alias}
+    """
+    gen = PydanticGenerator(schema)
+    generated = gen.serialize()
+    mod = compile_python(generated)
+    MyClass: BaseModel = mod.MyClass
+
+    assert MyClass.model_fields["my_attr"].alias == alias
+    _ = MyClass(**{alias: 2})
+
+
 def test_pydantic_template_1666():
     """
     Regression test for https://github.com/linkml/linkml/issues/1666

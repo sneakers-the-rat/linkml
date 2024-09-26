@@ -186,6 +186,7 @@ class PydanticAttribute(PydanticTemplateModel):
     maximum_cardinality: Optional[int] = None
     multivalued: Optional[bool] = None
     pattern: Optional[str] = None
+    alias: Optional[str] = None
     meta: Optional[Dict[str, Any]] = None
     """
     Metadata for the slot to be included in a Field annotation
