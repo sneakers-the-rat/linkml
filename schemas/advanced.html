@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
         <title>Advanced features - linkml documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -428,7 +428,7 @@ that can take on any a set of enums from VitalStatus OR a missing value with the
 </div>
 <p>Note that the range of <code class="docutils literal notranslate"><span class="pre">vital_status</span></code> is declared as <code class="docutils literal notranslate"><span class="pre">Any</span></code>, which is further constrained by the <code class="docutils literal notranslate"><span class="pre">any_of</span></code> expression.</p>
 <p>Currently, it is important to always have a range declaration (even if it is <code class="docutils literal notranslate"><span class="pre">Any</span></code>), because LinkML constraint semantics are
-monotonic (i.e. new constraints can be specified but additional ones cannot be overridden - see <a class="reference internal" href="slots.html"><span class="std std-doc">slots</span></a> for more on this).
+monotonic (i.e. new constraints can be specified but existing ones cannot be overridden - see <a class="reference internal" href="slots.html"><span class="std std-doc">slots</span></a> for more on this).
 If this range declaration were not explicitly stated, then the <code class="docutils literal notranslate"><span class="pre">default_range</span></code> of string would be applied.</p>
 <p>In future, LinkML may allow limited forms of non-monotonicity around default ranges, see:</p>
 <p>https://github.com/linkml/linkml/issues/1483</p>
@@ -524,6 +524,12 @@ running <code class="docutils literal notranslate"><span class="pre">linkml-conv
 <p>See the developer documentation on <a class="reference internal" href="../developers/inference.html"><span class="doc std std-doc">inference</span></a> for
 details of how to use this in code.</p>
 </section>
+<section id="uri-or-curie-as-a-range">
+<h2>URI or CURIE as a range<a class="headerlink" href="#uri-or-curie-as-a-range" title="Permalink to this heading">#</a></h2>
+<p>In some cases, you may want to use a URI or CURIE as a range. To do this,
+create a class with <code class="docutils literal notranslate"><span class="pre">class_uri</span></code> set to the URI or CURIE and use that class
+as the range.</p>
+</section>
 </section>
 
         </article>
@@ -590,6 +596,7 @@ details of how to use this in code.</p>
 <li><a class="reference internal" href="#rules">Rules</a></li>
 <li><a class="reference internal" href="#defining-slots">Defining slots</a></li>
 <li><a class="reference internal" href="#equals-expression">equals_expression</a></li>
+<li><a class="reference internal" href="#uri-or-curie-as-a-range">URI or CURIE as a range</a></li>
 </ul>
 </li>
 </ul>

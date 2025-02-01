@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
         <title>linkml generate - linkml documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
@@ -372,6 +372,12 @@ or run <code class="docutils literal notranslate"><span class="pre">linkml</span
 
 <dl class="object">
 <dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">cli</span></span></dt>
+<dd><p>CLI for LinkML to DBML generator.</p>
+</dd></dl>
+
+<dl class="object">
+<dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">csv</span></span></dt>
 <dd><p>Generate CSV/TSV file from LinkML model</p>
 </dd></dl>
@@ -705,6 +711,26 @@ it’s just a quirk of the package we use for documenting the cli</p>
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-cli-arg-YAMLFILE">
 <span class="sig-name descname"><span class="pre">YAMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-cli-arg-YAMLFILE" title="Permalink to this definition">#</a></dt>
 <dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="linkml-generate-full-cli">
+<h4>cli<a class="headerlink" href="#linkml-generate-full-cli" title="Permalink to this heading">#</a></h4>
+<p>CLI for LinkML to DBML generator.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>cli<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-cli-s">
+<span id="cmdoption-linkml-generate-full-cli-schema"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--schema</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;schema&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-cli-s" title="Permalink to this definition">#</a></dt>
+<dd><p><strong>Required</strong> Path to the LinkML schema YAML file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-cli-o">
+<span id="cmdoption-linkml-generate-(full)-cli-0"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-cli-o" title="Permalink to this definition">#</a></dt>
+<dd><p>Path to save the generated DBML file. If not specified, DBML will be printed to stdout.</p>
 </dd></dl>
 
 </section>
@@ -1081,6 +1107,16 @@ present, then all entities are included.</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-erdiagram-f">
+<span id="cmdoption-linkml-generate-full-erdiagram-format"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-erdiagram-f" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>markdown | mermaid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-erdiagram-follow-references">
 <span id="cmdoption-linkml-generate-full-erdiagram-no-follow-references"></span><span class="sig-name descname"><span class="pre">--follow-references</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-follow-references</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-erdiagram-follow-references" title="Permalink to this definition">#</a></dt>
 <dd><p>If True, follow references even if not inlined</p>
@@ -1099,8 +1135,8 @@ present, then all entities are included.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-erdiagram-f">
-<span id="cmdoption-linkml-generate-full-erdiagram-format"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-erdiagram-f" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-(full)-erdiagram-0">
+<span id="cmdoption-linkml-generate-(full)-erdiagram-1"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-(full)-erdiagram-0" title="Permalink to this definition">#</a></dt>
 <dd><p>Output format</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
@@ -2304,7 +2340,7 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 <dd><p>Materialize structured patterns as patterns</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2313,6 +2349,17 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-linkml-materialize-attributes">
 <span id="cmdoption-linkml-generate-full-linkml-no-materialize-attributes"></span><span class="sig-name descname"><span class="pre">--materialize-attributes</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-materialize-attributes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-linkml-materialize-attributes" title="Permalink to this definition">#</a></dt>
 <dd><p>Materialize induced slots as attributes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-linkml-materialize">
+<span id="cmdoption-linkml-generate-full-linkml-no-materialize"></span><span class="sig-name descname"><span class="pre">--materialize</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-materialize</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-linkml-materialize" title="Permalink to this definition">#</a></dt>
+<dd><p>Materialize both, induced slots as attributes and structured patterns as patterns</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
@@ -2798,6 +2845,17 @@ to include metaclasses. To restore this behavior:</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-enum-iri-separator">
+<span class="sig-name descname"><span class="pre">--enum-iri-separator</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;enum_iri_separator&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-enum-iri-separator" title="Permalink to this definition">#</a></dt>
+<dd><p>IRI separator for enums.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'#'</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-V">
 <span id="cmdoption-linkml-generate-full-owl-version"></span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-V" title="Permalink to this definition">#</a></dt>
 <dd><p>Show the version and exit.</p>
@@ -2812,7 +2870,7 @@ to include metaclasses. To restore this behavior:</p>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'owl'</span></code></p>
 </dd>
 <dt class="field-even">Options<span class="colon">:</span></dt>
-<dd class="field-even"><p>owl | ttl | json-ld | xml | n3 | turtle | ttl | ntriples | nt | nt11 | nquads | trix | trig | hext</p>
+<dd class="field-even"><p>owl | ttl | json-ld | xml | n3 | turtle | ttl | ntriples | nt | nt11 | nquads | trix | trig | hext | patch</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2913,6 +2971,17 @@ to include metaclasses. To restore this behavior:</p>
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-plantuml-k">
 <span id="cmdoption-linkml-generate-full-plantuml-kroki-server"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--kroki-server</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;kroki_server&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-plantuml-k" title="Permalink to this definition">#</a></dt>
 <dd><p>URL of the Kroki server to use for diagram drawing</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-plantuml-dry-run">
+<span class="sig-name descname"><span class="pre">--dry-run</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-plantuml-dry-run" title="Permalink to this definition">#</a></dt>
+<dd><p>Print out Kroki URL calls instead of sending the real requests</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="std option">
@@ -3656,7 +3725,7 @@ if an override is not found</p>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'ttl'</span></code></p>
 </dd>
 <dt class="field-even">Options<span class="colon">:</span></dt>
-<dd class="field-even"><p>ttl | hext | json-ld | n3 | nquads | nt | nt11 | ntriples | trig | trix | ttl | turtle | xml</p>
+<dd class="field-even"><p>ttl | hext | json-ld | n3 | nquads | nt | nt11 | ntriples | patch | trig | trix | ttl | turtle | xml</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4974,6 +5043,7 @@ is conformant to the same LinkML schema.</p>
 </li>
 <li><a class="reference internal" href="#complete">Complete</a><ul>
 <li><a class="reference internal" href="#linkml-generate-full">linkml generate (full)</a><ul>
+<li><a class="reference internal" href="#linkml-generate-full-cli">cli</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-cli">cli</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-csv">csv</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-doc">doc</a></li>

@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
 
     <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 --><title>Index - linkml documentation</title>
-<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
@@ -577,12 +577,28 @@
 </li>
         </ul></li>
         <li>
+    --dry-run
+
+        <ul>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-plantuml-dry-run">linkml-generate-(full)-plantuml command line option</a>
+</li>
+        </ul></li>
+        <li>
     --endpoint-url
 
         <ul>
           <li><a href="data/validating-data.html#cmdoption-linkml-sparql-validate-U">linkml-sparql-validate command line option</a>
 </li>
           <li><a href="cli/validate.html#cmdoption-linkml-validate-sparql-U">linkml-validate-sparql command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --enum-iri-separator
+
+        <ul>
+          <li><a href="generators/owl.html#cmdoption-gen-owl-enum-iri-separator">gen-owl command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-owl-enum-iri-separator">linkml-generate-(full)-owl command line option</a>
 </li>
         </ul></li>
         <li>
@@ -666,7 +682,7 @@
     --format
 
         <ul>
-          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">gen-erdiagram command line option</a>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-0">gen-erdiagram command line option</a>, <a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">[1]</a>
 </li>
           <li><a href="generators/excel.html#cmdoption-gen-excel-f">gen-excel command line option</a>
 </li>
@@ -718,7 +734,7 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-doc-f">linkml-generate-(full)-doc command line option</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">linkml-generate-(full)-erdiagram command line option</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-(full)-erdiagram-0">linkml-generate-(full)-erdiagram command line option</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">[1]</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-excel-f">linkml-generate-(full)-excel command line option</a>
 </li>
@@ -1289,6 +1305,15 @@
           <li><a href="generators/markdown.html#cmdoption-gen-markdown-M">gen-markdown command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-markdown-M">linkml-generate-(full)-markdown command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --materialize
+
+        <ul>
+          <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize">gen-linkml command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize">linkml-generate-(full)-linkml command line option</a>
 </li>
         </ul></li>
         <li>
@@ -1895,6 +1920,15 @@
 
         <ul>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-infer">linkml-convert command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --no-materialize
+
+        <ul>
+          <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize">gen-linkml command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize">linkml-generate-(full)-linkml command line option</a>
 </li>
         </ul></li>
         <li>
@@ -2515,7 +2549,7 @@
 </li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-o">linkml-convert command line option</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-output">linkml-generate-(full)-cli command line option</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-o">linkml-generate-(full)-cli command line option</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-cli-output">[1]</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-excel-o">linkml-generate-(full)-excel command line option</a>
 </li>
@@ -2572,6 +2606,13 @@
 
         <ul>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-P">linkml-convert command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --prefix-file
+
+        <ul>
+          <li><a href="data/conversion.html#cmdoption-linkml-convert-prefix-file">linkml-convert command line option</a>
 </li>
         </ul></li>
         <li>
@@ -2643,6 +2684,8 @@
 
         <ul>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-s">linkml-convert command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-s">linkml-generate-(full)-cli command line option</a>
 </li>
           <li><a href="data/validating-data.html#cmdoption-linkml-sparql-validate-s">linkml-sparql-validate command line option</a>
 </li>
@@ -3453,7 +3496,7 @@
     -f
 
         <ul>
-          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">gen-erdiagram command line option</a>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-0">gen-erdiagram command line option</a>, <a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">[1]</a>
 </li>
           <li><a href="generators/excel.html#cmdoption-gen-excel-f">gen-excel command line option</a>
 </li>
@@ -3507,7 +3550,7 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-doc-f">linkml-generate-(full)-doc command line option</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">linkml-generate-(full)-erdiagram command line option</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-(full)-erdiagram-0">linkml-generate-(full)-erdiagram command line option</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">[1]</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-excel-f">linkml-generate-(full)-excel command line option</a>
 </li>
@@ -3797,6 +3840,8 @@
 </li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-o">linkml-convert command line option</a>
 </li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-o">linkml-generate-(full)-cli command line option</a>
+</li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-excel-o">linkml-generate-(full)-excel command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-graphviz-o">linkml-generate-(full)-graphviz command line option</a>
@@ -3859,6 +3904,8 @@
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-s">gen-shacl command line option</a>
 </li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-s">linkml-convert command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-s">linkml-generate-(full)-cli command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-s">linkml-generate-(full)-shacl command line option</a>
 </li>
@@ -4279,10 +4326,10 @@
         </ul></li>
         <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.all_schema">all_schema() (linkml_runtime.utils.schemaview.SchemaView method)</a>
 </li>
-        <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.all_slot">all_slot() (linkml_runtime.utils.schemaview.SchemaView method)</a>
-</li>
     </ul></td>
     <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.all_slot">all_slot() (linkml_runtime.utils.schemaview.SchemaView method)</a>
+</li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.all_slot_objects">all_slot_objects() (linkml.generators.docgen.DocGenerator method)</a>
 </li>
         <li><a href="code/utils.html#linkml.utils.generator.Generator.all_slots">all_slots() (linkml.utils.generator.Generator method)</a>
@@ -4333,8 +4380,6 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.TypeDefinition.any_of">(linkml_runtime.linkml_model.meta.TypeDefinition attribute)</a>
 </li>
         </ul></li>
-        <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.array.AnyShapeArrayType">AnyShapeArrayType (class in linkml.generators.pydanticgen.array)</a>
-</li>
         <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.ClassDefinition.apply_to">apply_to (linkml_runtime.linkml_model.meta.ClassDefinition attribute)</a>
 
         <ul>
@@ -5037,7 +5082,7 @@
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-follow-references">--follow-references</a>
 </li>
-          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">--format</a>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-0">--format</a>, <a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">[1]</a>
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-im">--importmap</a>
 </li>
@@ -5077,7 +5122,7 @@
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-c">-c</a>
 </li>
-          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">-f</a>
+          <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-0">-f</a>, <a href="generators/erdiagram.html#cmdoption-gen-erdiagram-f">[1]</a>
 </li>
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-im">-im</a>
 </li>
@@ -5404,6 +5449,8 @@
 </li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-log_level">--log_level</a>
 </li>
+          <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize">--materialize</a>
+</li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize-attributes">--materialize-attributes</a>
 </li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize-patterns">--materialize-patterns</a>
@@ -5413,6 +5460,8 @@
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-metadata">--metadata</a>
 </li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-useuris">--metauris</a>
+</li>
+          <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize">--no-materialize</a>
 </li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize-attributes">--no-materialize-attributes</a>
 </li>
@@ -5527,6 +5576,8 @@
           <li><a href="generators/owl.html#cmdoption-gen-owl-assert-equivalent-classes">--assert-equivalent-classes</a>
 </li>
           <li><a href="generators/owl.html#cmdoption-gen-owl-default-permissible-value-type">--default-permissible-value-type</a>
+</li>
+          <li><a href="generators/owl.html#cmdoption-gen-owl-enum-iri-separator">--enum-iri-separator</a>
 </li>
           <li><a href="generators/owl.html#cmdoption-gen-owl-f">--format</a>
 </li>
@@ -6373,6 +6424,8 @@
 </li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.get_mixin_inherited_slots">get_mixin_inherited_slots() (linkml.generators.docgen.DocGenerator method)</a>
 </li>
+        <li><a href="code/utils.html#linkml.utils.helpers.get_range_associated_slots">get_range_associated_slots() (in module linkml.utils.helpers)</a>
+</li>
         <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.get_slot">get_slot() (linkml_runtime.utils.schemaview.SchemaView method)</a>
 </li>
         <li><a href="generators/docgen.html#linkml.generators.docgen.DocGenerator.get_slot_inherited_from">get_slot_inherited_from() (linkml.generators.docgen.DocGenerator method)</a>
@@ -6584,6 +6637,8 @@
 </li>
         <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Import.is_schema">is_schema (linkml.generators.pydanticgen.template.Import attribute)</a>
 </li>
+        <li><a href="code/utils.html#linkml.utils.helpers.is_simple_dict">is_simple_dict() (in module linkml.utils.helpers)</a>
+</li>
         <li><a href="developers/schemaview.html#linkml_runtime.utils.schemaview.SchemaView.is_slot_percent_encoded">is_slot_percent_encoded() (linkml_runtime.utils.schemaview.SchemaView method)</a>
 </li>
         <li><a href="code/utils.html#linkml.utils.execute_tutorial.Block.is_stdout">is_stdout() (linkml.utils.execute_tutorial.Block method)</a>
@@ -6703,6 +6758,8 @@
 </li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-P">--prefix</a>
 </li>
+          <li><a href="data/conversion.html#cmdoption-linkml-convert-prefix-file">--prefix-file</a>
+</li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-s">--schema</a>
 </li>
           <li><a href="data/conversion.html#cmdoption-linkml-convert-C">--target-class</a>
@@ -6780,7 +6837,9 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-stacktrace">--no-stacktrace</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-output">--output</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-o">--output</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-cli-output">[1]</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-s">--schema</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-stacktrace">--stacktrace</a>
 </li>
@@ -6793,6 +6852,10 @@
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-f">-f</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-im">-im</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-o">-o</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-s">-s</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-cli-u">-u</a>
 </li>
@@ -6945,7 +7008,7 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-follow-references">--follow-references</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">--format</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-(full)-erdiagram-0">--format</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">[1]</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-im">--importmap</a>
 </li>
@@ -6985,7 +7048,7 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-c">-c</a>
 </li>
-          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">-f</a>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-(full)-erdiagram-0">-f</a>, <a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-f">[1]</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-im">-im</a>
 </li>
@@ -7451,6 +7514,8 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-log_level">--log_level</a>
 </li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize">--materialize</a>
+</li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize-attributes">--materialize-attributes</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize-patterns">--materialize-patterns</a>
@@ -7460,6 +7525,8 @@
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-metadata">--metadata</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-useuris">--metauris</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize">--no-materialize</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize-attributes">--no-materialize-attributes</a>
 </li>
@@ -7616,6 +7683,8 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-owl-default-permissible-value-type">--default-permissible-value-type</a>
 </li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-owl-enum-iri-separator">--enum-iri-separator</a>
+</li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-owl-f">--format</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-owl-im">--importmap</a>
@@ -7690,6 +7759,8 @@
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-plantuml-c">--classes</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-plantuml-d">--directory</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-plantuml-dry-run">--dry-run</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-plantuml-f">--format</a>
 </li>
@@ -9158,6 +9229,8 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.TypeDefinition.minimum_value">(linkml_runtime.linkml_model.meta.TypeDefinition attribute)</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="developers/deprecation.html#linkml.utils.deprecation.SemVer.minor">minor (linkml.utils.deprecation.SemVer attribute)</a>
 </li>
         <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.EnumDefinition.minus">minus (linkml_runtime.linkml_model.meta.EnumDefinition attribute)</a>
@@ -9174,48 +9247,6 @@
           <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.SlotDefinition.mixins">(linkml_runtime.linkml_model.meta.SlotDefinition attribute)</a>
 </li>
         </ul></li>
-        <li><a href="generators/common/build.html#linkml.generators.common.build.BuildResult.model_computed_fields">model_computed_fields (linkml.generators.common.build.BuildResult attribute)</a>
-
-        <ul>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.ClassResult.model_computed_fields">(linkml.generators.common.build.ClassResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.EnumResult.model_computed_fields">(linkml.generators.common.build.EnumResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.RangeResult.model_computed_fields">(linkml.generators.common.build.RangeResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.SchemaResult.model_computed_fields">(linkml.generators.common.build.SchemaResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.SlotResult.model_computed_fields">(linkml.generators.common.build.SlotResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.TypeResult.model_computed_fields">(linkml.generators.common.build.TypeResult attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.ConditionalImport.model_computed_fields">(linkml.generators.pydanticgen.template.ConditionalImport attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.EnumValue.model_computed_fields">(linkml.generators.pydanticgen.template.EnumValue attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Import.model_computed_fields">(linkml.generators.pydanticgen.template.Import attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Imports.model_computed_fields">(linkml.generators.pydanticgen.template.Imports attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.ObjectImport.model_computed_fields">(linkml.generators.pydanticgen.template.ObjectImport attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticAttribute.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticAttribute attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticBaseModel.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticBaseModel attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticClass.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticClass attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticEnum.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticEnum attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticModule.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticModule attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticTemplateModel.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticTemplateModel attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticValidator.model_computed_fields">(linkml.generators.pydanticgen.template.PydanticValidator attribute)</a>
-</li>
-        </ul></li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="generators/common/build.html#linkml.generators.common.build.BuildResult.model_config">model_config (linkml.generators.common.build.BuildResult attribute)</a>
 
         <ul>
@@ -9254,46 +9285,6 @@
           <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticTemplateModel.model_config">(linkml.generators.pydanticgen.template.PydanticTemplateModel attribute)</a>
 </li>
           <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticValidator.model_config">(linkml.generators.pydanticgen.template.PydanticValidator attribute)</a>
-</li>
-        </ul></li>
-        <li><a href="generators/common/build.html#linkml.generators.common.build.BuildResult.model_fields">model_fields (linkml.generators.common.build.BuildResult attribute)</a>
-
-        <ul>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.ClassResult.model_fields">(linkml.generators.common.build.ClassResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.EnumResult.model_fields">(linkml.generators.common.build.EnumResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.RangeResult.model_fields">(linkml.generators.common.build.RangeResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.SchemaResult.model_fields">(linkml.generators.common.build.SchemaResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.SlotResult.model_fields">(linkml.generators.common.build.SlotResult attribute)</a>
-</li>
-          <li><a href="generators/common/build.html#linkml.generators.common.build.TypeResult.model_fields">(linkml.generators.common.build.TypeResult attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.ConditionalImport.model_fields">(linkml.generators.pydanticgen.template.ConditionalImport attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.EnumValue.model_fields">(linkml.generators.pydanticgen.template.EnumValue attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Import.model_fields">(linkml.generators.pydanticgen.template.Import attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.Imports.model_fields">(linkml.generators.pydanticgen.template.Imports attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.ObjectImport.model_fields">(linkml.generators.pydanticgen.template.ObjectImport attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticAttribute.model_fields">(linkml.generators.pydanticgen.template.PydanticAttribute attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticBaseModel.model_fields">(linkml.generators.pydanticgen.template.PydanticBaseModel attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticClass.model_fields">(linkml.generators.pydanticgen.template.PydanticClass attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticEnum.model_fields">(linkml.generators.pydanticgen.template.PydanticEnum attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticModule.model_fields">(linkml.generators.pydanticgen.template.PydanticModule attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticTemplateModel.model_fields">(linkml.generators.pydanticgen.template.PydanticTemplateModel attribute)</a>
-</li>
-          <li><a href="generators/pydantic.html#linkml.generators.pydanticgen.template.PydanticValidator.model_fields">(linkml.generators.pydanticgen.template.PydanticValidator attribute)</a>
 </li>
         </ul></li>
         <li><a href="code/metamodel.html#linkml_runtime.linkml_model.meta.ArrayExpression.modified_by">modified_by (linkml_runtime.linkml_model.meta.ArrayExpression attribute)</a>
