@@ -255,6 +255,7 @@
 <li class="toctree-l2"><a class="reference internal" href="howtos/model-measurements.html">How to model quantities and measurements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/port-linkml.html">Porting LinkML tools to other programming languages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/multidimensional-arrays.html">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
 </ul>
@@ -633,6 +634,15 @@
           <li><a href="generators/erdiagram.html#cmdoption-gen-erdiagram-exclude-attributes">gen-erdiagram command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-erdiagram-exclude-attributes">linkml-generate-(full)-erdiagram command line option</a>
+</li>
+        </ul></li>
+        <li>
+    --exclude-imports
+
+        <ul>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-exclude-imports">gen-shacl command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-exclude-imports">linkml-generate-(full)-shacl command line option</a>
 </li>
         </ul></li>
         <li>
@@ -1032,6 +1042,15 @@
 </li>
         </ul></li>
         <li>
+    --include-imports
+
+        <ul>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-exclude-imports">gen-shacl command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-exclude-imports">linkml-generate-(full)-shacl command line option</a>
+</li>
+        </ul></li>
+        <li>
     --include-induced-slots
 
         <ul>
@@ -1329,7 +1348,11 @@
     --materialize-patterns
 
         <ul>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-materialize-patterns">gen-json-schema command line option</a>
+</li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize-patterns">gen-linkml command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-materialize-patterns">linkml-generate-(full)-json-schema command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize-patterns">linkml-generate-(full)-linkml command line option</a>
 </li>
@@ -1944,7 +1967,11 @@
     --no-materialize-patterns
 
         <ul>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-materialize-patterns">gen-json-schema command line option</a>
+</li>
           <li><a href="generators/linkml.html#cmdoption-gen-linkml-materialize-patterns">gen-linkml command line option</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-materialize-patterns">linkml-generate-(full)-json-schema command line option</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-linkml-materialize-patterns">linkml-generate-(full)-linkml command line option</a>
 </li>
@@ -5296,11 +5323,15 @@
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-log_level">--log_level</a>
 </li>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-materialize-patterns">--materialize-patterns</a>
+</li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-mergeimports">--mergeimports</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-metadata">--metadata</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-useuris">--metauris</a>
+</li>
+          <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-materialize-patterns">--no-materialize-patterns</a>
 </li>
           <li><a href="generators/json-schema.html#cmdoption-gen-json-schema-mergeimports">--no-mergeimports</a>
 </li>
@@ -5940,11 +5971,15 @@
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">--exclude-annotations</a>
 </li>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-exclude-imports">--exclude-imports</a>
+</li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-f">--format</a>
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-im">--importmap</a>
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-include-annotations">--include-annotations</a>
+</li>
+          <li><a href="generators/shacl.html#cmdoption-gen-shacl-exclude-imports">--include-imports</a>
 </li>
           <li><a href="generators/shacl.html#cmdoption-gen-shacl-log_level">--log_level</a>
 </li>
@@ -7361,11 +7396,15 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-log_level">--log_level</a>
 </li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-materialize-patterns">--materialize-patterns</a>
+</li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-mergeimports">--mergeimports</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-metadata">--metadata</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-useuris">--metauris</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-materialize-patterns">--no-materialize-patterns</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-json-schema-mergeimports">--no-mergeimports</a>
 </li>
@@ -8101,11 +8140,15 @@
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-include-annotations">--exclude-annotations</a>
 </li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-exclude-imports">--exclude-imports</a>
+</li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-f">--format</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-im">--importmap</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-include-annotations">--include-annotations</a>
+</li>
+          <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-exclude-imports">--include-imports</a>
 </li>
           <li><a href="cli/generate.html#cmdoption-linkml-generate-full-shacl-log_level">--log_level</a>
 </li>
