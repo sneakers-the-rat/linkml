@@ -3,7 +3,7 @@ import sys
 from abc import ABC, abstractmethod
 from importlib.abc import MetaPathFinder
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Callable, Optional, Union
 
 import pytest
 import requests_cache
@@ -23,7 +23,7 @@ def normalize_line_endings(string: str):
 
 class Snapshot(ABC):
     def __init__(self, path: Path, config: pytest.Config) -> None:
-        self.path = path
+        self.path = Path(path)
         self.config = config
         self.eq_state = ""
 
@@ -116,15 +116,15 @@ class SnapshotDirectory(Snapshot):
 
 
 @pytest.fixture
-def snapshot_path(request) -> Callable[[str], Path]:
-    def get_path(relative_path):
+def snapshot_path(request) -> Callable[[Union[str, Path]], Path]:
+    def get_path(relative_path: Union[str, Path]):
         return request.path.parent / "__snapshots__" / relative_path
 
     return get_path
 
 
 @pytest.fixture
-def snapshot(snapshot_path, pytestconfig, monkeypatch) -> Callable[[str], Snapshot]:
+def snapshot(snapshot_path, pytestconfig, monkeypatch) -> Callable[[Union[str, Path]], Snapshot]:
     # Patching SchemaDefinition's setter here prevents metadata that can be variable
     # between systems from entering the snapshot files. This could be part of its own
     # fixture but it's not clear if it would be useful outside of tests that
@@ -142,7 +142,7 @@ def snapshot(snapshot_path, pytestconfig, monkeypatch) -> Callable[[str], Snapsh
 
     monkeypatch.setattr(SchemaDefinition, "__setattr__", patched)
 
-    def get_snapshot(relative_path, **kwargs):
+    def get_snapshot(relative_path: Union[str, Path], **kwargs):
         path = snapshot_path(relative_path)
         if not path.suffix:
             return SnapshotDirectory(path, pytestconfig)
@@ -160,6 +160,16 @@ def input_path(request) -> Callable[[str], Path]:
     return get_path
 
 
+@pytest.fixture(scope="function")
+def temp_dir(request) -> Path:
+    base = Path(request.path.parent) / "temp"
+    test_dir = base / request.function.__name__
+    test_dir.mkdir(exist_ok=True, parents=True)
+    yield test_dir
+    if not request.config.getoption("with_output"):
+        shutil.rmtree(test_dir)
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--generate-snapshots",
@@ -170,6 +180,7 @@ def pytest_addoption(parser):
     parser.addoption(
         "--with-output", action="store_true", help="dump output in compliance test for richer debugging information"
     )
+    parser.addoption("--without-cache", action="store_true", help="Don't use a sqlite cache for network requests")
 
 
 def pytest_collection_modifyitems(config, items):
@@ -179,9 +190,17 @@ def pytest_collection_modifyitems(config, items):
             if item.get_closest_marker("slow"):
                 item.add_marker(skip_slow)
 
+    # make sure deprecation test happens at the end
+    test_deps = [i for i in items if i.name == "test_removed_are_removed"]
+    if len(test_deps) == 1:
+        items.remove(test_deps[0])
+        items.append(test_deps[0])
+
 
 def pytest_sessionstart(session: pytest.Session):
     tests.WITH_OUTPUT = session.config.getoption("--with-output")
+    if session.config.getoption("--generate-snapshots"):
+        tests.DEFAULT_MISMATCH_ACTION = "MismatchAction.Ignore"
 
 
 def pytest_assertrepr_compare(config, op, left, right):
@@ -195,6 +214,9 @@ def patch_requests_cache(pytestconfig):
     Cache network requests - for each unique network request, store it in
     an sqlite cache. only do unique requests once per session.
     """
+    if pytestconfig.getoption("--without-cache"):
+        yield
+        return
     cache_file = Path(__file__).parent / "output" / "requests-cache.sqlite"
     requests_cache.install_cache(
         str(cache_file),

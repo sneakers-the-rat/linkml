@@ -50,8 +50,12 @@ from linkml.generators.pydanticgen.template import (
     PydanticModule,
     TemplateModel,
 )
+from linkml.utils import deprecation_warning
 from linkml.utils.generator import shared_arguments
 from linkml.utils.ifabsent_functions import ifabsent_value_declaration
+
+if int(PYDANTIC_VERSION[0]) == 1:
+    deprecation_warning("pydantic-v1")
 
 
 def _get_pyrange(t: TypeDefinition, sv: SchemaView) -> str:
@@ -76,6 +80,7 @@ DEFAULT_IMPORTS = (
     + Import(module="decimal", objects=[ObjectImport(name="Decimal")])
     + Import(module="enum", objects=[ObjectImport(name="Enum")])
     + Import(module="re")
+    + Import(module="sys")
     + Import(
         module="typing",
         objects=[
@@ -213,6 +218,11 @@ class PydanticGenerator(OOCodeGenerator):
     gen_slots: bool = True
     genmeta: bool = False
     emit_metadata: bool = True
+
+    def __post_init__(self):
+        super().__post_init__()
+        if int(self.pydantic_version) == 1:
+            deprecation_warning("pydanticgen-v1")
 
     def compile_module(self, **kwargs) -> ModuleType:
         """
@@ -644,10 +654,11 @@ class PydanticGenerator(OOCodeGenerator):
         for k, c in pyschema.classes.items():
             attrs = {}
             for attr_name, src_attr in c.attributes.items():
+                src_attr = src_attr._as_dict
                 new_fields = {
-                    k: src_attr._as_dict.get(k, None)
+                    k: src_attr.get(k, None)
                     for k in PydanticAttribute.model_fields.keys()
-                    if src_attr._as_dict.get(k, None) is not None
+                    if src_attr.get(k, None) is not None
                 }
                 predef_slot = predefined.get(k, {}).get(attr_name, None)
                 if predef_slot is not None:
