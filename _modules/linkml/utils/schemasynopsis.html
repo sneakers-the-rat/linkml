@@ -1,19 +1,19 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
+    <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>linkml.utils.schemasynopsis - linkml documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/common.css?v=b029f2e4" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/notebooks.css?v=8a1ccf7d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/common.css?v=95000900" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/notebooks.css?v=1ce917dd" />
     
     
 
@@ -72,7 +72,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -87,22 +87,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -115,6 +156,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -133,7 +176,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -220,8 +264,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/shex.html">ShEx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/owl.html">OWL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/yarrrml.html">YARRRML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -230,6 +275,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/pydantic.html">Pydantic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/java.html">Java</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/typescript.html">Typescript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/rust.html">Rust</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/sqltable.html">SQL DDL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/sqlalchemy.html">SQL Alchemy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/linkml.html">LinkML Generators</a></li>
@@ -239,6 +285,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -259,6 +306,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples of use</a></li>
@@ -332,7 +380,8 @@
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -342,10 +391,10 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <h1>Source code for linkml.utils.schemasynopsis</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">linkml_runtime.linkml_model.meta</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ClassDefinition</span><span class="p">,</span>
@@ -370,57 +419,62 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">linkml.utils.typereferences</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClassType</span><span class="p">,</span> <span class="n">EnumType</span><span class="p">,</span> <span class="n">References</span><span class="p">,</span> <span class="n">RefType</span><span class="p">,</span> <span class="n">SlotType</span><span class="p">,</span> <span class="n">SubsetType</span><span class="p">,</span> <span class="n">TypeType</span>
 
 
-<div class="viewcode-block" id="empty_references"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.empty_references">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">empty_references</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">field</span><span class="p">:</span>
+<div class="viewcode-block" id="empty_references">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.empty_references">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">empty_references</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">field</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">References</span><span class="p">)</span></div>
+
 
 
 <span class="n">ClassOrSlotName</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">TypeDefinitionName</span><span class="p">]</span>
 
 
-<div class="viewcode-block" id="SchemaSynopsis"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="SchemaSynopsis">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis">[docs]</a>
+<span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SchemaSynopsis</span><span class="p">:</span>
     <span class="n">schema</span><span class="p">:</span> <span class="n">SchemaDefinition</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="c1"># References by type -- set by add_ref</span>
-    <span class="n">typerefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type name to all references</span>
-    <span class="n">slotrefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot name to all references</span>
-    <span class="n">classrefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Class name to all references</span>
-    <span class="n">subsetrefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SubsetDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Subset name to references</span>
-    <span class="n">enumrefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">EnumDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Enum name to references</span>
+    <span class="n">typerefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type name to all references</span>
+    <span class="n">slotrefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot name to all references</span>
+    <span class="n">classrefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Class name to all references</span>
+    <span class="n">subsetrefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SubsetDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Subset name to references</span>
+    <span class="n">enumrefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">EnumDefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Enum name to references</span>
 
     <span class="c1"># Type specific</span>
-    <span class="n">typebases</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Base referencing types (direct and indirect)</span>
-    <span class="n">typeofs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">TypeDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type to specializations</span>
+    <span class="n">typebases</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Base referencing types (direct and indirect)</span>
+    <span class="n">typeofs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">TypeDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type to specializations</span>
 
     <span class="c1"># Slot specific</span>
-    <span class="n">slotclasses</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to including classes</span>
-    <span class="n">definingslots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to defining decls</span>
-    <span class="n">slotusages</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to overriding classes</span>
-    <span class="n">owners</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to owning classes (sb. 1)</span>
-    <span class="n">inverses</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slots declared as inverses of other slots</span>
+    <span class="n">slotclasses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to including classes</span>
+    <span class="n">definingslots</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to defining decls</span>
+    <span class="n">slotusages</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to overriding classes</span>
+    <span class="n">owners</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slot to owning classes (sb. 1)</span>
+    <span class="n">inverses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slots declared as inverses of other slots</span>
 
     <span class="c1"># Class specific</span>
-    <span class="n">ownslots</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slots directly owned by class</span>
+    <span class="n">ownslots</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Slots directly owned by class</span>
 
     <span class="c1"># Enum specific</span>
-    <span class="n">codesets</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">URIRef</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">EnumDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Code set URI to enumeration definition</span>
+    <span class="n">codesets</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">URIRef</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">EnumDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Code set URI to enumeration definition</span>
 
     <span class="c1"># Class to slot domains == class.slots</span>
 
     <span class="c1"># Slot or Class (Definition) specific</span>
     <span class="n">roots</span><span class="p">:</span> <span class="n">References</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Definitions with no parents</span>
-    <span class="n">isarefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Definition to isa references</span>
-    <span class="n">mixinrefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Mixin to referencing classes or slots</span>
+    <span class="n">isarefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Definition to isa references</span>
+    <span class="n">mixinrefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Mixin to referencing classes or slots</span>
     <span class="n">mixins</span><span class="p">:</span> <span class="n">References</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Definitions declared as mixin</span>
     <span class="n">abstracts</span><span class="p">:</span> <span class="n">References</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Definitions declared as abstract</span>
     <span class="n">applytos</span><span class="p">:</span> <span class="n">References</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Definitions that include applytos</span>
-    <span class="n">applytorefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Definition to applyier</span>
+    <span class="n">applytorefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Definition to applyier</span>
 
     <span class="c1"># Slot or Type specific</span>
-    <span class="n">rangerefs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ElementName</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type or class to range slot</span>
+    <span class="n">rangerefs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">ElementName</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="n">empty_dict</span><span class="p">()</span>  <span class="c1"># Type or class to range slot</span>
 
     <span class="c1"># Element - any type</span>
-    <span class="n">inschema</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Schema name to elements</span>
+    <span class="n">inschema</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">References</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty_references</span><span class="p">()</span>  <span class="c1"># Schema name to elements</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -444,7 +498,9 @@
             <span class="k">for</span> <span class="n">slotname</span> <span class="ow">in</span> <span class="n">owned_slots</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">owners</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">slotname</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_slot_definition"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_slot_definition">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_slot_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="SchemaSynopsis.summarize_slot_definition">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_slot_definition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_slot_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summarize a slot definition</span>
 <span class="sd">        :param k: slot name</span>
@@ -461,12 +517,19 @@
             <span class="p">(</span>
                 <span class="n">ClassType</span>
                 <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">range</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">classes</span>
-                <span class="k">else</span> <span class="n">EnumType</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">range</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">enums</span> <span class="k">else</span> <span class="n">TypeType</span> <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">range</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">types</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">EnumType</span>
+                <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">range</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">enums</span>
+                <span class="k">else</span> <span class="n">TypeType</span>
+                <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">range</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">types</span>
+                <span class="k">else</span> <span class="kc">None</span>
             <span class="p">),</span>
             <span class="n">v</span><span class="o">.</span><span class="n">range</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_type_definition"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_type_definition">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_type_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">TypeDefinition</span><span class="p">):</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.summarize_type_definition">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_type_definition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_type_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">TypeDefinition</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summarize type definition</span>
 
@@ -481,7 +544,10 @@
         <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">base</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">typebases</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_class_definition"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_class_definition">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_class_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.summarize_class_definition">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_class_definition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_class_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summarize class definition element</span>
 
@@ -494,13 +560,16 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_ref</span><span class="p">(</span><span class="n">ClassType</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">SlotType</span><span class="p">,</span> <span class="n">slotname</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">slotname</span><span class="p">,</span> <span class="n">usage</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">slot_usage</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">slotusages</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">slotname</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div>
+
             <span class="c1"># self.add_ref(ClassType, k, SlotType, slotname)</span>
             <span class="c1"># slot_alias = self.schema.slots[slotname].alias</span>
             <span class="c1"># if slot_alias:</span>
             <span class="c1">#     self.add_ref(SlotType, slotname, SlotType, cast(SlotDefinitionName, slot_alias))</span>
             <span class="c1">#     self.add_ref(ClassType, k, SlotType, cast(SlotDefinitionName, slot_alias))</span>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_enum_definition"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_enum_definition">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_enum_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">EnumDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">EnumDefinition</span><span class="p">):</span>
+<div class="viewcode-block" id="SchemaSynopsis.summarize_enum_definition">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_enum_definition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_enum_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">EnumDefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">EnumDefinition</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summarize enum definition</span>
 
@@ -510,7 +579,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">summarize_element</span><span class="p">(</span><span class="n">EnumType</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_definition"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_definition">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="n">RefType</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">DefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Definition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.summarize_definition">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_definition">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="n">RefType</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">DefinitionName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Definition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Summarize slot and class definitions</span>
 
@@ -538,7 +610,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">applytorefs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">applyto</span><span class="p">,</span> <span class="n">References</span><span class="p">())</span><span class="o">.</span><span class="n">addref</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_ref</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">applyto</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.summarize_element"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_element">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="n">RefType</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">ElementName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.summarize_element">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summarize_element">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summarize_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typ</span><span class="p">:</span> <span class="n">RefType</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">ElementName</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">         Summarize element level items</span>
 
@@ -552,7 +627,10 @@
         <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">in_subset</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_ref</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">SubsetType</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.add_ref"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.add_ref">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">add_ref</span><span class="p">(</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.add_ref">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.add_ref">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_ref</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">fromtype</span><span class="p">:</span> <span class="n">RefType</span><span class="p">,</span>
         <span class="n">fromname</span><span class="p">:</span> <span class="n">ElementName</span><span class="p">,</span>
@@ -580,29 +658,32 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Unknown typ: </span><span class="si">{typ}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_ancestor_is_owned</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">slot</span><span class="o">.</span><span class="n">is_a</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">slot</span><span class="o">.</span><span class="n">is_a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">owners</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ancestor_is_owned</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">slot</span><span class="o">.</span><span class="n">is_a</span><span class="p">]))</span>
 
-<div class="viewcode-block" id="SchemaSynopsis.errors"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.errors">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">format_undefineds</span><span class="p">(</span><span class="n">refs</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TypedNode</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="SchemaSynopsis.errors">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.errors">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">format_undefineds</span><span class="p">(</span><span class="n">refs</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TypedNode</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
             <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TypedNode</span><span class="o">.</span><span class="n">yaml_loc</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">ref</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">refs</span><span class="p">]</span>
 
         <span class="n">rval</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">undefined_classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classrefs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">undefined_classes</span><span class="p">:</span>
-            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined class references: &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_classes</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined class references: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_classes</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
         <span class="n">undefined_slots</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slotrefs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">undefined_slots</span><span class="p">:</span>
-            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined slot references: &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_slots</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined slot references: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_slots</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
         <span class="n">undefined_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typerefs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">undefined_types</span><span class="p">:</span>
-            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined type references: &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_types</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined type references: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_types</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
         <span class="n">undefined_subsets</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subsetrefs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">subsets</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">undefined_subsets</span><span class="p">:</span>
-            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined subset references: &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_subsets</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined subset references: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_subsets</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
         <span class="n">undefined_enums</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">enumrefs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">enums</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="k">if</span> <span class="n">undefined_enums</span><span class="p">:</span>
-            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined enun references: &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_enums</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Undefined enun references: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">format_undefineds</span><span class="p">(</span><span class="n">undefined_enums</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
 
         <span class="c1"># Inlined slots must be multivalued (not a inviolable rule, but we make assumptions about this elsewhere in</span>
         <span class="c1"># the python generator</span>
@@ -611,8 +692,11 @@
                 <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="si">{</span><span class="n">TypedNode</span><span class="o">.</span><span class="n">yaml_loc</span><span class="p">(</span><span class="n">slot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> Slot </span><span class="si">{</span><span class="n">slot</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is declared inline but single valued&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">rval</span></div>
 
-<div class="viewcode-block" id="SchemaSynopsis.summary"><a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summary">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">summarize_refs</span><span class="p">(</span><span class="n">refs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ElementName</span><span class="p">,</span> <span class="n">References</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+<div class="viewcode-block" id="SchemaSynopsis.summary">
+<a class="viewcode-back" href="../../../code/utils.html#linkml.utils.schemasynopsis.SchemaSynopsis.summary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">summarize_refs</span><span class="p">(</span><span class="n">refs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">ElementName</span><span class="p">,</span> <span class="n">References</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="n">clsrefs</span><span class="p">,</span> <span class="n">slotrefs</span><span class="p">,</span> <span class="n">typerefs</span><span class="p">,</span> <span class="n">enumrefs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">(),</span> <span class="nb">set</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">refs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">cr</span> <span class="ow">in</span> <span class="n">refs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -625,7 +709,7 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">typerefs</span><span class="p">)</span><span class="si">}</span><span class="s2"> types, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">enumrefs</span><span class="p">)</span><span class="si">}</span><span class="s2"> enums &quot;</span>
             <span class="p">)</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">recurse_types</span><span class="p">(</span><span class="n">typ</span><span class="p">:</span> <span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">indent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">recurse_types</span><span class="p">(</span><span class="n">typ</span><span class="p">:</span> <span class="n">TypeDefinitionName</span><span class="p">,</span> <span class="n">indent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t\t\t</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
             <span class="n">rval</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}{</span><span class="n">typ</span><span class="si">}</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;:&quot;</span> <span class="k">if</span> <span class="n">typ</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">typeofs</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)]</span>
             <span class="k">if</span> <span class="n">typ</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typeofs</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">typeofs</span><span class="p">[</span><span class="n">typ</span><span class="p">]):</span>
@@ -678,7 +762,7 @@
 
         <span class="c1"># Slots that are defined but do not (directly) occur in any class</span>
         <span class="n">n_unreferenced_descendants</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">unowned_slots</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">unowned_slots</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">slotname</span><span class="p">,</span> <span class="n">slot</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">slotname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">owners</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">slot</span><span class="o">.</span><span class="n">domain</span><span class="p">:</span>
@@ -691,10 +775,10 @@
         <span class="k">if</span> <span class="n">unowned_slots</span><span class="p">:</span>
             <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">* Unowned slots: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">unowned_slots</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
 
-        <span class="n">not_in_domain</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">domain_mismatches</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">unkdomains</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">emptydomains</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">not_in_domain</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">domain_mismatches</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">unkdomains</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">emptydomains</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">slot</span><span class="o">.</span><span class="n">domain</span><span class="p">:</span>
@@ -719,7 +803,7 @@
             <span class="k">for</span> <span class="n">slotname</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">domain_mismatches</span><span class="p">):</span>
                 <span class="n">rval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t\t\t</span><span class="s1">Slot: &quot;</span><span class="si">{</span><span class="n">slotname</span><span class="si">}</span><span class="s1">&quot; declared domain: &quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">slotname</span><span class="p">]</span><span class="o">.</span><span class="n">domain</span><span class="si">}</span><span class="s1">&quot; &#39;</span>
-                    <span class="sa">f</span><span class="s1">&#39;actual domain(s): </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slotclasses</span><span class="p">[</span><span class="n">slotname</span><span class="p">])</span><span class="si">}</span><span class="s1">&#39;</span>
+                    <span class="sa">f</span><span class="s2">&quot;actual domain(s): </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slotclasses</span><span class="p">[</span><span class="n">slotname</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="n">unkdomains</span><span class="p">:</span>
             <span class="n">rval</span> <span class="o">+=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">* Unknown domain: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">unkdomains</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
@@ -758,7 +842,9 @@
                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="n">typ</span><span class="p">]</span><span class="o">.</span><span class="n">typeof</span><span class="p">:</span>
                     <span class="n">rval</span> <span class="o">+=</span> <span class="n">recurse_types</span><span class="p">(</span><span class="n">typ</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rval</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rval</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
         </article>
       </div>
@@ -791,12 +877,18 @@
       
     </aside>
   </div>
-</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+</div><script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     </body>
 </html>

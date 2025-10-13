@@ -1,19 +1,19 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="">
+<html class="no-js" lang="en" data-content_root="../../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
-    <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
+    <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"/><!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
         <title>linkml.generators.docgen - linkml documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/common.css?v=b029f2e4" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/notebooks.css?v=8a1ccf7d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/common.css?v=95000900" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/notebooks.css?v=1ce917dd" />
     
     
 
@@ -72,7 +72,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -87,22 +87,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -115,6 +156,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -133,7 +176,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -220,8 +264,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/shex.html">ShEx</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/owl.html">OWL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/yarrrml.html">YARRRML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../generators/docgen.html">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/erdiagram.html">ER Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/plantumlgen.html">PlantUML Diagram Generator</a></li>
@@ -230,6 +275,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/pydantic.html">Pydantic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/java.html">Java</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/typescript.html">Typescript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/rust.html">Rust</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/sqltable.html">SQL DDL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/sqlalchemy.html">SQL Alchemy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/linkml.html">LinkML Generators</a></li>
@@ -239,6 +285,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/excel.html">Excel Spreadsheet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../generators/yaml.html">Yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generators/pandera.html">Pandera</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../generators/common/index.html">Common</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Common</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -259,6 +306,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/model-property-graphs.html">How to make a property graph schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples of use</a></li>
@@ -332,7 +380,8 @@
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -342,20 +391,21 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <h1>Source code for linkml.generators.docgen</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">click</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">jinja2</span><span class="w"> </span><span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">FileSystemLoader</span><span class="p">,</span> <span class="n">Template</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">linkml_runtime.dumpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">yaml_dumper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">linkml_runtime.dumpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">json_dumper</span><span class="p">,</span> <span class="n">yaml_dumper</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">linkml_runtime.linkml_model.meta</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ClassDefinition</span><span class="p">,</span>
     <span class="n">ClassDefinitionName</span><span class="p">,</span>
@@ -379,15 +429,15 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">linkml.workspaces.example_runner</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExampleRunner</span>
 
 
-<div class="viewcode-block" id="MarkdownDialect"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.MarkdownDialect">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">MarkdownDialect</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MarkdownDialect</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">python</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span>  <span class="c1"># https://python-markdown.github.io/ -- used by mkdocs</span>
-    <span class="n">myst</span> <span class="o">=</span> <span class="s2">&quot;myst&quot;</span>  <span class="c1"># https://myst-parser.readthedocs.io/en/latest/ -- used by sphinx</span></div>
+    <span class="n">myst</span> <span class="o">=</span> <span class="s2">&quot;myst&quot;</span>  <span class="c1"># https://myst-parser.readthedocs.io/en/latest/ -- used by sphinx</span>
 
 
-<div class="viewcode-block" id="DiagramType"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DiagramType">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">DiagramType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiagramType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="n">mermaid_class_diagram</span> <span class="o">=</span> <span class="s2">&quot;mermaid_class_diagram&quot;</span>
     <span class="n">plantuml_class_diagram</span> <span class="o">=</span> <span class="s2">&quot;plantuml_class_diagram&quot;</span>
-    <span class="n">er_diagram</span> <span class="o">=</span> <span class="s2">&quot;er_diagram&quot;</span></div>
+    <span class="n">er_diagram</span> <span class="o">=</span> <span class="s2">&quot;er_diagram&quot;</span>
 
 
 <span class="c1"># In future this may become a Union statement, but for now we only have dialects for markdown</span>
@@ -404,9 +454,9 @@
 <span class="n">SUBSET_SUBFOLDER</span> <span class="o">=</span> <span class="s2">&quot;subsets&quot;</span>
 
 
-<div class="viewcode-block" id="enshorten"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.enshorten">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">enshorten</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">enshorten</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Custom filter to truncate any long text intended to go in a table,</span>
+<span class="sd">    Custom filters to truncate any long text intended to go in a table</span>
 <span class="sd">    and to remove anything after a newline&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
@@ -418,11 +468,14 @@
         <span class="nb">input</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_CHARS_IN_TABLE</span> <span class="o">-</span> <span class="mi">3</span><span class="p">:</span>
         <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">MAX_CHARS_IN_TABLE</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span>
-    <span class="k">return</span> <span class="nb">input</span></div>
+    <span class="k">return</span> <span class="nb">input</span>
 
 
-<div class="viewcode-block" id="customize_environment"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.customize_environment">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">customize_environment</span><span class="p">(</span><span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">):</span>
-    <span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s2">&quot;enshorten&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enshorten</span></div>
+<span class="k">def</span><span class="w"> </span><span class="nf">text_to_web</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom filter to convert multi-line text strings into a suitable format for web/markdown output.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_ranked</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Element</span><span class="p">]):</span>
@@ -431,7 +484,9 @@
             <span class="n">x</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">MAX_RANK</span>
 
 
-<div class="viewcode-block" id="DocGenerator"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="DocGenerator">
+<a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator">[docs]</a>
+<span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">DocGenerator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates documentation from a schema</span>
@@ -481,7 +536,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;markdown dialect (e.g MyST, Python)&quot;&quot;&quot;</span>
     <span class="n">sort_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;name&quot;</span>
     <span class="n">visit_all_class_slots</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">template_mappings</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">template_mappings</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;directory in which to write documents&quot;&quot;&quot;</span>
 
@@ -500,6 +555,9 @@
     <span class="n">subfolder_type_separation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether each type (class, slot, etc.) should be put in separate subfolder for navigation purposes&quot;&quot;&quot;</span>
 
+    <span class="n">truncate_descriptions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether to truncate long (multi-line) descriptions down to a single line.&quot;&quot;&quot;</span>
+
     <span class="n">example_directory</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">example_runner</span><span class="p">:</span> <span class="n">ExampleRunner</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ExampleRunner</span><span class="p">())</span>
 
@@ -511,6 +569,9 @@
     <span class="n">use_class_uris</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">hierarchical_class_view</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">render_imports</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">preserve_names</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If true, preserve LinkML element names in docs instead of camelcase/underscore.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">dialect</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span>
@@ -532,7 +593,30 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span> <span class="o">=</span> <span class="n">SchemaView</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">merge_imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mergeimports</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.serialize"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.serialize">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Override schemaview&#39;s get_mappings to use preserved URIs when needed</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserve_names</span><span class="p">:</span>
+            <span class="n">original_get_mappings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_mappings</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">get_mappings_with_preserved_uris</span><span class="p">(</span><span class="n">element_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="n">mappings</span> <span class="o">=</span> <span class="n">original_get_mappings</span><span class="p">(</span><span class="n">element_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">mappings</span> <span class="ow">and</span> <span class="n">element_name</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="n">element_name</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">element</span><span class="p">:</span>
+                            <span class="n">preserved_uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                            <span class="c1"># Fix self and native mappings to use preserved URI</span>
+                            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;self&quot;</span><span class="p">,</span> <span class="s2">&quot;native&quot;</span><span class="p">):</span>
+                                <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">:</span>
+                                    <span class="n">mappings</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">preserved_uri</span><span class="p">]</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">return</span> <span class="n">mappings</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_mappings</span> <span class="o">=</span> <span class="n">get_mappings_with_preserved_uris</span>
+
+<div class="viewcode-block" id="DocGenerator.serialize">
+<a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.serialize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Serialize a schema as a collection of documents</span>
 
@@ -615,6 +699,7 @@
             <span class="n">out_str</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">gen</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">schemaview</span><span class="o">=</span><span class="n">sv</span><span class="p">,</span> <span class="o">**</span><span class="n">template_vars</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_write</span><span class="p">(</span><span class="n">out_str</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">SUBSET_SUBFOLDER</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="n">directory</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span></div>
 
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes a string in desired format (e.g. markdown) to the appropriate file in a directory</span>
@@ -659,7 +744,7 @@
             <span class="c1"># TODO: relative paths</span>
             <span class="c1"># loader = FileSystemLoader()</span>
             <span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
-            <span class="n">customize_environment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">customize_environment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">base_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">element_type</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_suffix</span><span class="p">()</span><span class="si">}</span><span class="s2">.jinja2&quot;</span>
@@ -677,10 +762,10 @@
                 <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="s2">&quot;docgen&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="n">loader</span> <span class="o">=</span> <span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
             <span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">loader</span><span class="p">)</span>
-            <span class="n">customize_environment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">customize_environment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">base_file_name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.schema_title"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.schema_title">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">schema_title</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">schema_title</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the title of the schema.</span>
 
@@ -692,9 +777,9 @@
         <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">title</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">title</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span></div>
+            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">name</span>
 
-<div class="viewcode-block" id="DocGenerator.name"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.name">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the name of the element in its canonical form</span>
 
@@ -702,36 +787,49 @@
 <span class="sd">        :return: slot name or numeric portion of CURIE prefixed</span>
 <span class="sd">            slot_uri</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;slot_definition&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserve_names</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;slot_definition&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_slot_uris</span><span class="p">:</span>
                 <span class="n">curie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">curie</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">curie</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-
             <span class="k">return</span> <span class="n">underscore</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">class_name</span> <span class="o">==</span> <span class="s2">&quot;class_definition&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_class_uris</span><span class="p">:</span>
                 <span class="n">curie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">curie</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">curie</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-
             <span class="k">return</span> <span class="n">camelcase</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">camelcase</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">camelcase</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.uri"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.uri">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fetches the URI string for the relevant element</span>
 
 <span class="sd">        :param element:</span>
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="p">(</span><span class="n">EnumDefinition</span><span class="p">,</span> <span class="n">SubsetDefinition</span><span class="p">)):</span>
-            <span class="c1"># TODO: fix schema view to handle URIs for enums and subsets</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">SubsetDefinition</span><span class="p">):</span>
+            <span class="c1"># Subsets have no uri attribute</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="n">expand</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DocGenerator.uri_link"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.uri_link">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">uri_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># Simple URI composition for preserved names</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">preserve_names</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">use_class_uris</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_slot_uris</span><span class="p">):</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">id</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;://&quot;</span> <span class="ow">in</span> <span class="n">base</span> <span class="ow">or</span> <span class="n">base</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">)):</span>
+                <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">base</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">))</span> <span class="k">else</span> <span class="s2">&quot;/&quot;</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}{</span><span class="n">sep</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="n">expand</span><span class="p">,</span> <span class="n">use_element_type</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_uri</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="n">expand</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">uri_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Element</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a link string (default: markdown links) for a schema element</span>
 
 <span class="sd">        :param element: uri string or linkml model element</span>
@@ -743,9 +841,24 @@
 
         <span class="n">uri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
         <span class="n">curie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">curie</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">curie</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">uri</span><span class="si">}</span><span class="s2">)&quot;</span>
 
-<div class="viewcode-block" id="DocGenerator.link"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.link">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Definition</span><span class="p">,</span> <span class="n">DefinitionName</span><span class="p">],</span> <span class="n">index_link</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">link_mermaid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Definition</span><span class="p">,</span> <span class="n">DefinitionName</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return link to insert in mermaid diagrams for a given element</span>
+
+<span class="sd">        :param e: element to be linked</span>
+<span class="sd">        :return: string with link</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Reuse markdown link generation to avoid code duplication.</span>
+        <span class="n">md_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">md_link</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">md_link</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">md_link</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;../</span><span class="si">{</span><span class="n">link</span><span class="si">}</span><span class="s2">/&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Definition</span><span class="p">,</span> <span class="n">DefinitionName</span><span class="p">],</span> <span class="n">index_link</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render an element as a hyperlink</span>
 
@@ -762,6 +875,8 @@
             <span class="k">return</span> <span class="s2">&quot;NONE&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">Definition</span><span class="p">):</span>
             <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;NONE&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_external</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">uri_link</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ClassDefinition</span><span class="p">):</span>
@@ -774,12 +889,12 @@
                         <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">CLASS_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                     <span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_markdown_link</span><span class="p">(</span>
-                <span class="n">camelcase</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                 <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">CLASS_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">EnumDefinition</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_markdown_link</span><span class="p">(</span>
-                <span class="n">camelcase</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                 <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">ENUM_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">SlotDefinition</span><span class="p">):</span>
@@ -792,42 +907,43 @@
                         <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">SLOT_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
                     <span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_markdown_link</span><span class="p">(</span>
-                <span class="n">underscore</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                 <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">SLOT_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">TypeDefinition</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_markdown_link</span><span class="p">(</span>
-                <span class="n">camelcase</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                 <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">TYPE_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">SubsetDefinition</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_markdown_link</span><span class="p">(</span>
-                <span class="n">camelcase</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
                 <span class="n">subfolder</span><span class="o">=</span><span class="n">subfolder</span> <span class="o">+</span> <span class="n">SUBSET_SUBFOLDER</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfolder_type_separation</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">name</span></div>
+            <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">name</span>
 
-<div class="viewcode-block" id="DocGenerator.links"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.links">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DefinitionName</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Render list of element documentation pages as hyperlinks.</span>
 
 <span class="sd">        :param e_list: list of elements</span>
 <span class="sd">        :return: list of hyperlinked elements</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link</span><span class="p">,</span> <span class="n">e_list</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link</span><span class="p">,</span> <span class="n">e_list</span><span class="p">))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_exclude_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">TypeDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_external</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;https://w3id.org/linkml/&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_is_external</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="c1"># note: this is currently incomplete. See: https://github.com/linkml/linkml/issues/782</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">from_schema</span> <span class="o">==</span> <span class="s2">&quot;https://w3id.org/linkml/types&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">genmeta</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_markdown_link</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_markdown_link</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">subfolder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">subfolder</span><span class="p">:</span>
             <span class="n">rel_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subfolder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -839,7 +955,7 @@
 
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">rel_path</span><span class="si">}</span><span class="s2">.md)&quot;</span>
 
-<div class="viewcode-block" id="DocGenerator.inheritance_tree"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.inheritance_tree">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">inheritance_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Definition</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inheritance_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Definition</span><span class="p">,</span> <span class="n">children</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Show an element in the context of its is-a hierarchy</span>
 
@@ -859,7 +975,7 @@
                 <span class="n">all_children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">slot_children</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mixins</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">all_children</span><span class="p">:</span>
                 <span class="n">s</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span></div>
+        <span class="k">return</span> <span class="n">s</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_tree</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -867,7 +983,7 @@
         <span class="n">mixins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">descriptions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">focus</span><span class="p">:</span> <span class="n">DefinitionName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span>
         <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">is_a</span><span class="p">:</span>
             <span class="n">pre</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tree</span><span class="p">(</span>
@@ -912,7 +1028,7 @@
         <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">s</span>
 
-<div class="viewcode-block" id="DocGenerator.bullet"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.bullet">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">bullet</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">meta_slot</span><span class="p">:</span> <span class="n">SlotDefinitionName</span><span class="p">,</span> <span class="n">backquote</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render tag-value for an element as a bullet</span>
@@ -930,9 +1046,9 @@
                 <span class="n">v</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">`&quot;</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;* [</span><span class="si">{</span><span class="n">meta_slot</span><span class="si">}</span><span class="s2">](https://w3id.org/linkml/</span><span class="si">{</span><span class="n">meta_slot</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
-<div class="viewcode-block" id="DocGenerator.number_value_range"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.number_value_range">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">number_value_range</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">,</span> <span class="n">TypeDefinition</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render the minimum and maximum values for a slot or type as a range, e.g 5-100</span>
@@ -952,9 +1068,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">maximum_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">r</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;= </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">maximum_value</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="k">return</span> <span class="n">r</span></div>
+        <span class="k">return</span> <span class="n">r</span>
 
-<div class="viewcode-block" id="DocGenerator.cardinality"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.cardinality">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cardinality</span><span class="p">(</span><span class="n">slot</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render combination of required, multivalued, recommended, and exact_cardinality as a range,</span>
@@ -1010,9 +1126,9 @@
         <span class="k">if</span> <span class="n">slot</span><span class="o">.</span><span class="n">recommended</span><span class="p">:</span>
             <span class="n">cardinality</span> <span class="o">+=</span> <span class="s2">&quot; _recommended_&quot;</span>
 
-        <span class="k">return</span> <span class="n">cardinality</span></div>
+        <span class="k">return</span> <span class="n">cardinality</span>
 
-<div class="viewcode-block" id="DocGenerator.mermaid_directive"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.mermaid_directive">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">mermaid_directive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mermaid_directive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Writes a mermaid directive. See &lt;https://mermaid-js.github.io/mermaid/#/&gt;_</span>
 
@@ -1025,9 +1141,9 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">dialect</span> <span class="o">==</span> <span class="n">MarkdownDialect</span><span class="o">.</span><span class="n">myst</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{mermaid}</span><span class="s2">&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;mermaid&quot;</span></div>
+            <span class="k">return</span> <span class="s2">&quot;mermaid&quot;</span>
 
-<div class="viewcode-block" id="DocGenerator.mermaid_diagram"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.mermaid_diagram">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">mermaid_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mermaid_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ClassDefinitionName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render a mermaid diagram for a set of classes</span>
 
@@ -1035,7 +1151,7 @@
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_type</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">DiagramType</span><span class="o">.</span><span class="n">er_diagram</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-            <span class="n">erdgen</span> <span class="o">=</span> <span class="n">ERDiagramGenerator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;mermaid&quot;</span><span class="p">)</span>
+            <span class="n">erdgen</span> <span class="o">=</span> <span class="n">ERDiagramGenerator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;mermaid&quot;</span><span class="p">,</span> <span class="n">preserve_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">preserve_names</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">class_names</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">erdgen</span><span class="o">.</span><span class="n">serialize_classes</span><span class="p">(</span><span class="n">class_names</span><span class="p">,</span> <span class="n">follow_references</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_hops</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1043,14 +1159,14 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_type</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">DiagramType</span><span class="o">.</span><span class="n">mermaid_class_diagram</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is currently handled in the jinja templates&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_type</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">DiagramType</span><span class="o">.</span><span class="n">plantuml_class_diagram</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-            <span class="n">plantumlgen</span> <span class="o">=</span> <span class="n">PlantumlGenerator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+            <span class="n">plantumlgen</span> <span class="o">=</span> <span class="n">PlantumlGenerator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">preserve_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">preserve_names</span><span class="p">)</span>
             <span class="n">plantuml_diagram</span> <span class="o">=</span> <span class="n">plantumlgen</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="n">class_names</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created PlantUML diagram for class: </span><span class="si">{</span><span class="n">class_names</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">plantuml_diagram</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diagram type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram_type</span><span class="si">}</span><span class="s2"> not implemented&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diagram type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram_type</span><span class="si">}</span><span class="s2"> not implemented&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.latex"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.latex">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">latex</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Makes text safe for latex</span>
@@ -1062,9 +1178,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">_&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">_&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.yaml"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.yaml">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">inferred</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">Element</span><span class="p">,</span> <span class="n">inferred</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render element as YAML</span>
 
@@ -1083,9 +1199,9 @@
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
                 <span class="n">c</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
             <span class="n">c</span><span class="o">.</span><span class="n">slots</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">return</span> <span class="n">yaml_dumper</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">c</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">yaml_dumper</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DocGenerator.class_induced_slots"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.class_induced_slots">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">class_induced_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="n">ClassDefinitionName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">class_induced_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="n">ClassDefinitionName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Yields all induced slots for a class</span>
 
@@ -1096,10 +1212,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">class_induced_slots</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.all_class_objects"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_class_objects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_class_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">ClassDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_class_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">ClassDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        all class objects in schema</span>
 
@@ -1108,10 +1223,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">all_classes</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">render_imports</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.all_slot_objects"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_slot_objects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_slot_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_slot_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        all slot objects in schema</span>
 
@@ -1120,10 +1234,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">all_slots</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">render_imports</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.all_type_objects"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_type_objects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_type_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TypeDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_type_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">TypeDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        all type objects in schema</span>
 
@@ -1132,13 +1245,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">all_types</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">render_imports</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.all_type_object_names"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_type_object_names">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_type_object_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_type_objects</span><span class="p">())]</span></div>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_type_object_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">TypeDefinitionName</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_type_objects</span><span class="p">())]</span>
 
-<div class="viewcode-block" id="DocGenerator.all_enum_objects"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_enum_objects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_enum_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">EnumDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_enum_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">EnumDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        all enum objects in schema</span>
 
@@ -1147,10 +1259,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">all_enums</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">render_imports</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.all_subset_objects"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.all_subset_objects">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">all_subset_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SubsetDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_subset_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">SubsetDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        all enum objects in schema</span>
 
@@ -1159,10 +1270,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">elts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">all_subsets</span><span class="p">(</span><span class="n">imports</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">render_imports</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">_ensure_ranked</span><span class="p">(</span><span class="n">elts</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elts</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">e</span></div>
+        <span class="k">yield from</span> <span class="n">elts</span>
 
-<div class="viewcode-block" id="DocGenerator.class_hierarchy_as_tuples"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.class_hierarchy_as_tuples">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">class_hierarchy_as_tuples</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ClassDefinitionName</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">class_hierarchy_as_tuples</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">ClassDefinitionName</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate a hierarchical representation of all classes in the schema</span>
 
@@ -1201,7 +1311,7 @@
             <span class="p">)</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
                 <span class="c1"># depth first - place at end of stack (to be processed next)</span>
-                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span></div>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_is_single_file_format</span><span class="p">(</span><span class="nb">format</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -1210,7 +1320,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="DocGenerator.inject_slot_info"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.inject_slot_info">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">inject_slot_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SlotDefinition</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inject_slot_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slot</span><span class="p">:</span> <span class="n">SlotDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SlotDefinition</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Injects additional information into a slot</span>
 
@@ -1223,19 +1333,19 @@
             <span class="n">slot</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">default_range</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">slot</span><span class="o">.</span><span class="n">range</span><span class="p">:</span>
             <span class="n">slot</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span>
-        <span class="k">return</span> <span class="n">slot</span></div>
+        <span class="k">return</span> <span class="n">slot</span>
 
-<div class="viewcode-block" id="DocGenerator.get_direct_slot_names"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.get_direct_slot_names">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_direct_slot_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_direct_slot_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SlotDefinitionName</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch list of all own attributes of a class, i.e.,</span>
 <span class="sd">        all slot names of slots that belong to the domain of a class.</span>
 
 <span class="sd">        :param cls: class for which we want to determine the attributes</span>
 <span class="sd">        :return: list of names of all own attributes of a class</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">slots</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">slots</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-<div class="viewcode-block" id="DocGenerator.get_direct_slots"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.get_direct_slots">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_direct_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_direct_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch list of all own attributes of a class, i.e.,</span>
 <span class="sd">        all slots that belong to the domain of a class.</span>
 
@@ -1244,9 +1354,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inject_slot_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span><span class="o">.</span><span class="n">induced_slot</span><span class="p">(</span><span class="n">sn</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">sn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_direct_slot_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
-        <span class="p">]</span></div>
+        <span class="p">]</span>
 
-<div class="viewcode-block" id="DocGenerator.get_indirect_slots"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.get_indirect_slots">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_indirect_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_indirect_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">SlotDefinition</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch list of all inherited attributes of a class, i.e.,</span>
 <span class="sd">        all slots that belong to the domain of a class.</span>
 
@@ -1259,11 +1369,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">inject_slot_info</span><span class="p">(</span><span class="n">slot</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">slot</span> <span class="ow">in</span> <span class="n">sv</span><span class="o">.</span><span class="n">class_induced_slots</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">slot</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">direct_slot_names</span>
-        <span class="p">]</span></div>
+        <span class="p">]</span>
 
-<div class="viewcode-block" id="DocGenerator.get_slot_inherited_from"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.get_slot_inherited_from">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_slot_inherited_from</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_slot_inherited_from</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="n">ClassDefinitionName</span><span class="p">,</span> <span class="n">slot_name</span><span class="p">:</span> <span class="n">SlotDefinitionName</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ClassDefinitionName</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the name of the class that a given slot is inherited from.</span>
 
 <span class="sd">        :param class_name: name of the class whose slot we are checking</span>
@@ -1273,9 +1383,9 @@
         <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">schemaview</span>
         <span class="n">induced_slot</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">induced_slot</span><span class="p">(</span><span class="n">slot_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
         <span class="n">ancestors</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">class_ancestors</span><span class="p">(</span><span class="n">class_name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">induced_slot</span><span class="o">.</span><span class="n">domain_of</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ancestors</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">induced_slot</span><span class="o">.</span><span class="n">domain_of</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">ancestors</span><span class="p">))</span>
 
-<div class="viewcode-block" id="DocGenerator.get_mixin_inherited_slots"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.get_mixin_inherited_slots">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_mixin_inherited_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mixin_inherited_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch list of all slots acquired through mixing.</span>
 
 <span class="sd">        :param cls: class for which we want to determine the mixed in slots</span>
@@ -1288,9 +1398,9 @@
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mixins</span><span class="p">:</span>
             <span class="n">mixed_in_slots</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">class_slots</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">mixed_in_slots</span></div>
+        <span class="k">return</span> <span class="n">mixed_in_slots</span>
 
-<div class="viewcode-block" id="DocGenerator.example_object_blobs"><a class="viewcode-back" href="../../../generators/docgen.html#linkml.generators.docgen.DocGenerator.example_object_blobs">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">example_object_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">example_object_blobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fetch list of all examples of a class.</span>
 
 <span class="sd">        :param class_name: class for which we want to determine the examples</span>
@@ -1304,7 +1414,88 @@
             <span class="n">stem</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
                 <span class="n">objs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">stem</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
-        <span class="k">return</span> <span class="n">objs</span></div></div>
+        <span class="k">return</span> <span class="n">objs</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_remove_name_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recursively removes &#39;name&#39; keys from a JSON object representation.</span>
+
+<span class="sd">        This is used to clean up the output of ClassRule objects. For example, if we had a rule like:</span>
+<span class="sd">        rules:</span>
+<span class="sd">        - title: calibration_standard_if_rt</span>
+<span class="sd">            preconditions:</span>
+<span class="sd">                slot_conditions:</span>
+<span class="sd">                    calibration_target:</span>
+<span class="sd">                        equals_string: retention_index</span>
+
+<span class="sd">        The JSON representation would include redundant &quot;name&quot; keys:</span>
+<span class="sd">        {</span>
+<span class="sd">            &quot;slot_conditions&quot;: {</span>
+<span class="sd">                &quot;name&quot;: &quot;slot_conditions&quot;</span>
+<span class="sd">                &quot;calibration_target&quot;: {</span>
+<span class="sd">                    &quot;name&quot;: &quot;calibration_target&quot;</span>
+<span class="sd">                    &quot;equals_string&quot;: &quot;retention_index&quot;,</span>
+<span class="sd">                },</span>
+<span class="sd">            }</span>
+<span class="sd">        }</span>
+
+<span class="sd">        This function removes those redundant &quot;name&quot; keys to make the output cleaner.</span>
+
+<span class="sd">        :param obj: The object to clean (dict, list, or primitive value)</span>
+<span class="sd">        :return: The same object with all &quot;name&quot; keys removed from dicts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_name_keys</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;name&quot;</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_remove_name_keys</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">classrule_to_dict_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">ClassDefinition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process all rules (of type ClassRule) asserted on a class.</span>
+
+<span class="sd">        This method iterates through all rules asserted on a class and returns a list of</span>
+<span class="sd">        dictionaries, each containing four pieces of information about a rule:</span>
+<span class="sd">        _title_, _preconditions_, _postconditions_, and _elseconditions_.</span>
+<span class="sd">        These values will be read in the jinja template and formatted into a tabular</span>
+<span class="sd">        view for users to understand the rules applied to the class.</span>
+
+<span class="sd">        Note: This method removes redundant &quot;name&quot; keys which are asserted on some</span>
+<span class="sd">        classes in the Python representation of classes from the metamodel.</span>
+
+<span class="sd">        :param element: LinkML class object with `rules` asserted on it</span>
+<span class="sd">        :return: List of dictionaries with title and &quot;sanitized&quot; conditions for each rule</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">element</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">rule_dicts</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+            <span class="c1"># TODO: expand this list of ClassRule metaslots based on use case</span>
+            <span class="n">rule_dict</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;preconditions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;postconditions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s2">&quot;elseconditions&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">}</span>
+
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;preconditions&quot;</span><span class="p">,</span> <span class="s2">&quot;postconditions&quot;</span><span class="p">,</span> <span class="s2">&quot;elseconditions&quot;</span><span class="p">]:</span>
+                <span class="n">condition_obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">condition_obj</span><span class="p">:</span>
+                    <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json_dumper</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">condition_obj</span><span class="p">)</span>
+                    <span class="n">sanitized_condition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_name_keys</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+                    <span class="n">rule_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">sanitized_condition</span>
+
+            <span class="n">rule_dicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule_dict</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">rule_dicts</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">customize_environment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">Environment</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">truncate_descriptions</span><span class="p">:</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s2">&quot;enshorten&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enshorten</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s2">&quot;enshorten&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text_to_web</span></div>
+
 
 
 <span class="nd">@shared_arguments</span><span class="p">(</span><span class="n">DocGenerator</span><span class="p">)</span>
@@ -1312,7 +1503,7 @@
     <span class="s2">&quot;--directory&quot;</span><span class="p">,</span>
     <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
     <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Folder to which document files are written&quot;</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to the directory where you want the Markdown files to be written to&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--index-name&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Name of the index document.&quot;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--dialect&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Dialect or &#39;flavor&#39; of Markdown used.&quot;</span><span class="p">)</span>
@@ -1339,7 +1530,7 @@
     <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Generating metamodel. Only use this for generating meta.py&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--template-directory&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Folder in which custom templates are kept&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;--template-directory&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to the directory with custom jinja2 templates&quot;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
     <span class="s2">&quot;--use-slot-uris/--no-use-slot-uris&quot;</span><span class="p">,</span>
     <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -1366,7 +1557,6 @@
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Folder in which example files are found. These are used to make inline examples&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
-    <span class="s2">&quot;-d&quot;</span><span class="p">,</span>
     <span class="s2">&quot;--include&quot;</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Include LinkML Schema outside of imports mechanism.  Helpful in including deprecated classes and slots in a separate</span>
@@ -1377,6 +1567,20 @@
     <span class="s2">&quot;--subfolder-type-separation/--no-subfolder-type-separation&quot;</span><span class="p">,</span>
     <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Separate type (class, slot, etc.) outputs in different subfolders for navigation purposes&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
+    <span class="s2">&quot;--truncate-descriptions&quot;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Whether to truncate long (potentially spanning multiple lines) descriptions of classes, slots, etc., in the docs.</span>
+<span class="s2">Set to true for truncated descriptions, and false to display full descriptions.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
+    <span class="s2">&quot;--preserve-names/--normalize-names&quot;</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Preserve original LinkML names in documentation output (e.g., for page titles, links, and file names).&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">(</span><span class="n">__version__</span><span class="p">,</span> <span class="s2">&quot;-V&quot;</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">)</span>
 <span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;doc&quot;</span><span class="p">)</span>
@@ -1391,6 +1595,8 @@
     <span class="n">hierarchical_class_view</span><span class="p">,</span>
     <span class="n">subfolder_type_separation</span><span class="p">,</span>
     <span class="n">render_imports</span><span class="p">,</span>
+    <span class="n">truncate_descriptions</span><span class="p">,</span>
+    <span class="n">preserve_names</span><span class="p">,</span>
     <span class="o">**</span><span class="n">args</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate documentation folder from a LinkML YAML schema</span>
@@ -1423,6 +1629,8 @@
         <span class="n">index_name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span>
         <span class="n">subfolder_type_separation</span><span class="o">=</span><span class="n">subfolder_type_separation</span><span class="p">,</span>
         <span class="n">render_imports</span><span class="o">=</span><span class="n">render_imports</span><span class="p">,</span>
+        <span class="n">truncate_descriptions</span><span class="o">=</span><span class="n">truncate_descriptions</span><span class="p">,</span>
+        <span class="n">preserve_names</span><span class="o">=</span><span class="n">preserve_names</span><span class="p">,</span>
         <span class="o">**</span><span class="n">args</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">gen</span><span class="o">.</span><span class="n">serialize</span><span class="p">())</span>
@@ -1462,12 +1670,18 @@
       
     </aside>
   </div>
-</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
-    <script src="../../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
-    <script src="../../../_static/design-tabs.js?v=36754332"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+</div><script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     </body>
 </html>
