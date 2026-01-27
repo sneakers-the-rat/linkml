@@ -1,4 +1,5 @@
 from linkml.generators.common.ifabsent_processor import IfAbsentProcessor
+from linkml.generators.python.range import get_pyrange
 from linkml_runtime.linkml_model import (
     ClassDefinition,
     EnumDefinitionName,
@@ -7,16 +8,15 @@ from linkml_runtime.linkml_model import (
 
 
 class PythonIfAbsentProcessor(IfAbsentProcessor):
-    UNIMPLEMENTED_DEFAULT_VALUES = ["class_curie", "class_uri", "slot_uri", "slot_curie", "default_range", "default_ns"]
-
     def map_custom_default_values(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition) -> (bool, str):
-        if default_value in self.UNIMPLEMENTED_DEFAULT_VALUES:
-            return True, None
-
         if default_value == "bnode":
             return True, "bnode()"
 
         return False, None
+
+    def map_type_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
+        type_def = self.schema_view.get_type(default_value)
+        return get_pyrange(type_def, self.schema_view)
 
     def map_string_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
         return self._strval(default_value)

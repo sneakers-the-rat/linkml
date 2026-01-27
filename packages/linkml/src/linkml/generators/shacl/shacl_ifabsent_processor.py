@@ -15,6 +15,18 @@ class ShaclIfAbsentProcessor(IfAbsentProcessor):
 
         return False, None
 
+    def map_type_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
+        typ = self._base_type(default_value)
+        self.schema_view.type_roots()
+        if typ is None:
+            raise ValueError(f"Type {default_value} not defined in schema")
+        if typ.type_class_curie:
+            return self.map_curie_default_value(typ.type_class_curie, slot, cls)
+        elif typ.type_class_uri:
+            return self.map_uri_default_value(typ.type_class_uri, slot, cls)
+        else:
+            raise ValueError(f"Default range type {default_value} has no curie or URI defined")
+
     def map_enum_default_value(
         self, enum_name: EnumDefinitionName, permissible_value_name: str, slot: SlotDefinition, cls: ClassDefinition
     ):

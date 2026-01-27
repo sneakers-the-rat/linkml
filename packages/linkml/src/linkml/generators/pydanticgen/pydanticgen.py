@@ -33,35 +33,19 @@ from linkml.generators.pydanticgen.template import (
     PydanticModule,
     PydanticTemplateModel,
 )
+from linkml.generators.python.range import get_pyrange
 from linkml.utils.generator import shared_arguments
 from linkml_runtime.linkml_model.meta import (
     ClassDefinition,
     ElementName,
     SchemaDefinition,
     SlotDefinition,
-    TypeDefinition,
 )
 from linkml_runtime.utils.compile_python import compile_python
 from linkml_runtime.utils.formatutils import camelcase, remove_empty_items, underscore
 from linkml_runtime.utils.schemaview import SchemaView
 
 logger = logging.getLogger(__name__)
-
-
-def _get_pyrange(t: TypeDefinition, sv: SchemaView) -> str:
-    pyrange = t.repr if t is not None else None
-    if pyrange is None:
-        pyrange = t.base
-    if t.base == "XSDDateTime":
-        pyrange = "datetime "
-    if t.base == "XSDDate":
-        pyrange = "date"
-    if pyrange is None and t.typeof is not None:
-        pyrange = _get_pyrange(sv.get_type(t.typeof), sv)
-    if pyrange is None:
-        raise Exception(f"No python type for range: {t.name} // {t}")
-    return pyrange
-
 
 DEFAULT_IMPORTS = (
     Imports()
@@ -707,7 +691,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
         sv = self.schemaview
         id_ranges = list(
             {
-                _get_pyrange(sv.get_type(sv.get_identifier_slot(c).range), sv)
+                get_pyrange(sv.get_type(sv.get_identifier_slot(c).range), sv)
                 for c in sv.class_descendants(mixin.name, mixins=True)
                 if sv.get_identifier_slot(c) is not None
             }
@@ -754,9 +738,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
             sv.get_identifier_slot(range_cls.name) is not None
             and sv.get_identifier_slot(range_cls.name).range is not None
         ):
-            range_cls_identifier_slot_range = _get_pyrange(
-                sv.get_type(sv.get_identifier_slot(range_cls.name).range), sv
-            )
+            range_cls_identifier_slot_range = get_pyrange(sv.get_type(sv.get_identifier_slot(range_cls.name).range), sv)
 
         return range_cls_identifier_slot_range
 
@@ -788,7 +770,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
             pyrange = f"{camelcase(slot_range)}"
         elif slot_range in sv.all_types():
             t = sv.get_type(slot_range)
-            pyrange = _get_pyrange(t, sv)
+            pyrange = get_pyrange(t, sv)
         elif slot_range is None:
             pyrange = "str"
         else:
@@ -890,7 +872,7 @@ class PydanticGenerator(OOCodeGenerator, LifecycleMixin):
                             value_slot = non_id_slots[0]
                             value_slot_range_type = self.schemaview.get_type(value_slot.range)
                             if value_slot_range_type is not None:
-                                return _get_pyrange(value_slot_range_type, self.schemaview)
+                                return get_pyrange(value_slot_range_type, self.schemaview)
         return None
 
     def _template_environment(self) -> Environment:

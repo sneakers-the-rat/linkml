@@ -76,6 +76,9 @@ class IfAbsentProcessor(ABC):
 
     ifabsent_regex = re.compile(r"""(?:(?P<type>\w+)\()?[\"\']?(?P<default_value>[^\(\)\"\')]*)[\"\']?\)?""")
 
+    IFABSENT_REFERENCE_VALUES = ("class_curie", "class_uri", "default_ns", "default_range", "slot_curie", "slot_uri")
+    """Values of `ifabsent` that are nonliteral references to other parts of the schema"""
+
     def __init__(self, schema_view: SchemaView):
         self.schema_view = schema_view
 
@@ -95,6 +98,9 @@ class IfAbsentProcessor(ABC):
         mapped, custom_default_value = self.map_custom_default_values(ifabsent_default_value, slot, cls)
         if mapped:
             return custom_default_value
+
+        if ifabsent_default_value in self.IFABSENT_REFERENCE_VALUES:
+            return self.map_reference_default_value(ifabsent_default_value, slot, cls)
 
         base_type = self._base_type(slot.range)
 
@@ -261,6 +267,48 @@ class IfAbsentProcessor(ABC):
         @return: a boolean that indicates if the value has been mapped followed by the mapped value
         """
         return False, None
+
+    def map_reference_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
+        """Handle the reference ifabsent values (those in :attr:`.IFABSENT_REFERENCE_VALUES` )"""
+        if default_value == "class_curie":
+            return self.map_class_curie(slot, cls)
+        elif default_value == "class_uri":
+            return self.map_class_uri(slot, cls)
+        elif default_value == "default_ns":
+            return self.map_default_ns(slot, cls)
+        elif default_value == "default_range":
+            return self.map_default_range(slot, cls)
+        elif default_value == "slot_curie":
+            return self.map_slot_curie(slot, cls)
+        elif default_value == "slot_uri":
+            return self.map_slot_uri(slot, cls)
+        else:
+            raise ValueError(f"Unknown reference default value '{default_value}'")
+
+    def map_class_curie(self, slot: SlotDefinition, cls: ClassDefinition):
+        return self.map_curie_default_value(self.schema_view.get_uri(cls, expand=False), slot, cls)
+
+    def map_class_uri(self, slot: SlotDefinition, cls: ClassDefinition):
+        return self.map_uri_default_value(self.schema_view.get_uri(cls, expand=True), slot, cls)
+
+    def map_default_ns(self, slot: SlotDefinition, cls: ClassDefinition):
+        return self.schema_view.schema.default_prefix
+
+    def map_default_range(self, slot: SlotDefinition, cls: ClassDefinition):
+        if self.schema_view.schema.default_range is None:
+            raise ValueError(f"In slot {slot.name}, ifabsent is default_range, but schema has no default_range")
+        return self.map_type_default_value(self.schema_view.schema.default_range, slot, cls)
+
+    def map_slot_curie(self, slot: SlotDefinition, cls: ClassDefinition):
+        return self.map_curie_default_value(self.schema_view.get_uri(slot, expand=False), slot, cls)
+
+    def map_slot_uri(self, slot: SlotDefinition, cls: ClassDefinition):
+        return self.map_uri_default_value(self.schema_view.get_uri(slot, expand=True), slot, cls)
+
+    @abc.abstractmethod
+    def map_type_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
+        """Default value is a type, not a literal - e.g. with ifabsent: default_range"""
+        raise NotImplementedError()
 
     @abc.abstractmethod
     def map_string_default_value(self, default_value: str, slot: SlotDefinition, cls: ClassDefinition):
