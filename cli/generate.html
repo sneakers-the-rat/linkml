@@ -288,7 +288,7 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../howtos/index.html">How-to Guides</a><input aria-label="Toggle navigation of How-to Guides" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../howtos/linkml-project-cookiecutter.html">LinkML Project Cookiecutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/linkml-project-copier.html">LinkML Project Copier Template</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/collaborative-development.html">How to run a collaborative data modeling project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/recognize-structural-forms.html">How to recognize and work with different structural forms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/yq-for-schemas.html">Using yq for querying and manipulating schemas</a></li>
@@ -2270,6 +2270,13 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-jsonld-context">
 <span class="sig-name descname"><span class="pre">--context</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;context&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-jsonld-context" title="Link to this definition">¶</a></dt>
 <dd><p>JSONLD context file (default: <a class="reference external" href="https://w3id.org/linkml/meta.context.jsonld">https://w3id.org/linkml/meta.context.jsonld</a> and &lt;model&gt;.prefixes.context.jsonld)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-jsonld-k">
+<span id="cmdoption-linkml-generate-full-jsonld-context-kwargs"></span><span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--context-kwargs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;context_kwargs&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-jsonld-k" title="Link to this definition">¶</a></dt>
+<dd><p>kwargs passed to the JSONLD Context generator when instantiated. Since the context is embedded within the JSON-LD document, only the boolean instance attributes are formally supported, e.g. “output” and “base” are not applicable. The <cite>emit_metadata</cite> value is forced to be False.</p>
+<p>multiple kwargs like <cite>-k {key} {value}</cite> can be passed</p>
 </dd></dl>
 
 <dl class="std option">
