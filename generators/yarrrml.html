@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Markdown" href="markdown.html"><link rel="prev" title="OWL" href="owl.html">
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Documentation" href="docgen.html"><link rel="prev" title="OWL" href="owl.html">
         <link rel="prefetch" href="https://linkml.io/uploads/linkml-logo_color.png" as="image">
 
     <link rel="shortcut icon" href="https://linkml.io/uploads/linkml-logo_color-no-words.png"><!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
@@ -258,10 +258,8 @@
 <li class="toctree-l2"><a class="reference internal" href="shacl.html">SHACL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="owl.html">OWL</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">YARRRML</a></li>
-<li class="toctree-l2"><a class="reference internal" href="markdown.html">Markdown</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docgen.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="erdiagram.html">ER Diagrams</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yuml.html">YUML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plantumlgen.html">PlantUML Diagram Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="project-generator.html">Project Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python.html">Python</a></li>
@@ -461,6 +459,14 @@
 <span class="w">  </span><span class="nt">o</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(employer)</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iri</span>
+</pre></div>
+</div>
+</li>
+<li><p>Multivalued object slots are emitted as lists of IRIs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:friends</span>
+<span class="w">  </span><span class="nt">o</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(friends[*])</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iri</span>
 </pre></div>
 </div>
 </li>
@@ -668,7 +674,13 @@ gen-yarrrml<span class="w"> </span>path/to/schema.yaml<span class="w"> </span>--
 <li><p>JSON-first by default</p></li>
 <li><p>One source per mapping</p></li>
 <li><p>Classes without an identifier are <strong>assigned a fallback subject</strong>: <code class="docutils literal notranslate"><span class="pre">ex:&lt;Class&gt;/$(subject_id)</span></code></p></li>
-<li><p>Object slots: <code class="docutils literal notranslate"><span class="pre">inlined:</span> <span class="pre">false</span></code> → IRI; <code class="docutils literal notranslate"><span class="pre">inlined:</span> <span class="pre">true</span></code> → included as separate mapping</p></li>
+<li><p>Object slots:
+- <code class="docutils literal notranslate"><span class="pre">inlined:</span> <span class="pre">false</span></code> → emitted as IRIs
+- <code class="docutils literal notranslate"><span class="pre">inlined:</span> <span class="pre">true</span></code> → emitted using YARRRML <code class="docutils literal notranslate"><span class="pre">mapping</span></code> + <code class="docutils literal notranslate"><span class="pre">condition</span></code> (join) pattern</p></li>
+<li><p>Inline classes require an identifier (or key) to support join-based linking</p></li>
+<li><p>An inline class can only be used in a single owning class.
+Multiple inline usages of the same class are not supported,
+as each mapping can define only one source/iterator.</p></li>
 <li><p>Iterators not derived from JSON Schema</p></li>
 <li><p>No per-slot JSONPath/CSV expressions or functions</p></li>
 <li><p>CSV/TSV supported via <code class="docutils literal notranslate"><span class="pre">--source</span></code>; delimiter/custom CSVW options are not yet exposed</p></li>
@@ -681,12 +693,12 @@ gen-yarrrml<span class="w"> </span>path/to/schema.yaml<span class="w"> </span>--
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="markdown.html">
+          <a class="next-page" href="docgen.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Markdown</div>
+                <div class="title">Documentation</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
