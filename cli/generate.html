@@ -269,6 +269,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/rust.html">Rust</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/sqltable.html">SQL DDL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/sqlalchemy.html">SQL Alchemy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/sqlvalidation.html">SQL Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/linkml.html">LinkML Generators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/prefixmap.html">Prefix Generator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/sssom.html">SSSOM</a></li>
@@ -277,6 +278,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../generators/csv.html">CSV</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/yaml.html">Yaml</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generators/pandera.html">Pandera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generators/dashboard.html">Generator Feature Dashboard</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../generators/common/index.html">Common</a><input aria-label="Toggle navigation of Common" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/build.html">Build</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../generators/common/lifecycle.html">Lifecycle</a></li>
@@ -298,6 +300,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../howtos/generate-ai-prompts.html">How to Generate AI prompts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/deprecating-elements.html">Deprecating elements while maintaining PURLs and other URIs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/ontologies-as-values.html">Using ontology terms as values in data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../howtos/implements-instantiates-guide.html">Implements vs Instantiates vs Inheritance: A Best Practices Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../howtos/skip-logic.html">How to implement skip logic in LinkML</a></li>
 </ul>
 </li>
@@ -307,6 +310,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../get-involved/index.html">Get Involved</a><input aria-label="Toggle navigation of Get Involved" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../get-involved/Community-Meetings.html">Community Meetings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get-involved/workshops-and-presentations.html">Workshops and Presentations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get-involved/office-hours.html">Monthly LinkML Office Hours</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../faq/index.html">FAQ</a><input aria-label="Toggle navigation of FAQ" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -359,6 +363,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../maintainers/organization.html">GitHub Organization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../maintainers/deprecation.html">Deprecations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../maintainers/code-of-conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maintainers/generator-governance.html">Generator and Validator Governance</a></li>
 </ul>
 </li>
 </ul>
@@ -601,6 +606,12 @@ or run <code class="docutils literal notranslate"><span class="pre">linkml</span
 <dt class="sig sig-object">
 <span class="sig-name descname"><span class="pre">sqltables</span></span></dt>
 <dd><p>Generate SQL DDL representation.</p>
+</dd></dl>
+
+<dl class="object">
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">sqlvalidation</span></span></dt>
+<dd><p>Generate SQL validation queries from…</p>
 </dd></dl>
 
 <dl class="object">
@@ -1990,9 +2001,27 @@ if an override is not found.</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-java-use-aliases">
+<span id="cmdoption-linkml-generate-full-java-no-use-aliases"></span><span class="sig-name descname"><span class="pre">--use-aliases</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-use-aliases</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-java-use-aliases" title="Link to this definition">¶</a></dt>
+<dd><p>Use aliases when available to name fields</p>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-java-true-enums">
 <span id="cmdoption-linkml-generate-full-java-no-true-enums"></span><span class="sig-name descname"><span class="pre">--true-enums</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-true-enums</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-java-true-enums" title="Link to this definition">¶</a></dt>
 <dd><p>Treat enums as distinct types rather than strings</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-java-visitor">
+<span class="sig-name descname"><span class="pre">--visitor</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;visitor&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-java-visitor" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a visitor interface for the specified class</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-java-extra-template">
+<span class="sig-name descname"><span class="pre">--extra-template</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;extra_template&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-java-extra-template" title="Link to this definition">¶</a></dt>
+<dd><p>Name of an additional, arbitrary template to use</p>
 </dd></dl>
 
 <dl class="std option">
@@ -2518,6 +2547,28 @@ YAML, and including it when necessary but not by default (e.g. in documentation 
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-jsonld-context-exclude-imports">
+<span id="cmdoption-linkml-generate-full-jsonld-context-include-imports"></span><span class="sig-name descname"><span class="pre">--exclude-imports</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--include-imports</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-jsonld-context-exclude-imports" title="Link to this definition">¶</a></dt>
+<dd><p>Use –exclude-imports to exclude imported elements from the generated JSON-LD context. This is useful when extending an ontology whose terms already have context definitions in their own JSON-LD context file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-jsonld-context-exclude-external-imports">
+<span id="cmdoption-linkml-generate-full-jsonld-context-no-exclude-external-imports"></span><span class="sig-name descname"><span class="pre">--exclude-external-imports</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-exclude-external-imports</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-jsonld-context-exclude-external-imports" title="Link to this definition">¶</a></dt>
+<dd><p>Exclude elements from URL-based external vocabulary imports while keeping local file imports. Useful when extending ontologies (e.g. W3C VC v2) whose terms are &#64;protected in their own JSON-LD context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-jsonld-context-V">
 <span id="cmdoption-linkml-generate-full-jsonld-context-version"></span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-jsonld-context-V" title="Link to this definition">¶</a></dt>
 <dd><p>Show the version and exit.</p>
@@ -2996,9 +3047,38 @@ to include metaclasses. To restore this behavior:</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-skip-vacuous-local-range-axioms">
+<span id="cmdoption-linkml-generate-full-owl-no-skip-vacuous-local-range-axioms"></span><span class="sig-name descname"><span class="pre">--skip-vacuous-local-range-axioms</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-skip-vacuous-local-range-axioms</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-skip-vacuous-local-range-axioms" title="Link to this definition">¶</a></dt>
+<dd><p>If true, suppress owl:allValuesFrom restrictions whose filler is owl:Thing or the same URI as the property’s globally declared rdfs:range, as these are entailed and carry no additional information. Default will change to true in a future release.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-skip-vacuous-min-zero-cardinality-axioms">
+<span id="cmdoption-linkml-generate-full-owl-no-skip-vacuous-min-zero-cardinality-axioms"></span><span class="sig-name descname"><span class="pre">--skip-vacuous-min-zero-cardinality-axioms</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-skip-vacuous-min-zero-cardinality-axioms</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-skip-vacuous-min-zero-cardinality-axioms" title="Link to this definition">¶</a></dt>
+<dd><p>If true, suppress owl:minCardinality 0 restrictions. Such axioms are vacuously satisfied by every individual and never carry information. Default will change to true in a future release.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-consolidate-cardinality-axioms">
+<span id="cmdoption-linkml-generate-full-owl-no-consolidate-cardinality-axioms"></span><span class="sig-name descname"><span class="pre">--consolidate-cardinality-axioms</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-consolidate-cardinality-axioms</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-consolidate-cardinality-axioms" title="Link to this definition">¶</a></dt>
+<dd><p>If true, emit a single owl:cardinality restriction when minimum_cardinality equals maximum_cardinality, instead of separate owl:minCardinality and owl:maxCardinality. Default will change to true in a future release.</p>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-enum-inherits-as-subclass-of">
 <span id="cmdoption-linkml-generate-full-owl-no-enum-inherits-as-subclass-of"></span><span class="sig-name descname"><span class="pre">--enum-inherits-as-subclass-of</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-enum-inherits-as-subclass-of</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-enum-inherits-as-subclass-of" title="Link to this definition">¶</a></dt>
 <dd><p>If true, translate LinkML enum inherits relationships into OWL rdfs:subClassOf axioms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-owl-skip-abstract-class-as-unionof-subclasses">
+<span id="cmdoption-linkml-generate-full-owl-no-skip-abstract-class-as-unionof-subclasses"></span><span class="sig-name descname"><span class="pre">--skip-abstract-class-as-unionof-subclasses</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-skip-abstract-class-as-unionof-subclasses</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-owl-skip-abstract-class-as-unionof-subclasses" title="Link to this definition">¶</a></dt>
+<dd><p>If true, suppress rdfs:subClassOf owl:unionOf(subclasses) covering axioms for abstract classes. By default such axioms are emitted for every abstract class that has direct is_a children.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
@@ -3101,7 +3181,8 @@ to include metaclasses. To restore this behavior:</p>
 </section>
 <section id="linkml-generate-full-plantuml">
 <h4>plantuml<a class="headerlink" href="#linkml-generate-full-plantuml" title="Link to this heading">¶</a></h4>
-<p>Generate a UML representation of a LinkML model</p>
+<p>Generate a UML representation of a LinkML model.
+PlantUML code print out only if no directory provided.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>plantuml<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
 </pre></div>
 </div>
@@ -3115,7 +3196,7 @@ to include metaclasses. To restore this behavior:</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-plantuml-d">
 <span id="cmdoption-linkml-generate-full-plantuml-directory"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--directory</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;directory&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-plantuml-d" title="Link to this definition">¶</a></dt>
-<dd><p>Output directory - if supplied, PlantUML rendering will be saved in file</p>
+<dd><p>Output directory - if supplied, PlantUML rendering will be saved in file; otherwise, only PlantUML code will be printed out</p>
 </dd></dl>
 
 <dl class="std option">
@@ -4553,6 +4634,17 @@ is conformant to the same LinkML schema.</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqla-sqla-style">
+<span class="sig-name descname"><span class="pre">--sqla-style</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;sqla_style&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqla-sqla-style" title="Link to this definition">¶</a></dt>
+<dd><p>SQLAlchemy style to generate (1 or 2). Defaults to 1. Only applies in declarative mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 | 2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqla-use-foreign-keys">
 <span id="cmdoption-linkml-generate-full-sqla-no-use-foreign-keys"></span><span class="sig-name descname"><span class="pre">--use-foreign-keys</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-use-foreign-keys</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqla-use-foreign-keys" title="Link to this definition">¶</a></dt>
 <dd><p>Emit FK declarations</p>
@@ -4852,6 +4944,183 @@ is conformant to the same LinkML schema.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqltables-arg-YAMLFILE">
 <span class="sig-name descname"><span class="pre">YAMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqltables-arg-YAMLFILE" title="Link to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="linkml-generate-full-sqlvalidation">
+<h4>sqlvalidation<a class="headerlink" href="#linkml-generate-full-sqlvalidation" title="Link to this heading">¶</a></h4>
+<p>Generate SQL validation queries from LinkML schema.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>linkml<span class="w"> </span>generate<span class="w"> </span><span class="o">(</span>full<span class="o">)</span><span class="w"> </span>sqlvalidation<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>YAMLFILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-dialect">
+<span class="sig-name descname"><span class="pre">--dialect</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dialect&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-dialect" title="Link to this definition">¶</a></dt>
+<dd><p>SQL dialect (sqlite, postgresql)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'sqlite'</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-check-required">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-check-required"></span><span class="sig-name descname"><span class="pre">--check-required</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-check-required</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-check-required" title="Link to this definition">¶</a></dt>
+<dd><p>Generate queries for required field violations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-check-ranges">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-check-ranges"></span><span class="sig-name descname"><span class="pre">--check-ranges</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-check-ranges</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-check-ranges" title="Link to this definition">¶</a></dt>
+<dd><p>Generate queries for min/max value violations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-check-patterns">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-check-patterns"></span><span class="sig-name descname"><span class="pre">--check-patterns</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-check-patterns</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-check-patterns" title="Link to this definition">¶</a></dt>
+<dd><p>Generate queries for pattern violations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-check-enums">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-check-enums"></span><span class="sig-name descname"><span class="pre">--check-enums</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-check-enums</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-check-enums" title="Link to this definition">¶</a></dt>
+<dd><p>Generate queries for enum violations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-check-unique-keys">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-check-unique-keys"></span><span class="sig-name descname"><span class="pre">--check-unique-keys</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-check-unique-keys</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-check-unique-keys" title="Link to this definition">¶</a></dt>
+<dd><p>Generate queries for unique key violations</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-include-comments">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-include-comments"></span><span class="sig-name descname"><span class="pre">--include-comments</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-include-comments</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-include-comments" title="Link to this definition">¶</a></dt>
+<dd><p>Include description of tests in generated query</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-V">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-version"></span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-V" title="Link to this definition">¶</a></dt>
+<dd><p>Show the version and exit.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-f">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-format"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--format</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-f" title="Link to this definition">¶</a></dt>
+<dd><p>Output format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'sql'</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>sql</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-metadata">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-metadata"></span><span class="sig-name descname"><span class="pre">--metadata</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-metadata</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-metadata" title="Link to this definition">¶</a></dt>
+<dd><p>Include metadata in output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-useuris">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-metauris"></span><span class="sig-name descname"><span class="pre">--useuris</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--metauris</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-useuris" title="Link to this definition">¶</a></dt>
+<dd><p>Use class and slot URIs over model uris</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-im">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-importmap"></span><span class="sig-name descname"><span class="pre">-im</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--importmap</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;importmap&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-im" title="Link to this definition">¶</a></dt>
+<dd><p>Import mapping file</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-log_level">
+<span class="sig-name descname"><span class="pre">--log_level</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;log_level&gt;</span></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-log_level" title="Link to this definition">¶</a></dt>
+<dd><p>Logging level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'WARNING'</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>CRITICAL | ERROR | WARNING | INFO | DEBUG</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-v">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-v" title="Link to this definition">¶</a></dt>
+<dd><p>Verbosity. Takes precedence over –log_level.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-mergeimports">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-mergeimports"></span><span class="sig-name descname"><span class="pre">--mergeimports</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-mergeimports</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-mergeimports" title="Link to this definition">¶</a></dt>
+<dd><p>Merge imports into source file (default=mergeimports)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-stacktrace">
+<span id="cmdoption-linkml-generate-full-sqlvalidation-no-stacktrace"></span><span class="sig-name descname"><span class="pre">--stacktrace</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-stacktrace</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-stacktrace" title="Link to this definition">¶</a></dt>
+<dd><p>Print a stack trace when an error occurs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-linkml-generate-full-sqlvalidation-arg-YAMLFILE">
+<span class="sig-name descname"><span class="pre">YAMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-linkml-generate-full-sqlvalidation-arg-YAMLFILE" title="Link to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -5429,7 +5698,7 @@ is conformant to the same LinkML schema.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2021-2024, LinkML Authors
+                Copyright &#169; 2021-2026, LinkML Authors
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -5493,6 +5762,7 @@ is conformant to the same LinkML schema.</p>
 <li><a class="reference internal" href="#linkml-generate-full-sparql">sparql</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-sqla">sqla</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-sqltables">sqltables</a></li>
+<li><a class="reference internal" href="#linkml-generate-full-sqlvalidation">sqlvalidation</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-sssom">sssom</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-summary">summary</a></li>
 <li><a class="reference internal" href="#linkml-generate-full-terminusdb">terminusdb</a></li>
